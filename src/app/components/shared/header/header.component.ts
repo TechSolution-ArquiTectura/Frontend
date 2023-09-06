@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit{
     this.id = user?.id;
   }
   //links = ['Explorar', 'Peliculas', 'Cineclubs', 'Promociones', 'Mis grupos'];
-  links = ['Peliculas', 'Cineclubs', 'Mis grupos'];
-  activeLink = this.links[2];
+  links = ['Peliculas', 'Cineclubs', 'Mis grupos','Promotions'];
+  activeLink = this.links[3];
   
   perfil (){
     this.router.navigate(['perfil']);

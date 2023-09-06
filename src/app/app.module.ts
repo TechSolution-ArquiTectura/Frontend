@@ -46,6 +46,7 @@ import { RegisterOwnerComponent } from './components/client/auth/register/owner/
 import { ViewComponent } from './components/client/profile-user/view/view.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookTicketComponent } from './components/client/films/components/book-ticket/book-ticket.component';
+import { PromotionsComponent } from './components/client/promotions/promotions.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { BookTicketComponent } from './components/client/films/components/book-t
     ViewComponent,
     LandingPageComponent,
     MyGroupComponent,
-    BookTicketComponent
+    BookTicketComponent,
+    PromotionsComponent
 
   ],
   imports: [
