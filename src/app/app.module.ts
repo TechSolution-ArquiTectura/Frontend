@@ -47,6 +47,7 @@ import { ViewComponent } from './components/client/profile-user/view/view.compon
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookTicketComponent } from './components/client/films/components/book-ticket/book-ticket.component';
 import { PromotionsComponent } from './components/client/promotions/promotions.component';
+import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { PromotionsComponent } from './components/client/promotions/promotions.c
     LandingPageComponent,
     MyGroupComponent,
     BookTicketComponent,
-    PromotionsComponent
+    PromotionsComponent,
+    PromotionsDetailComponent,
 
   ],
   imports: [

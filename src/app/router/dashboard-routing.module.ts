@@ -10,6 +10,7 @@ import { NewGroupComponent } from '../components/client/groups/new-group/new-gro
 import { MyGroupComponent } from '../components/client/groups/my-group/my-group.component';
 import { ViewComponent } from '../components/client/profile-user/view/view.component';
 import { PromotionsComponent } from '../components/client/promotions/promotions.component';
+import { PromotionsDetailComponent } from '../components/client/promotions-detail/promotions-detail.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,8 @@ const routes: Routes = [
       { path: 'promotions', component: PromotionsComponent },
       // {path:'',pathMatch:'full',redirectTo:'explorar'},
       // {path:'**',pathMatch:'full',redirectTo:'explorar'},
+      { path: 'promotions/detail/:id', component: PromotionsDetailComponent },
+
     ]
   }
 ];

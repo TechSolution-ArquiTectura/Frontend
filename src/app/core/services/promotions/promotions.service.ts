@@ -13,9 +13,16 @@ export class PromotionsService {
   getPromotions(): Observable<Promotion[]> {
     return this.http.get<Promotion[]>(this.apiUrl);
   }
+  
+  getPromotionById(id: number): Observable<Promotion> {
+    return this.http.get<Promotion>(`${this.apiUrl}/${id}`);
+  }
+
+
 }
 
 interface Promotion {
+  id: number;
   name: string;
   description: string;
   initDate: string;

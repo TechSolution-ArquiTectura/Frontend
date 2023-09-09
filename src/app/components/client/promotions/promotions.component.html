@@ -6,7 +6,7 @@
 
       <div class="promo-row" *ngFor="let promotionRow of promotionRows">
         <div class="promo-item" *ngFor="let promotion of promotionRow">
-          <div class="card">
+          <div class="card" (click)="navigateToPromotionDetail(promotion.id)">
             <img class="card-img-top" src="https://cdn.cuponidad.pe/images/Deals/cinestar.jpg" alt="Imagen de la promoción">
             <div class="card-body">
               <h5 class="card-title">{{ promotion.name }}</h5>
@@ -16,6 +16,8 @@
                 Promoción realizada por {{ promotion.business.name }}
               </div>
             </div>
+            
+ 
           </div>
         </div>
       </div>

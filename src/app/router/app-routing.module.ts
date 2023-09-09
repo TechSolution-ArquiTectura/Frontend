@@ -5,6 +5,7 @@ import { AuthPageComponent } from '../views/shared/auth-page/auth-page.component
 import { UserElectionComponent } from '../views/shared/user-election/user-election.component';
 import { ProfileUserComponent } from '../components/client/profile-user/profile-user.component';
 import { ViewComponent } from '../components/client/profile-user/view/view.component';
+import { PromotionsDetailComponent } from '../components/client/promotions-detail/promotions-detail.component';
 
 const routes: Routes = [
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   //{ path: 'perfil', component: ProfileUserComponent },
   // Add the following route for the profile
   //{ path: 'perfil/:id', component: ProfileUserComponent }
-  
+  { path: 'promotions/detail/:id', component: PromotionsDetailComponent },
+
 ];
 
 @NgModule({
