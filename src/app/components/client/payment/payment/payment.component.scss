@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    
+}
+
+.background{
+    background-color: white;
+    width: 1250px;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h1{
+    font-weight: bold;
+}
+.box{
+    margin: 50px;
+}

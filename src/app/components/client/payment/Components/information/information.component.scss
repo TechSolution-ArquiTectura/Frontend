@@ -1,0 +1,63 @@
+img {
+    max-height: 600px;
+    max-width: 100%;
+}
+
+.box {
+    border: 2px solid #F59E0B;
+}
+
+.cineclub {
+    background-color: #F59E0B;
+    height: 80px;
+    width: 100%;
+    overflow: hidden; /* Para recortar el contenido si excede la altura máxima */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; 
+}
+
+.description {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Anula el margen para todas las p dentro de .cineclub */
+.cineclub p {
+    margin: 0;
+}
+
+.promotion-name{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; 
+    font-weight: bold;
+    font-size: 2vw;
+    color: #64748B;
+}
+.container{
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-price-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 80px;
+    height: 30px;
+    background-color: #F59E0B;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.ticket-price {
+    margin: 0; /* Elimina el margen del párrafo */
+    font-size: 1vw; /* Utilizando vw para el tamaño de fuente */
+    display: flex; /* Agrega display: flex; */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: 100%; /* Ocupa todo el alto del contenedor */
+}
