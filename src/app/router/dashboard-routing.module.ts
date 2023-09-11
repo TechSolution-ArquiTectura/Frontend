@@ -9,7 +9,7 @@ import { CineclubProfileComponent } from '../components/client/cineclubs/cineclu
 import { NewGroupComponent } from '../components/client/groups/new-group/new-group.component';
 import { MyGroupComponent } from '../components/client/groups/my-group/my-group.component';
 import { ViewComponent } from '../components/client/profile-user/view/view.component';
-
+import { PaymentComponent } from '../components/client/payment/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: 'crear-grupo', component: NewGroupComponent },
       { path: 'mis-grupos', component: MyGroupComponent },
       { path: 'perfil', component: ViewComponent },
+      { path: 'promociones', component: PaymentComponent },
       // {path:'',pathMatch:'full',redirectTo:'explorar'},
       // {path:'**',pathMatch:'full',redirectTo:'explorar'},
     ]
