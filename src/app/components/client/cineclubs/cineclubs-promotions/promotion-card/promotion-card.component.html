@@ -7,8 +7,13 @@
     />
     <div class="content">
       <div class="content__header">
-        <p class="content__header--title">Promoción estreno</p>
-        <div class="content__header--options" *ngIf="typeUser == 'business'" (mouseenter)="toggleMenu(true)" (mouseleave)="toggleMenu(false)">
+        <p class="content__header--title">{{ promotion.name }}</p>
+        <div
+          class="content__header--options"
+          *ngIf="typeUser == 'business'"
+          (mouseenter)="toggleMenu(true)"
+          (mouseleave)="toggleMenu(false)"
+        >
           <button class="primary-btn">
             <mat-icon
               class="icon"
@@ -22,13 +27,13 @@
           </div>
         </div>
       </div>
-      <div class="content__price">S/ 10,00</div>
+      <div class="content__price">S/ {{ promotion.discountPercentage }}</div>
       <p class="content__description">
-        1 entrada a Green Book (20% de descuento)
+        {{ promotion.description }}
       </p>
     </div>
   </div>
   <div class="footer" *ngIf="typeUser == 'client'">
-    Ofrecido por AutoCine Lima Park
+    {{ promotion.business.name }}
   </div>
 </div>

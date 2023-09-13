@@ -1,6 +1,12 @@
 <section class="wrapper">
   <div class="promotions">
     <h1 class="title">Promociones</h1>
-    <app-promotion-card></app-promotion-card>
+    <div class="container">
+      <app-promotion-card
+        *ngFor="let promotion of promotions"
+        [promotion]="promotion"
+        [typeUser]="'business'"
+      ></app-promotion-card>
+    </div>
   </div>
 </section>

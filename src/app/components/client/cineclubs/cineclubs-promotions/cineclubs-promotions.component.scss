@@ -27,5 +27,11 @@
   line-height: 1;
   color: #64748b;
   margin: 0;
-  padding-bottom: 28px;
+  padding-bottom: 32px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 }

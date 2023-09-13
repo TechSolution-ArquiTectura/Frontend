@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Promotion } from '../../models/promotion';
 
 @Injectable({
   providedIn: 'root',
@@ -17,15 +18,8 @@ export class PromotionsService {
   getPromotionById(id: number): Observable<Promotion> {
     return this.http.get<Promotion>(`${this.apiUrl}/${id}`);
   }
-}
 
-interface Promotion {
-  id: number;
-  name: string;
-  description: string;
-  initDate: string;
-  endDate: string;
-  business: {
-    name: string;
-  };
+  deletePromotionById(id: number): Observable<Promotion> {
+    return this.http.delete<Promotion>(`${this.apiUrl}/${id}`);
+  }
 }
