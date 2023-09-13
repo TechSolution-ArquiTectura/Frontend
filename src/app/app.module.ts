@@ -48,6 +48,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookTicketComponent } from './components/client/films/components/book-ticket/book-ticket.component';
 import { PromotionsComponent } from './components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
+import { CineclubsPromotionsComponent } from './components/client/cineclubs/cineclubs-promotions/cineclubs-promotions.component';
+import { PromotionCardComponent } from './components/client/cineclubs/cineclubs-promotions/promotion-card/promotion-card.component';
 
 
 @NgModule({
@@ -87,6 +89,8 @@ import { PromotionsDetailComponent } from './components/client/promotions-detail
     BookTicketComponent,
     PromotionsComponent,
     PromotionsDetailComponent,
+    CineclubsPromotionsComponent,
+    PromotionCardComponent,
 
   ],
   imports: [

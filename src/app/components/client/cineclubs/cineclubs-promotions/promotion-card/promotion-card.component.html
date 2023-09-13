@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="wrapper">
+    <img
+      class="img"
+      src="https://pics.filmaffinity.com/Green_Book-162451488-large.jpg"
+      alt="Promoción"
+    />
+    <div class="content">
+      <div class="content__header">
+        <p class="content__header--title">Promoción estreno</p>
+        <div class="content__header--options" *ngIf="typeUser == 'business'" (mouseenter)="toggleMenu(true)" (mouseleave)="toggleMenu(false)">
+          <button class="primary-btn">
+            <mat-icon
+              class="icon"
+              aria-hidden="false"
+              fontIcon="more_vert"
+            ></mat-icon>
+          </button>
+          <div class="menu" *ngIf="openMenu">
+            <button (click)="openEditDialog()">Editar</button>
+            <button (click)="openDeleteDialog()">Eliminar</button>
+          </div>
+        </div>
+      </div>
+      <div class="content__price">S/ 10,00</div>
+      <p class="content__description">
+        1 entrada a Green Book (20% de descuento)
+      </p>
+    </div>
+  </div>
+  <div class="footer" *ngIf="typeUser == 'client'">
+    Ofrecido por AutoCine Lima Park
+  </div>
+</div>

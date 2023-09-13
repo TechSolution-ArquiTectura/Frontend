@@ -1,0 +1,31 @@
+.wrapper {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  margin: 0 auto;
+  background-color: #fff;
+
+  @media screen and (min-width: 1201px) {
+    max-width: 1200px;
+  }
+}
+
+.promotions {
+  padding: 16px;
+
+  @media screen and (min-width: 720px) {
+    padding: 24px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 75px 48px;
+  }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  color: #64748b;
+  margin: 0;
+  padding-bottom: 28px;
+}
