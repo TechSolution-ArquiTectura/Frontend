@@ -1,27 +1,47 @@
-<div class="row">
+<section class="wrapper">
+  <div class="promotions">
+    <h1 class="title">Promociones</h1>
+    <div class="container">
+      <app-promotion-card
+        *ngFor="let promotion of promotions"
+        [promotion]="promotion"
+        [typeUser]="TYPE_USER"
+      ></app-promotion-card>
+    </div>
+    <div class="actions" *ngIf="TYPE_USER == 'business'">
+      <button mat-fab class="new-promotion" (click)="openNewPromotion()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- <div class="row">
   <div class="col-md-4">
     <button class="carousel-button prev" (click)="prevPage()">◄</button>
   </div>
   <div class="col-md-4">
-
-      <div class="promo-row" *ngFor="let promotionRow of promotionRows">
-        <div class="promo-item" *ngFor="let promotion of promotionRow">
-          <div class="card" (click)="navigateToPromotionDetail(promotion.id)">
-            <img class="card-img-top" src="https://cdn.cuponidad.pe/images/Deals/cinestar.jpg" alt="Imagen de la promoción">
-            <div class="card-body">
-              <h5 class="card-title">{{ promotion.name }}</h5>
-              <p class="card-text">Inicio: {{ promotion.initDate }}</p>
-              <p class="card-text">Fin: {{ promotion.endDate }}</p>
-              <div class="card-footer">
-                Promoción realizada por {{ promotion.business.name }}
-              </div>
+    <div class="promo-row" *ngFor="let promotionRow of promotionRows">
+      <div class="promo-item" *ngFor="let promotion of promotionRow">
+        <div class="card" (click)="navigateToPromotionDetail(promotion.id)">
+          <img
+            class="card-img-top"
+            src="https://cdn.cuponidad.pe/images/Deals/cinestar.jpg"
+            alt="Imagen de la promoción"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ promotion.name }}</h5>
+            <p class="card-text">Inicio: {{ promotion.initDate }}</p>
+            <p class="card-text">Fin: {{ promotion.endDate }}</p>
+            <div class="card-footer">
+              Promoción realizada por {{ promotion.business.name }}
             </div>
           </div>
         </div>
       </div>
-
+    </div>
   </div>
   <div class="col-md-4">
     <button class="carousel-button next" (click)="nextPage()">►</button>
   </div>
-</div>
+</div> -->

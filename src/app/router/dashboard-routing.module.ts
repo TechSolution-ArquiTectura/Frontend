@@ -11,7 +11,6 @@ import { MyGroupComponent } from '../components/client/groups/my-group/my-group.
 import { ViewComponent } from '../components/client/profile-user/view/view.component';
 import { PromotionsComponent } from '../components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from '../components/client/promotions-detail/promotions-detail.component';
-import { CineclubsPromotionsComponent } from '../components/client/cineclubs/cineclubs-promotions/cineclubs-promotions.component';
 
 const routes: Routes = [
   {
@@ -28,7 +27,6 @@ const routes: Routes = [
       { path: 'mis-grupos', component: MyGroupComponent },
       { path: 'perfil', component: ViewComponent },
       { path: 'promociones', component: PromotionsComponent },
-      { path: 'cineclub/promociones', component: CineclubsPromotionsComponent },
       // {path:'',pathMatch:'full',redirectTo:'explorar'},
       // {path:'**',pathMatch:'full',redirectTo:'explorar'},
       { path: 'promociones/detail/:id', component: PromotionsDetailComponent },

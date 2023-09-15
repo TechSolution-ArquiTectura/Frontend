@@ -24,8 +24,6 @@ import { MoviesAvailableComponent } from './components/client/cineclubs/movies-a
 import { MyGroupComponent } from './components/client/groups/my-group/my-group.component';
 import { NewGroupComponent } from './components/client/groups/new-group/new-group.component';
 
-
-
 import { AppRoutingModule } from './router/app-routing.module';
 import { DashboardRoutingModule } from './router/dashboard-routing.module';
 import { AgmCoreModule } from '@agm/core';
@@ -47,11 +45,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookTicketComponent } from './components/client/films/components/book-ticket/book-ticket.component';
 import { PromotionsComponent } from './components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
-import { CineclubsPromotionsComponent } from './components/client/cineclubs/cineclubs-promotions/cineclubs-promotions.component';
-import { PromotionCardComponent } from './components/client/cineclubs/cineclubs-promotions/promotion-card/promotion-card.component';
-import { DeletePromotionDialogComponent } from './components/client/cineclubs/cineclubs-promotions/delete-promotion-dialog/delete-promotion-dialog.component';
-import { NewPromotionDialogComponent } from './components/client/cineclubs/cineclubs-promotions/new-promotion-dialog/new-promotion-dialog.component';
-
+import { PromotionCardComponent } from './components/client/promotions/promotion-card/promotion-card.component';
+import { DeletePromotionDialogComponent } from './components/client/promotions/delete-promotion-dialog/delete-promotion-dialog.component';
+import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
 
 @NgModule({
   declarations: [
@@ -90,11 +86,9 @@ import { NewPromotionDialogComponent } from './components/client/cineclubs/cinec
     BookTicketComponent,
     PromotionsComponent,
     PromotionsDetailComponent,
-    CineclubsPromotionsComponent,
     PromotionCardComponent,
     DeletePromotionDialogComponent,
     NewPromotionDialogComponent,
-
   ],
   imports: [
     AppRoutingModule,
@@ -107,10 +101,10 @@ import { NewPromotionDialogComponent } from './components/client/cineclubs/cinec
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
-      libraries : ['places']
-    })
+      libraries: ['places'],
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
