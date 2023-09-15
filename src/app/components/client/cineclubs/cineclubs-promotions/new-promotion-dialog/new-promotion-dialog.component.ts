@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
+import { Component, Inject } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Promotion } from 'src/app/core/models/promotion';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-new-promotion-dialog',
@@ -7,9 +12,62 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./new-promotion-dialog.component.scss'],
 })
 export class NewPromotionDialogComponent {
-  constructor(public dialogRef: MatDialogRef<NewPromotionDialogComponent>) {}
+  constructor(
+    public _dialogRef: MatDialogRef<NewPromotionDialogComponent>,
+    private _promotionService: PromotionsService,
+    private _snackBar: MatSnackBar,
+    private buildr: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: { promotion: Promotion }
+  ) {
+    if (data.promotion) {
+      this.newFormBuilder.patchValue(data.promotion);
+    }
+  }
+
+  newFormBuilder = this.buildr.group({
+    name: this.buildr.control(''),
+    description: this.buildr.control(''),
+    initDate: this.buildr.control(''),
+    endDate: this.buildr.control(''),
+    discountPercentage: this.buildr.control<Float32Array | undefined>(
+      undefined
+    ),
+    imageSrc: this.buildr.control(''),
+  });
 
   closeNewPromotionDialog() {
-    this.dialogRef.close();
+    this._dialogRef.close();
+  }
+
+  savePromotion() {
+    const initDate = new Date(this.newFormBuilder.value.initDate as string);
+    const endDate = new Date(this.newFormBuilder.value.endDate as string);
+    if (this.data.promotion) {
+      this._promotionService.putPromotion(
+        {
+          ...this.newFormBuilder.value,
+          initDate: format(initDate, 'dd-MM-yyyy'),
+          endDate: format(endDate, 'dd-MM-yyyy'),
+          business: { id: 1 },
+        } as Promotion,
+        this.data.promotion.id
+      );
+      this.closeNewPromotionDialog();
+      this._snackBar.open('Promoción editada con éxito', 'Cerrar', {
+        duration: 3000,
+      });
+      return;
+    }
+    this._promotionService.postPromotion({
+      ...this.newFormBuilder.value,
+      initDate: format(initDate, 'dd-MM-yyyy'),
+      endDate: format(endDate, 'dd-MM-yyyy'),
+      business: { id: 1 },
+    } as Promotion);
+    this.closeNewPromotionDialog();
+    this._snackBar.open('Promoción añadida con éxito', 'Cerrar', {
+      duration: 3000,
+    });
+    return;
   }
 }

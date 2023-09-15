@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Promotion } from '../../models/promotion';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Promotion } from '../../models/promotion';
 export class PromotionsService {
   private apiUrl = 'https://backend-production-3909.up.railway.app/api/TuCine/v1/promotions';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
   getPromotions(): Observable<Promotion[]> {
     return this.http.get<Promotion[]>(this.apiUrl);
@@ -21,6 +22,34 @@ export class PromotionsService {
 
   getPromotionsByBusinessId(businessId: number): Observable<Promotion[]> {
     return this.http.get<Promotion[]>(`${this.apiUrl}/business/${businessId}`);
+  }
+
+  postPromotion(promotion: Promotion): void {
+    this.http.post<Promotion>(this.apiUrl, promotion).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+        this._snackBar.open('Hubo un problema al crear la promoción', 'Cerrar', {
+          duration: 3000,
+        });
+      }
+    );
+  }
+
+  putPromotion(promotion: Promotion, id: number): void {
+    this.http.put<Promotion>(`${this.apiUrl}/${id}`, promotion).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+        this._snackBar.open('Hubo un problema al modificar la promoción', 'Cerrar', {
+          duration: 3000,
+        });
+      }
+    );
   }
 
   deletePromotionById(id: number): Observable<Promotion> {

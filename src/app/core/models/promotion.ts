@@ -4,9 +4,10 @@ export interface Promotion {
   description: string;
   initDate: string;
   endDate: string;
-  discountPercentage?: Float32Array,
-  imageSrc?: string,
+  discountPercentage?: Float32Array;
+  imageSrc?: string;
   business: {
+    id?: number;
     name: string;
   };
 }

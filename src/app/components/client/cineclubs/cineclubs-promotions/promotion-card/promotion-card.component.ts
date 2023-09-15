@@ -37,6 +37,7 @@ export class PromotionCardComponent implements OnInit {
     const dialogRef = this._matDialog.open(NewPromotionDialogComponent, {
       width: '650px',
       data: {
+        promotion: this.promotion,
       },
     });
   }

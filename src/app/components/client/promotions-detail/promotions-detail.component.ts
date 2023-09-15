@@ -1,23 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Promotion } from 'src/app/core/models/promotion';
 import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
-
-// Define la interfaz Promotion en el mismo archivo
-interface Promotion {
-  id: number;
-  name: string;
-  description: string;
-  initDate: string;
-  endDate: string;
-  business: {
-    name: string;
-  };
-}
 
 @Component({
   selector: 'app-promotions-detail',
   templateUrl: './promotions-detail.component.html',
-  styleUrls: ['./promotions-detail.component.scss']
+  styleUrls: ['./promotions-detail.component.scss'],
 })
 export class PromotionsDetailComponent implements OnInit {
   promotion: Promotion | undefined;

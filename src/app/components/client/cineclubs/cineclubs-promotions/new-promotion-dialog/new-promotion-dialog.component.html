@@ -1,5 +1,5 @@
 <div class="new-promotion-card">
-  <form>
+  <form [formGroup]="newFormBuilder">
     <div class="header">
       <h5 class="title">Información general</h5>
       <button class="close-btn" (click)="closeNewPromotionDialog()">
@@ -11,16 +11,19 @@
         class="input-no-style input-text"
         type="text"
         placeholder="Título"
+        formControlName="name"
       />
       <input
         class="input-no-style input-text"
         type="text"
         placeholder="Descripción"
+        formControlName="description"
       />
       <input
         class="input-no-style input-text"
         type="number"
         placeholder="Descuento porcentual o monto fijo"
+        formControlName="discountPercentage"
       />
       <div class="divider">
         <div class="init-date">
@@ -28,6 +31,7 @@
             class="input-no-style input-text"
             placeholder="Fecha de inicio"
             [matDatepicker]="initPicker"
+            formControlName="initDate"
           />
           <mat-datepicker-toggle
             class="date-picker"
@@ -41,6 +45,7 @@
             class="input-no-style input-text"
             placeholder="Fecha de finalización"
             [matDatepicker]="finishPicker"
+            formControlName="endDate"
           />
           <mat-datepicker-toggle
             class="date-picker"
@@ -54,12 +59,13 @@
         class="input-no-style input-text"
         type="text"
         placeholder="Imagen"
+        formControlName="imageSrc"
       />
       <div class="actions">
         <button class="secondary-btn" (click)="closeNewPromotionDialog()">
           Cancelar
         </button>
-        <button class="primary-btn">Finalizar</button>
+        <button class="primary-btn" (click)="savePromotion()">Finalizar</button>
       </div>
     </div>
   </form>
