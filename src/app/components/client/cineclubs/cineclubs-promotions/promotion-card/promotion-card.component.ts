@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Promotion } from 'src/app/core/models/promotion';
 import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
+import { DeletePromotionDialogComponent } from '../delete-promotion-dialog/delete-promotion-dialog.component';
 
 @Component({
   selector: 'app-promotion-card',
@@ -12,13 +13,15 @@ import { PromotionsService } from 'src/app/core/services/promotions/promotions.s
 export class PromotionCardComponent implements OnInit {
   @Input() promotion!: Promotion;
   @Input() typeUser!: string;
+  isDeletePromotion: boolean = false;
   openMenu: boolean = false;
 
   constructor(
     private promotionsService: PromotionsService,
-    private _snackBar: MatSnackBar,
-    private _router: Router
+    private _matDialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {}
+
   ngOnInit(): void {}
 
   toggleMenu(isHovered: boolean) {
@@ -35,7 +38,18 @@ export class PromotionCardComponent implements OnInit {
 
   openDeleteDialog() {
     this.closeMenu();
-    this.deletePromotion();
+    const dialogRef = this._matDialog.open(DeletePromotionDialogComponent, {
+      width: '450px',
+      data: {
+        isDeletePromotion: this.deletePromotion,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.isDeletePromotion) {
+        this.deletePromotion();
+      }
+    });
   }
 
   deletePromotion() {

@@ -5,6 +5,7 @@ export interface Promotion {
   initDate: string;
   endDate: string;
   discountPercentage?: Float32Array,
+  imageSrc?: string,
   business: {
     name: string;
   };

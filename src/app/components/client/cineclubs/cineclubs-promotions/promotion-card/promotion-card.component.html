@@ -2,7 +2,11 @@
   <div class="wrapper">
     <img
       class="img"
-      src="https://pics.filmaffinity.com/Green_Book-162451488-large.jpg"
+      [src]="
+        promotion.imageSrc
+          ? promotion.imageSrc
+          : '/assets/pictures/promotions/promotion.png'
+      "
       alt="Promoción"
     />
     <div class="content">

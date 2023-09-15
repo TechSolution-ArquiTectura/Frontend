@@ -12,7 +12,7 @@ export class CineclubsPromotionsComponent implements OnInit {
   constructor(private promotionsService: PromotionsService) {}
 
   ngOnInit(): void {
-    this.promotionsService.getPromotions().subscribe((data) => {
+    this.promotionsService.getPromotionsByBusinessId(1).subscribe((data) => {
       this.promotions = data;
     });
   }

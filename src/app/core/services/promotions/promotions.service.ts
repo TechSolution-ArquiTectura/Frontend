@@ -19,6 +19,10 @@ export class PromotionsService {
     return this.http.get<Promotion>(`${this.apiUrl}/${id}`);
   }
 
+  getPromotionsByBusinessId(businessId: number): Observable<Promotion[]> {
+    return this.http.get<Promotion[]>(`${this.apiUrl}/business/${businessId}`);
+  }
+
   deletePromotionById(id: number): Observable<Promotion> {
     return this.http.delete<Promotion>(`${this.apiUrl}/${id}`);
   }

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -50,6 +49,7 @@ import { PromotionsComponent } from './components/client/promotions/promotions.c
 import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
 import { CineclubsPromotionsComponent } from './components/client/cineclubs/cineclubs-promotions/cineclubs-promotions.component';
 import { PromotionCardComponent } from './components/client/cineclubs/cineclubs-promotions/promotion-card/promotion-card.component';
+import { DeletePromotionDialogComponent } from './components/client/cineclubs/cineclubs-promotions/delete-promotion-dialog/delete-promotion-dialog.component';
 
 
 @NgModule({
@@ -91,6 +91,7 @@ import { PromotionCardComponent } from './components/client/cineclubs/cineclubs-
     PromotionsDetailComponent,
     CineclubsPromotionsComponent,
     PromotionCardComponent,
+    DeletePromotionDialogComponent,
 
   ],
   imports: [
