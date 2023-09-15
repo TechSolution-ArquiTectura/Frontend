@@ -8,22 +8,20 @@ import { ViewComponent } from '../components/client/profile-user/view/view.compo
 import { PromotionsDetailComponent } from '../components/client/promotions-detail/promotions-detail.component';
 
 const routes: Routes = [
-
-  { path: '',component:LandingPageComponent},
-  { path: 'landingPage',component:LandingPageComponent},
-  {path: 'user-election',component:UserElectionComponent},
-  {path: 'authPage',component:AuthPageComponent},
-  {path: 'authPage/register/:owner',component:AuthPageComponent},
-  {path: 'authPage/register/:cinephile',component:AuthPageComponent},
+  { path: '', component: LandingPageComponent },
+  { path: 'landingPage', component: LandingPageComponent },
+  { path: 'user-election', component: UserElectionComponent },
+  { path: 'authPage', component: AuthPageComponent },
+  { path: 'authPage/register/:owner', component: AuthPageComponent },
+  { path: 'authPage/register/:cinephile', component: AuthPageComponent },
   //{ path: 'perfil', component: ProfileUserComponent },
   // Add the following route for the profile
   //{ path: 'perfil/:id', component: ProfileUserComponent }
-  { path: 'promotions/detail/:id', component: PromotionsDetailComponent },
-
+  { path: 'promociones/detail/:id', component: PromotionsDetailComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

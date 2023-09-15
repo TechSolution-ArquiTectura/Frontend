@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="wrapper">
+    <img
+      class="img"
+      [src]="
+        promotion.imageSrc
+          ? promotion.imageSrc
+          : '/assets/pictures/promotions/promotion.png'
+      "
+      alt="Promoción"
+    />
+    <div class="content">
+      <div class="content__header">
+        <p class="content__header--title">{{ promotion.name }}</p>
+        <div
+          class="content__header--options"
+          *ngIf="typeUser == 'business'"
+          (mouseenter)="toggleMenu(true)"
+          (mouseleave)="toggleMenu(false)"
+        >
+          <button class="primary-btn">
+            <mat-icon
+              class="icon"
+              aria-hidden="false"
+              fontIcon="more_vert"
+            ></mat-icon>
+          </button>
+          <div class="menu" *ngIf="openMenu">
+            <button (click)="openEditDialog()">Editar</button>
+            <button (click)="openDeleteDialog()">Eliminar</button>
+          </div>
+        </div>
+      </div>
+      <div class="content__price">S/ {{ promotion.discountPercentage }}</div>
+      <p class="content__description">
+        {{ promotion.description }}
+      </p>
+    </div>
+  </div>
+  <div class="footer" *ngIf="typeUser == 'client'">
+    {{ promotion.business.name }}
+  </div>
+</div>

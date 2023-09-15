@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
 import { Router } from '@angular/router';
+import { Promotion } from 'src/app/core/models/promotion';
 @Component({
   selector: 'app-promotions',
   templateUrl: './promotions.component.html',
-  styleUrls: ['./promotions.component.scss']
+  styleUrls: ['./promotions.component.scss'],
 })
 export class PromotionsComponent implements OnInit {
-
   promotions: Promotion[] = [];
   promotionRows: Promotion[][] = []; // Agregamos esta propiedad
 
-  constructor(private promotionsService: PromotionsService, private router: Router) {}
+  constructor(
+    private promotionsService: PromotionsService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.promotionsService.getPromotions().subscribe((data) => {
@@ -39,7 +42,10 @@ export class PromotionsComponent implements OnInit {
   updatePromotionRows() {
     const startIdx = this.currentIndex * 4;
     const endIdx = startIdx + 4;
-    this.promotionRows = this.chunkArray(this.promotions.slice(startIdx, endIdx), 2);
+    this.promotionRows = this.chunkArray(
+      this.promotions.slice(startIdx, endIdx),
+      2
+    );
   }
 
   chunkArray(array: Promotion[], size: number): Promotion[][] {
@@ -54,15 +60,4 @@ export class PromotionsComponent implements OnInit {
     // Navegar a la ruta de detalle de la promoción con el ID
     this.router.navigate(['promotions/detail', promotionId]);
   }
-}
-
-interface Promotion {
-  id: number;
-  name: string;
-  description: string;
-  initDate: string;
-  endDate: string;
-  business: {
-    name: string;
-  };
 }

@@ -52,6 +52,10 @@ import { PromotionsComponent } from './components/client/promotions/promotions.c
 import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
 import { ReviewComponent } from './components/client/review/review.component';
 import { DialogErrorComponent } from './components/client/dialog-error/dialog-error.component';
+import { CineclubsPromotionsComponent } from './components/client/cineclubs/cineclubs-promotions/cineclubs-promotions.component';
+import { PromotionCardComponent } from './components/client/cineclubs/cineclubs-promotions/promotion-card/promotion-card.component';
+import { DeletePromotionDialogComponent } from './components/client/cineclubs/cineclubs-promotions/delete-promotion-dialog/delete-promotion-dialog.component';
+import { NewPromotionDialogComponent } from './components/client/cineclubs/cineclubs-promotions/new-promotion-dialog/new-promotion-dialog.component';
 
 
 @NgModule({
@@ -93,6 +97,10 @@ import { DialogErrorComponent } from './components/client/dialog-error/dialog-er
     PromotionsDetailComponent,
     ReviewComponent,
     DialogErrorComponent,
+    CineclubsPromotionsComponent,
+    PromotionCardComponent,
+    DeletePromotionDialogComponent,
+    NewPromotionDialogComponent,
 
   ],
   imports: [

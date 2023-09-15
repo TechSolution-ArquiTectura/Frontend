@@ -1,0 +1,60 @@
+.wrapper {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  margin: 0 auto;
+  background-color: #fff;
+
+  @media screen and (min-width: 1201px) {
+    max-width: 1200px;
+  }
+}
+
+.promotions {
+  position: relative;
+  padding: 16px;
+
+  @media screen and (min-width: 720px) {
+    padding: 24px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 75px 48px;
+  }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  color: #64748b;
+  margin: 0;
+  padding-bottom: 32px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 32px;
+
+  @media screen and (min-width: 720px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.new-promotion {
+  position: fixed;
+  bottom: 42px;
+  background-color: #ffad00;
+  color: #fff;
+  & > * {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+  }
+}

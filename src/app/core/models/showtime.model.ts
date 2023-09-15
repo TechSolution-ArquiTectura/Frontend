@@ -3,7 +3,7 @@ import { Promotion } from "./promotion";
 import { Business } from "./user-profile.model";
 
 export interface Showtime{
-    id?: number;  
+    id?: number;
     date?: string;
     time?: string;
     price?: number;
