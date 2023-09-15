@@ -1,13 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+/* Colors */
+:root {
+  --primary-color: #ffad00;
+  --secondary-color: #fffcef;
+  --disable-color: #f3f3f3;
+  --text-disable-color: #828282;
+  --text-input-color: #64748b;
+  --neutral-grey-hover: #222f28;
+  --white-color: #fff;
+  --black-color: #000;
+}
+
 html,
 body {
   height: 100%;
-  background-color: #fffcef;
+  background-color: var(--secondary-color);
 }
 body {
   margin: 0;
   font-family: Inter, "Helvetica Neue", sans-serif;
 }
+
+/* Button styles */
 button {
   background: none;
   border: none;
@@ -19,7 +33,6 @@ button {
   outline: none;
 }
 
-/* Button styles */
 .secondary-btn,
 .primary-btn {
   font-size: 1rem;
@@ -29,12 +42,12 @@ button {
   min-width: 100px;
 }
 .secondary-btn {
-  background-color: #f3f3f3;
-  color: #828282;
+  background-color: var(--disable-color);
+  color: var(--text-disable-color);
 }
 .primary-btn {
-  background-color: #ffad00;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white-color);
 }
 
 /* Input styles */

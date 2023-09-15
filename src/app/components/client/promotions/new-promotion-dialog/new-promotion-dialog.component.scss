@@ -18,12 +18,12 @@
   margin-bottom: 16px;
   padding: 12px;
   font-size: 16px;
-  color: #64748b;
+  color: var(--text-input-color);
   border-radius: 4px;
   border: 1px solid #cbd5e1;
 
   &::placeholder {
-    color: #64748b;
+    color: var(--text-input-color);
   }
 }
 .divider {
@@ -37,7 +37,7 @@
 .date-picker {
   top: 0;
   right: 0;
-  color: #64748b;
+  color: var(--text-input-color);
   position: absolute;
 }
 .actions {
