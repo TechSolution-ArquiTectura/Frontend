@@ -9,7 +9,6 @@ body {
   font-family: Inter, "Helvetica Neue", sans-serif;
 }
 button {
-  /* Anula todos los estilos */
   background: none;
   border: none;
   color: inherit;
@@ -18,5 +17,34 @@ button {
   padding: 0;
   margin: 0;
   outline: none;
-  /* Si hay otros estilos que deseas anular, agrégalos aquí */
+}
+
+/* Button styles */
+.secondary-btn,
+.primary-btn {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 8px;
+  min-width: 100px;
+}
+.secondary-btn {
+  background-color: #f3f3f3;
+  color: #828282;
+}
+.primary-btn {
+  background-color: #ffad00;
+  color: #fff;
+}
+
+/* Input styles */
+.input-no-style {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
 }
