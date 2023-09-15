@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogErrorComponent } from '../dialog-error/dialog-error.component';
 
 @Component({
   selector: 'app-review',
@@ -9,17 +11,13 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, Valid
 export class ReviewComponent implements OnInit{
   review!: FormGroup;
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder, private dialog: MatDialog) {
     this.review = this._fb.group(
       {
         userId: this.getUserId(),
         businessId: this.getBusinessId(),
         comment: new FormControl('', [Validators.required, Validators.maxLength(250),]),
         rating: ['', Validators.required]
-        //created_at
-        //updated_at
-        //star icon	<mat-icon>star</mat-icon>
-        //border star border icon	<mat-icon>star_border</mat-icon>
       }
     );
   }
@@ -38,5 +36,9 @@ export class ReviewComponent implements OnInit{
 
   onFormSubmit(): void {
     
+  }
+
+  openDialogError() {
+    this.dialog.open(DialogErrorComponent);
   }
 }

@@ -51,6 +51,7 @@ import { BookTicketComponent } from './components/client/films/components/book-t
 import { PromotionsComponent } from './components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
 import { ReviewComponent } from './components/client/review/review.component';
+import { DialogErrorComponent } from './components/client/dialog-error/dialog-error.component';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { ReviewComponent } from './components/client/review/review.component';
     PromotionsComponent,
     PromotionsDetailComponent,
     ReviewComponent,
+    DialogErrorComponent,
 
   ],
   imports: [

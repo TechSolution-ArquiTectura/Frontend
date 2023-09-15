@@ -26,7 +26,7 @@
       <button class="send-button" mat-raised-button mat-dialog-close >Enviar</button>
     </mat-card-actions>
     <mat-card-actions *ngIf="review.get('comment')?.hasError('required')" class="mat-card-actions">
-      <button class="send-button" [disabled]="true" mat-raised-button>Enviar</button>
+      <button class="send-button" (click)="openDialogError()" mat-raised-button>Enviar</button>
     </mat-card-actions>
   </div>
 </form>
