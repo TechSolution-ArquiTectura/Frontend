@@ -1,4 +1,4 @@
-<form [formGroup]="review" (ngSubmit)="onFormSubmit()" class="form">
+<form [formGroup]="review" class="form">
   <div class="form">
     <div class="header">
       <h3><strong>Reseñar</strong></h3>
@@ -23,7 +23,7 @@
       </mat-form-field>
     </div>
     <mat-card-actions *ngIf="!review.get('comment')?.hasError('required')" class="mat-card-actions">
-      <button class="send-button" mat-raised-button mat-dialog-close >Enviar</button>
+      <button class="send-button" (click)="saveReview()" mat-raised-button mat-dialog-close >Enviar</button>
     </mat-card-actions>
     <mat-card-actions *ngIf="review.get('comment')?.hasError('required')" class="mat-card-actions">
       <button class="send-button" (click)="openDialogError()" mat-raised-button>Enviar</button>

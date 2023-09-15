@@ -15,7 +15,6 @@ export class ReviewComponent implements OnInit{
     this.review = this._fb.group(
       {
         userId: this.getUserId(),
-        businessId: this.getBusinessId(),
         comment: new FormControl('', [Validators.required, Validators.maxLength(250),]),
         rating: ['', Validators.required]
       }
@@ -30,12 +29,9 @@ export class ReviewComponent implements OnInit{
 
   }
 
-  getBusinessId() {
+  //TODO: Falta implementar
+  saveReview() {
 
-  }
-
-  onFormSubmit(): void {
-    
   }
 
   openDialogError() {
