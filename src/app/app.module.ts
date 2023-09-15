@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -48,6 +50,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { BookTicketComponent } from './components/client/films/components/book-ticket/book-ticket.component';
 import { PromotionsComponent } from './components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
+import { ReviewComponent } from './components/client/review/review.component';
 
 
 @NgModule({
@@ -87,6 +90,7 @@ import { PromotionsDetailComponent } from './components/client/promotions-detail
     BookTicketComponent,
     PromotionsComponent,
     PromotionsDetailComponent,
+    ReviewComponent,
 
   ],
   imports: [
@@ -97,7 +101,8 @@ import { PromotionsDetailComponent } from './components/client/promotions-detail
     BrowserModule,
     NgxPaginationModule,
     MatPaginatorModule,
-
+    MatDialogModule,
+    NgxStarRatingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
       libraries : ['places']

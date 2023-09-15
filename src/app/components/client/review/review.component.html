@@ -1,0 +1,32 @@
+<form [formGroup]="review" (ngSubmit)="onFormSubmit()" class="form">
+  <div class="form">
+    <div class="header">
+      <h3><strong>Reseñar</strong></h3>
+      <mat-icon mat-dialog-close>close</mat-icon>
+    </div>
+    <mat-label>Conocer tu experiencia es muy importante para nosotros. ¡Cuéntanos sobre tu experiencia <br>con la aplicación TuCine!</mat-label>
+    <div class="rating">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <ngx-star-rating [id]="'rating'"></ngx-star-rating>
+    </div>
+    <div class="review">
+      <mat-form-field [style.width.%]="95" appearance="outline">
+        <textarea class="text" matInput type="text" placeholder="Escribir reseña" formControlName="comment"></textarea>      
+        <mat-error *ngIf="review.get('comment')?.touched">
+            <ng-container *ngIf="review.get('comment')?.hasError('required')">
+              Campo <strong>obligatorio</strong>
+            </ng-container>
+            <ng-container *ngIf="review.get('comment')?.hasError('maxlength')">
+              Máximo <strong>250 caracteres</strong>
+            </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <mat-card-actions *ngIf="!review.get('comment')?.hasError('required')" class="mat-card-actions">
+      <button class="send-button" mat-raised-button mat-dialog-close >Enviar</button>
+    </mat-card-actions>
+    <mat-card-actions *ngIf="review.get('comment')?.hasError('required')" class="mat-card-actions">
+      <button class="send-button" [disabled]="true" mat-raised-button>Enviar</button>
+    </mat-card-actions>
+  </div>
+</form>
