@@ -1,0 +1,37 @@
+.form {
+  border-radius: 5px;
+  margin: 10px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.review {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rating {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep label.star {
+  padding: 5px !important;
+  font-size: 20px !important;
+}
+
+.mat-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-button{
+  background-color: #FFAD00;
+  color: white;
+}
