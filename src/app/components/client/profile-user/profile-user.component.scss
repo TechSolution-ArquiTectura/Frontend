@@ -126,8 +126,8 @@
 .profile-edit {
   height: 100%;
   display: flex;
-  justify-content: end;
-  align-items: start;
+  justify-content: flex-end;
+  align-items: flex-start;
   margin-top: 60px;
 
   .edit-button {
