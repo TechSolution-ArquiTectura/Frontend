@@ -1,0 +1,66 @@
+<div class="new-promotion-card">
+  <form>
+    <div class="header">
+      <h5 class="title">Información general</h5>
+      <button class="close-btn" (click)="closeNewPromotionDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="body">
+      <input
+        class="input-no-style input-text"
+        type="text"
+        placeholder="Título"
+      />
+      <input
+        class="input-no-style input-text"
+        type="text"
+        placeholder="Descripción"
+      />
+      <input
+        class="input-no-style input-text"
+        type="number"
+        placeholder="Descuento porcentual o monto fijo"
+      />
+      <div class="divider">
+        <div class="init-date">
+          <input
+            class="input-no-style input-text"
+            placeholder="Fecha de inicio"
+            [matDatepicker]="initPicker"
+          />
+          <mat-datepicker-toggle
+            class="date-picker"
+            matIconSuffix
+            [for]="initPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #initPicker></mat-datepicker>
+        </div>
+        <div class="finish-date">
+          <input
+            class="input-no-style input-text"
+            placeholder="Fecha de finalización"
+            [matDatepicker]="finishPicker"
+          />
+          <mat-datepicker-toggle
+            class="date-picker"
+            matIconSuffix
+            [for]="finishPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #finishPicker></mat-datepicker>
+        </div>
+      </div>
+      <input
+        class="input-no-style input-text"
+        type="text"
+        placeholder="Imagen"
+      />
+      <div class="actions">
+        <button class="secondary-btn" (click)="closeNewPromotionDialog()">
+          Cancelar
+        </button>
+        <button class="primary-btn">Finalizar</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -11,7 +11,6 @@ export class DeletePromotionDialogComponent {
     public dialogRef: MatDialogRef<DeletePromotionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { isDeletePromotion: boolean }
   ) {}
-
   deletePromotion() {
     this.dialogRef.close({ isDeletePromotion: true });
   }

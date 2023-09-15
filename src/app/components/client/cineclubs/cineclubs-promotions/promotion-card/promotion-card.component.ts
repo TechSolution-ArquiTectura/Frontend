@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Promotion } from 'src/app/core/models/promotion';
 import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
 import { DeletePromotionDialogComponent } from '../delete-promotion-dialog/delete-promotion-dialog.component';
+import { NewPromotionDialogComponent } from '../new-promotion-dialog/new-promotion-dialog.component';
 
 @Component({
   selector: 'app-promotion-card',
@@ -33,7 +34,11 @@ export class PromotionCardComponent implements OnInit {
 
   openEditDialog() {
     this.closeMenu();
-    console.log('Editando promoción');
+    const dialogRef = this._matDialog.open(NewPromotionDialogComponent, {
+      width: '650px',
+      data: {
+      },
+    });
   }
 
   openDeleteDialog() {
