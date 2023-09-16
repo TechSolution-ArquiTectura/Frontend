@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -25,8 +27,6 @@ import { MoviesAvailableComponent } from './components/client/cineclubs/movies-a
 import { MyGroupComponent } from './components/client/groups/my-group/my-group.component';
 import { NewGroupComponent } from './components/client/groups/new-group/new-group.component';
 
-
-
 import { AppRoutingModule } from './router/app-routing.module';
 import { DashboardRoutingModule } from './router/dashboard-routing.module';
 import { AgmCoreModule } from '@agm/core';
@@ -50,6 +50,13 @@ import { PaymentComponent } from './components/client/payment/payment/payment.co
 import { InformationComponent } from './components/client/payment/Components/information/information.component';
 import { PaymentFormComponent } from './components/client/payment/Components/payment-form/payment-form.component';
 
+import { PromotionsComponent } from './components/client/promotions/promotions.component';
+import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
+import { ReviewComponent } from './components/client/review/review.component';
+import { DialogErrorComponent } from './components/client/dialog-error/dialog-error.component';
+import { PromotionCardComponent } from './components/client/promotions/promotion-card/promotion-card.component';
+import { DeletePromotionDialogComponent } from './components/client/promotions/delete-promotion-dialog/delete-promotion-dialog.component';
+import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +97,13 @@ import { PaymentFormComponent } from './components/client/payment/Components/pay
     InformationComponent,
     PaymentFormComponent
 
+    PromotionsComponent,
+    PromotionsDetailComponent,
+    ReviewComponent,
+    DialogErrorComponent,
+    PromotionCardComponent,
+    DeletePromotionDialogComponent,
+    NewPromotionDialogComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -99,13 +113,14 @@ import { PaymentFormComponent } from './components/client/payment/Components/pay
     BrowserModule,
     NgxPaginationModule,
     MatPaginatorModule,
-
+    MatDialogModule,
+    NgxStarRatingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
-      libraries : ['places']
-    })
+      libraries: ['places'],
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

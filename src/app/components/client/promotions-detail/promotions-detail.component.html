@@ -1,0 +1,12 @@
+<div *ngIf="promotion">
+    <h1>{{ promotion.name }}</h1>
+    <p>{{ promotion.description }}</p>
+    <p>Inicio: {{ promotion.initDate }}</p>
+    <p>Fin: {{ promotion.endDate }}</p>
+    <p>Realizada por {{ promotion.business.name }}</p>
+  </div>
+  
+  <div *ngIf="!promotion">
+    <p>Cargando detalles de la promoción...</p>
+  </div>
+  

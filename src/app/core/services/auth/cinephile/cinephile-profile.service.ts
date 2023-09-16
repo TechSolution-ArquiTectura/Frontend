@@ -16,7 +16,7 @@ export class CinephileProfileService {
   }
 
   getPersonList(): Observable<any>{
-    return this._http.get('https://backend-tucine-production.up.railway.app/api/TuCine/v1/persons');
+    return this._http.get('https://backend-production-3909.up.railway.app/api/TuCine/v1/users');
   }
 
   getUserGender(): Observable<any>{

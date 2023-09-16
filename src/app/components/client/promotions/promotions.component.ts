@@ -1,0 +1,80 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Promotion } from 'src/app/core/models/promotion';
+import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
+import { NewPromotionDialogComponent } from './new-promotion-dialog/new-promotion-dialog.component';
+
+@Component({
+  selector: 'app-promotions',
+  templateUrl: './promotions.component.html',
+  styleUrls: ['./promotions.component.scss'],
+})
+export class PromotionsComponent implements OnInit {
+  BUSINESS_ID: number = 1;
+  TYPE_USER: string = 'business';
+  promotions: Promotion[] = [];
+  // promotionRows: Promotion[][] = []; // Agregamos esta propiedad
+
+  constructor(
+    private promotionsService: PromotionsService,
+    private _matDialog: MatDialog
+  ) // private router: Router
+  {}
+
+  ngOnInit() {
+    this.promotionsService
+      .getPromotionsByBusinessId(this.BUSINESS_ID)
+      .subscribe((data) => {
+        this.promotions = data;
+      });
+    // this.promotionsService.getPromotions().subscribe((data) => {
+    //   this.promotions = data;
+    //   this.updatePromotionRows(); // Llamamos a esta función para inicializar la cuadrícula
+    // });
+  }
+
+  openNewPromotion() {
+    const dialogRef = this._matDialog.open(NewPromotionDialogComponent, {
+      width: '650px',
+      data: {},
+    });
+  }
+
+  // currentIndex = 0;
+
+  // prevPage() {
+  //   if (this.currentIndex > 0) {
+  //     this.currentIndex--;
+  //     this.updatePromotionRows();
+  //   }
+  // }
+
+  // nextPage() {
+  //   if (this.currentIndex < Math.ceil(this.promotions.length / 4) - 1) {
+  //     this.currentIndex++;
+  //     this.updatePromotionRows();
+  //   }
+  // }
+
+  // updatePromotionRows() {
+  //   const startIdx = this.currentIndex * 4;
+  //   const endIdx = startIdx + 4;
+  //   this.promotionRows = this.chunkArray(
+  //     this.promotions.slice(startIdx, endIdx),
+  //     2
+  //   );
+  // }
+
+  // chunkArray(array: Promotion[], size: number): Promotion[][] {
+  //   const chunkedArray = [];
+  //   for (let i = 0; i < array.length; i += size) {
+  //     chunkedArray.push(array.slice(i, i + size));
+  //   }
+  //   return chunkedArray;
+  // }
+
+  // navigateToPromotionDetail(promotionId: number) {
+  //   // Navegar a la ruta de detalle de la promoción con el ID
+  //   this.router.navigate(['promotions/detail', promotionId]);
+  // }
+}

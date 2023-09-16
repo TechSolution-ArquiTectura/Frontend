@@ -5,6 +5,8 @@ import { Gender } from 'src/app/core/models/user-profile.model';
 import { Customer } from 'src/app/core/models/user-profile.model';
 import { Person } from 'src/app/core/models/user-profile.model';
 import { Type } from '@angular/compiler';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+
 
 const dniPattern = /^[0-9]{8}$/;
 const phonePattern = /^[0-9]{9}$/;
