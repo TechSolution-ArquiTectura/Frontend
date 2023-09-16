@@ -21,19 +21,22 @@ export class PromotionsComponent implements OnInit {
     private promotionsService: PromotionsService,
     private _matDialog: MatDialog,
     private router: Router
-  ) 
+  )
   {}
 
   ngOnInit() {
-    this.promotionsService
-      .getPromotionsByBusinessId(this.BUSINESS_ID)
-      .subscribe((data) => {
+    if (this.TYPE_USER == 'business') {
+      this.promotionsService
+        .getPromotionsByBusinessId(this.BUSINESS_ID)
+        .subscribe((data) => {
+          this.promotions = data;
+        });
+    } else {
+      this.promotionsService.getPromotions().subscribe((data) => {
         this.promotions = data;
+        // this.updatePromotionRows();
       });
-    // this.promotionsService.getPromotions().subscribe((data) => {
-    //   this.promotions = data;
-    //   this.updatePromotionRows(); // Llamamos a esta función para inicializar la cuadrícula
-    // });
+    }
   }
 
   openNewPromotion() {

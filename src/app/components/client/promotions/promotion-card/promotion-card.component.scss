@@ -1,5 +1,5 @@
 .card {
-  border: 1px solid #f59e0b;
+  border: 1px solid var(--primary-color);
   font-family: Inter, "Helvetica Neue", sans-serif;
 }
 
@@ -27,14 +27,14 @@
       font-weight: 700;
       font-size: 20px;
       line-height: 1;
-      color: #64748b;
+      color: var(--text-input-color);
       margin: 0;
     }
 
     &--options {
       position: relative;
       .icon-btn {
-        background-color: #f59e0b;
+        background-color: var(--primary-color);
         border-radius: 999px;
         height: 28px;
         width: 28px;
@@ -55,7 +55,7 @@
         display: flex;
         flex-direction: column;
         width: 120px;
-        color: #7c8982;
+        color: var(--text-input-color);
         box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 
         &::before {
@@ -68,12 +68,12 @@
         }
 
         button {
-          background-color: #fff;
+          background-color: var(--white-color);
           padding: 10px 16px;
           text-align: left;
           &:hover {
-            background-color: #fffcef;
-            color: #222f28;
+            background-color: var(--secondary-color);
+            color: var(--neutral-grey-hover);
             font-weight: 700;
           }
         }
@@ -87,7 +87,7 @@
     padding: 4px;
     display: inline-block;
     border-radius: 4px;
-    background-color: #f59e0b;
+    background-color: var(--primary-color);
   }
 
   &__description {
@@ -108,5 +108,5 @@
   font-size: 14px;
   text-align: center;
   padding: 6px 20px;
-  background-color: #f59e0b;
+  background-color: var(--primary-color);
 }

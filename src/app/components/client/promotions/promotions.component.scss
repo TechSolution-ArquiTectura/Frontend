@@ -2,7 +2,7 @@
   width: 100%;
   min-height: calc(100vh - 70px);
   margin: 0 auto;
-  background-color: #fff;
+  background-color: var(--white-color);
 
   @media screen and (min-width: 1201px) {
     max-width: 1200px;
@@ -26,7 +26,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
-  color: #64748b;
+  color: var(-text-input-color);
   margin: 0;
   padding-bottom: 32px;
 }
@@ -50,8 +50,8 @@
 .new-promotion {
   position: fixed;
   bottom: 42px;
-  background-color: #ffad00;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white-color);
   & > * {
     width: 32px;
     height: 32px;
