@@ -2,11 +2,17 @@
   <div class="promotions">
     <h1 class="title">Promociones</h1>
     <div class="container">
-      <app-promotion-card
+      <!-- Contenedor de promoción como botón -->
+      <button
         *ngFor="let promotion of promotions"
-        [promotion]="promotion"
-        [typeUser]="TYPE_USER"
-      ></app-promotion-card>
+        class="promotion-button"
+        (click)="openPromotion(promotion)"
+      >
+        <app-promotion-card
+          [promotion]="promotion"
+          [typeUser]="TYPE_USER"
+        ></app-promotion-card>
+      </button>
     </div>
     <div class="actions" *ngIf="TYPE_USER == 'business'">
       <button mat-fab class="new-promotion" (click)="openNewPromotion()">
@@ -15,6 +21,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- <div class="row">
   <div class="col-md-4">

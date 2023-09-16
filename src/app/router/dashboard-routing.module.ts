@@ -31,6 +31,7 @@ const routes: Routes = [
       // {path:'',pathMatch:'full',redirectTo:'explorar'},
       // {path:'**',pathMatch:'full',redirectTo:'explorar'},
       { path: 'promociones/detail/:id', component: PromotionsDetailComponent },
+      { path: 'payment', component: PaymentComponent },
     ]
   }
 ];

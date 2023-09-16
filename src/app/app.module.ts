@@ -95,8 +95,7 @@ import { NewPromotionDialogComponent } from './components/client/promotions/new-
     BookTicketComponent,
     PaymentComponent,
     InformationComponent,
-    PaymentFormComponent
-
+    PaymentFormComponent,
     PromotionsComponent,
     PromotionsDetailComponent,
     ReviewComponent,

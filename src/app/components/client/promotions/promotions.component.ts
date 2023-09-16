@@ -4,6 +4,8 @@ import { Promotion } from 'src/app/core/models/promotion';
 import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
 import { NewPromotionDialogComponent } from './new-promotion-dialog/new-promotion-dialog.component';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-promotions',
   templateUrl: './promotions.component.html',
@@ -17,8 +19,9 @@ export class PromotionsComponent implements OnInit {
 
   constructor(
     private promotionsService: PromotionsService,
-    private _matDialog: MatDialog
-  ) // private router: Router
+    private _matDialog: MatDialog,
+    private router: Router
+  ) 
   {}
 
   ngOnInit() {
@@ -38,6 +41,10 @@ export class PromotionsComponent implements OnInit {
       width: '650px',
       data: {},
     });
+  }
+
+  openPromotion(promotion: Promotion) {
+    this.router.navigate(['dashboard/payment'], { state: { promotion } });
   }
 
   // currentIndex = 0;
