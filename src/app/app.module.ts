@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgxStarRatingModule } from 'ngx-star-rating';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -53,7 +52,6 @@ import { PaymentFormComponent } from './components/client/payment/Components/pay
 import { PromotionsComponent } from './components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from './components/client/promotions-detail/promotions-detail.component';
 import { ReviewComponent } from './components/client/review/review.component';
-import { DialogErrorComponent } from './components/client/dialog-error/dialog-error.component';
 import { PromotionCardComponent } from './components/client/promotions/promotion-card/promotion-card.component';
 import { DeletePromotionDialogComponent } from './components/client/promotions/delete-promotion-dialog/delete-promotion-dialog.component';
 import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
@@ -99,7 +97,6 @@ import { NewPromotionDialogComponent } from './components/client/promotions/new-
     PromotionsComponent,
     PromotionsDetailComponent,
     ReviewComponent,
-    DialogErrorComponent,
     PromotionCardComponent,
     DeletePromotionDialogComponent,
     NewPromotionDialogComponent,
