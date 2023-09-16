@@ -13,7 +13,6 @@ import { ReviewService } from 'src/app/core/services/review/review.service';
 export class ReviewComponent implements OnInit{
   reviewForm!: FormGroup;
   rating: number;
-
   constructor(private _fb: FormBuilder, 
     private dialog: MatDialog,
     private reviewService: ReviewService) {
@@ -57,7 +56,8 @@ export class ReviewComponent implements OnInit{
 
       this.review.comment = formValue.comment;
       this.review.rating = formValue.rating;
-      this.review.user.id = this.getUserId();
+      this.review.user.id = JSON.parse(localStorage.getItem("userResult") || '{}').id;
+      console.log(this.review.user.id);
     }
 
     this.reviewService.postReview(this.review).subscribe({
