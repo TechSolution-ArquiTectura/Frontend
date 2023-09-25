@@ -10,7 +10,7 @@ export class ShowtimeService {
   constructor(private _http: HttpClient) { }
 
   getAllShowtimesByBusinessId(id: number): Observable<any>{
-    return this._http.get(`https://backend-tucine-production.up.railway.app/api/TuCine/v1/businesses/${id}/showtimes`);
+    return this._http.get(`https://backend-production-d5ba.up.railway.app/api/TuCine/v1/businesses/${id}/showtimes`);
   }
 
 }

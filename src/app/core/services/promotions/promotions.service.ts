@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class PromotionsService {
-  private apiUrl = 'https://backend-production-3909.up.railway.app/api/TuCine/v1/promotions';
+  private apiUrl = 'https://backend-production-d5ba.up.railway.app/api/TuCine/v1/promotions';
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 

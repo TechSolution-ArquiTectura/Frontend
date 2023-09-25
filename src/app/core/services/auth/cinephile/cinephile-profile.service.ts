@@ -8,41 +8,43 @@ import { Person } from 'src/app/core/models/user-profile.model';
 })
 export class CinephileProfileService {
 
+  private apiUrl = 'https://backend-production-d5ba.up.railway.app/api/TuCine/v1';
+
   constructor(private _http: HttpClient) {}
 
   //General
   addPerson(data: Person): Observable<any>{
-    return this._http.post('https://backend-tucine-production.up.railway.app/api/TuCine/v1/persons',data);
+    return this._http.post(this.apiUrl+'/persons',data);
   }
 
   getPersonList(): Observable<any>{
-    return this._http.get('https://backend-production-3909.up.railway.app/api/TuCine/v1/users');
+    return this._http.get(this.apiUrl+'/users');
   }
 
   getUserGender(): Observable<any>{
-    return this._http.get('https://backend-tucine-production.up.railway.app/api/TuCine/v1/genders');
+    return this._http.get(this.apiUrl+'/genders');
   }
 
   //Customer
   addCustomer(data: any): Observable<any>{
-    return this._http.post('https://backend-tucine-production.up.railway.app/api/TuCine/v1/customers',data);
+    return this._http.post(this.apiUrl+'/customers',data);
   }
 
   getCustomerList(): Observable<any>{
-    return this._http.get('https://backend-tucine-production.up.railway.app/api/TuCine/v1/customers');
+    return this._http.get(this.apiUrl+'/customers');
   }
 
   //Owner
   getBusinessTypeList(): Observable<any>{
-    return this._http.get('https://backend-tucine-production.up.railway.app/api/TuCine/v1/businessTypes');
+    return this._http.get(this.apiUrl+'/businessTypes');
   }
 
   addOwner(data: any): Observable<any>{
-    return this._http.post('https://backend-tucine-production.up.railway.app/api/TuCine/v1/owners',data);
+    return this._http.post(this.apiUrl+'/owners',data);
   }
 
   addBusiness(data: any):Observable<any>{
-    return this._http.post('https://backend-tucine-production.up.railway.app/api/TuCine/v1/businesses',data);
+    return this._http.post(this.apiUrl+'/businesses',data);
   }
 
   validateCredentials(email: string, password: string): Observable<any>{
