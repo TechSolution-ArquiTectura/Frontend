@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TypeUserService {
 
-  private apiURL="http://localhost:3000/TypeUser";
+  private apiURL="https://backend-production-d5ba.up.railway.app/api/TuCine/v1//typeUsers";
 
   public personsList:TypeUser[]=[];
   constructor(private http: HttpClient) {

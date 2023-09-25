@@ -8,9 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
 
-  private apiURL="http://localhost:3000/Category";
-
-  private apiBackend="https://backend-production-d5ba.up.railway.app/api/TuCine/v1/categories";
+  private apiURL="https://backend-production-d5ba.up.railway.app/api/TuCine/v1/categories";
 
   public categoriesList:Category[]=[];
 
@@ -21,7 +19,7 @@ export class CategoryService {
   }
 
   public getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.apiBackend);
+    return this.http.get<Category[]>(this.apiURL);
   }
 
   public getCategorieById(id:number){

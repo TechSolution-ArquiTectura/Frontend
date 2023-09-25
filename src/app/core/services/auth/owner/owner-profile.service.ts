@@ -7,17 +7,19 @@ import { Observable } from 'rxjs';
 })
 export class OwnerProfileService {
 
+  private apiURL="https://backend-production-d5ba.up.railway.app/api/TuCine/v1"
+
   constructor(private _http: HttpClient) {}
 
   addOwner(data: any): Observable<any>{
-    return this._http.post('http://localhost:3000/owner',data);
+    return this._http.post(this.apiURL+'/owner',data);
   }
 
   updateOwner(id: number, data: any): Observable<any>{
-    return this._http.put(`http://localhost:3000/owner${id}`,data);
+    return this._http.put(this.apiURL+`/owner${id}`,data);
   }
 
   getOwnerList(): Observable<any>{
-    return this._http.get('http://localhost:3000/owner');
+    return this._http.get(this.apiURL+'/owner');
   }
 }

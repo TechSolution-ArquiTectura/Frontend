@@ -11,11 +11,7 @@ export class FilmService {
 
   public FilmList:Film[]=[]
 
-  //private apiURL="http://localhost:3000/movies"
-
-  private apiURL="http://localhost:3000/Film";
-
-  private apiBackend= "https://backend-production-d5ba.up.railway.app/api/TuCine/v1/films";
+  private apiURL= "https://backend-production-d5ba.up.railway.app/api/TuCine/v1/films";
 
   constructor(private http:HttpClient) {
     this.getFilms().subscribe((films)=>{
@@ -24,7 +20,7 @@ export class FilmService {
   }
 
   public getFilms(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.apiBackend);
+    return this.http.get<Film[]>(this.apiURL);
   }
 
   public searchFilms(title: string, movies: Film[],filters?:string[]): Film[] {
