@@ -1,0 +1,63 @@
+mat-icon{
+    font-family: 'Material Icons' !important;
+  }
+
+.card{
+    margin-left: 11.5rem;
+    margin-right: 11.5rem;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.form {
+    border-radius: 5px;
+    margin: 10px;
+}
+.review {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+}
+.rating {
+    margin-top: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+  
+::ng-deep label.star {
+    padding: 10px !important;
+    font-size: 20px !important;
+    color: #FFAD00;
+}
+  
+.mat-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send-button{
+    background-color: #FFAD00;
+    color: white;
+    margin-left: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.disabled-button {
+    margin-left: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

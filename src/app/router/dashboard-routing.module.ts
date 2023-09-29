@@ -12,6 +12,7 @@ import { ViewComponent } from '../components/client/profile-user/view/view.compo
 import { PaymentComponent } from '../components/client/payment/payment/payment.component';
 import { PromotionsComponent } from '../components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from '../components/client/promotions-detail/promotions-detail.component';
+import { CineclubDetailComponent } from '../components/client/cineclubs/cineclub-detail/cineclub-detail.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
       { path: 'peliculas/pelicula/:id', component: ProfileComponent },
       { path: 'explorar', component: MainComponent },
       { path: 'cineclubs', component: HomeComponent },
-      { path: 'cineclubs/cineclub/:id', component: CineclubProfileComponent},
+      { path: 'cineclubs/cineclub/:id', component: CineclubDetailComponent},
       { path: 'crear-grupo', component: NewGroupComponent },
       { path: 'mis-grupos', component: MyGroupComponent },
       { path: 'perfil', component: ViewComponent },

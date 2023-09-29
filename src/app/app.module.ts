@@ -55,6 +55,7 @@ import { ReviewComponent } from './components/client/review/review.component';
 import { PromotionCardComponent } from './components/client/promotions/promotion-card/promotion-card.component';
 import { DeletePromotionDialogComponent } from './components/client/promotions/delete-promotion-dialog/delete-promotion-dialog.component';
 import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
+import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-detail/cineclub-detail.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { NewPromotionDialogComponent } from './components/client/promotions/new-
     PromotionCardComponent,
     DeletePromotionDialogComponent,
     NewPromotionDialogComponent,
+    CineclubDetailComponent,
   ],
   imports: [
     AppRoutingModule,

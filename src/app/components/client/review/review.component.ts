@@ -48,8 +48,7 @@ export class ReviewComponent implements OnInit{
 
     return 
   }*/
-
-  //TODO: Falta implementar
+  
   saveReview() {
     if (this.reviewForm.valid) {
       const formValue = { ...this.reviewForm.value };

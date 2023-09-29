@@ -1,0 +1,42 @@
+<ng-container>
+    <div class="card">
+
+        <!-- comentarios -->
+        <div>
+            <form [formGroup]="reviewForm" class="form">
+                <div class="form">
+                    <div class="header">
+                        <h1 class="pr-3" style="font-size: 24px;">
+                            <mat-icon>chat_bubble_outline</mat-icon>  
+                            Reseñas
+                        </h1>
+                    </div>
+                    <div class="rating">
+                        <mat-card-content>Calificación:</mat-card-content>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+                    </div>
+                    <div class="review">
+                        <mat-form-field [style.width.%]="95" appearance="outline">
+                        <textarea class="text" matInput type="text" placeholder="Escribir reseña" formControlName="comment"></textarea>      
+                        <mat-error *ngIf="reviewForm.get('comment')?.touched">
+                            <ng-container *ngIf="reviewForm.get('comment')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="reviewForm.get('comment')?.hasError('maxlength')">
+                                Máximo <strong>250 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                        </mat-form-field>
+                        <mat-card-actions *ngIf="!reviewForm.get('comment')?.hasError('required') && reviewForm.value.rating!=0" class="mat-card-actions">
+                            <button class="send-button" (click)="saveReview()" mat-raised-button mat-dialog-close >Publicar</button>
+                        </mat-card-actions>
+                        <mat-card-actions *ngIf="reviewForm.get('comment')?.hasError('required') || reviewForm.value.rating == 0" class="mat-card-actions">
+                            <button class="disabled-button"  mat-raised-button>Publicar</button>
+                        </mat-card-actions>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-container>
