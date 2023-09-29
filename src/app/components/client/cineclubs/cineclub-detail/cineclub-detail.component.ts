@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ReviewCineclub } from 'src/app/core/models/review.models';
+import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import { Business } from 'src/app/core/models/user-profile.model';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 import { ReviewService } from 'src/app/core/services/review/review.service';
@@ -15,6 +15,8 @@ export class CineclubDetailComponent {
   idPost: any;
   cineclub!: Business;
   reviewForm!: FormGroup;
+  p:number=1;
+  public userReviews:Review[]=[];
 
   constructor(
     private _fb: FormBuilder,
@@ -30,6 +32,7 @@ export class CineclubDetailComponent {
         rating: ['', Validators.required]
       }
     );
+    this.getAllReviews();
   }
 
   reviewCineclub: ReviewCineclub = {
@@ -66,4 +69,15 @@ export class CineclubDetailComponent {
     })
   }
 
+  getAllReviews() {
+    //TODO: Implementar reviews por businessId
+    /*
+    this.reviewService.getReviewsByBusinessId()
+      .subscribe((data) => {
+        this.userReviews = data;
+      }
+      );;
+    console.log(this.userReviews);
+    */
+  }
 }
