@@ -40,26 +40,14 @@
                     <mat-label>Género</mat-label>
                     <mat-select formControlName="Gender_id" >
                         <mat-option>--</mat-option>
-                        <mat-option *ngFor="let gender of genders" [value]="gender.id">
+                        <mat-option *ngFor="let gender of genders" [value]="gender.name">
                             {{gender.name}}
                         </mat-option> 
                     </mat-select>
                     <mat-error *ngIf="empUserForm.get('Gender_id')?.touched && empUserForm.get('Gender_id')?.hasError('required')">
                         Campo <strong>obligatorio</strong>
                     </mat-error>  
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Número de documento</mat-label>
-                    <input matInput type="text" placeholder="Ej. 72920060" formControlName="number_dni" >
-                    <mat-error *ngIf="empUserForm.get('number_dni')?.touched">
-                        <ng-container *ngIf="empUserForm.get('number_dni')?.hasError('required')">
-                            Campo <strong>obligatorio</strong>
-                        </ng-container>
-                        <ng-container *ngIf="empUserForm.get('number_dni')?.hasError('pattern')">
-                            Se requiere <strong>8 caracteres</strong>
-                        </ng-container>
-                    </mat-error>      
-                </mat-form-field>       
+                </mat-form-field>     
             </div>
     
             <div class="row">

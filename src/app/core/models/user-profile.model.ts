@@ -3,22 +3,36 @@ import { TypeUser } from './person.model';
 
 export interface Gender {
     id?: number;
+    name: string;
+}
+
+export interface User{
+    id?: any;
     name?: string;
+    lastname?: string;
+    birthdate?: string;
+    email?: string;
+    emailVerified?: string
+    password?: string;
+    imageSrc?: string;
+    phoneNumber?: string;
+    gender?: string[];    
+    typeUser?: string[];
 }
 
 export interface Person{
     id?: any;
     firstName?: string;
-    lastName?: string;
-    Gender_id?: Gender;
-    numberDni?: string;
-    birthdate?: string;
+    lastName?:string;
+    birthdate?:string;
+    phone?:string;
     photo?: string;
-    phone?: string;
     email?: string;
-    password?: string;
-    TypeUser_id?: TypeUser;
-}
+    password?:string;
+    numberDni?:string;
+    Gender_id?:Gender;
+    TypeUser_id?:TypeUser;
+  }
 
 export interface Customer {
     id?: any;

@@ -123,9 +123,9 @@ export class RegisterOwnerComponent implements OnInit {
         id: null,
         firstName: this.firstFormGroup.get('first_name')?.value as string,
         lastName: this.firstFormGroup.get('last_name')?.value as string,
-        Gender_id:{
+        /* Gender_id:{
             id: this.firstFormGroup.get('Gender_id')?.value as unknown as number
-        },
+        }, */
         numberDni: this.firstFormGroup.get('number_dni')?.value as string,
         birthdate: this.firstFormGroup.get('birthdate')?.value as string,
         phone: this.firstFormGroup.get('phone')?.value as string,
