@@ -19,4 +19,8 @@ export class ReviewService {
   postReview(data: Review): Observable<any>{
     return this.http.post(this.apiUrl+'/reviews', data);
   }
+
+  public getReviewsByBusinessId(businessId: Number): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}/reviews/${businessId}`);
+  }
 }

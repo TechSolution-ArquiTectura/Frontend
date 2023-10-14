@@ -70,14 +70,10 @@ export class CineclubDetailComponent {
   }
 
   getAllReviews() {
-    //TODO: Implementar reviews por businessId
-    /*
-    this.reviewService.getReviewsByBusinessId()
-      .subscribe((data) => {
+    this.reviewService.getReviewsByBusinessId(this.idPost)
+      .subscribe((data: any) => {
         this.userReviews = data;
       }
-      );;
-    console.log(this.userReviews);
-    */
+      );
   }
 }

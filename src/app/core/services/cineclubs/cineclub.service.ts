@@ -27,10 +27,6 @@ export class CineclubService {
     return cineclubs.filter(cineclub => cineclub.name.toLowerCase().includes(title.toLowerCase()));
   }
 
-  public getReviewsByBusinessId(businessId: Number): Observable<Business[]> {
-    return this.http.get<Business[]>(`${this.apiURL}/${businessId}`);
-  }
-
   public get(url:string){
     return this.http.get(url); //Get host
 
