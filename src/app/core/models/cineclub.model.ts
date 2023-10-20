@@ -7,7 +7,6 @@
 //}
 // New Models
 
-import { Owner } from "./user-profile.model";
 
 export interface BusinessType{
   id?:       number;

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
-import { Cinephile } from 'src/app/core/models/cinephile.model';
 
 @Component({
   selector: 'client-auth-login',
@@ -14,7 +13,6 @@ export class LoginComponent {
 
   hide = true;
   checked = true;
-  perfil: Cinephile[] = [];
   searchQuery = '';
   showError = false;
 
@@ -35,23 +33,25 @@ export class LoginComponent {
 
   onFormSubmit(){
     if (this.empLoginForm.valid) {
-      this._empService.validateCredentials(this.empLoginForm.value.email, this.empLoginForm.value.password).subscribe({
-        next: (result) => {
-          if (result.valid) {
 
-            console.log('Las credenciales coinciden');
+      this._empService.signInPerson(this.empLoginForm.value).subscribe({
+        next: (result) => {
+          if (result.token) { // Verifica si se recibe un token
+            console.log('Las credenciales son correctas');
             console.log(result.user);
-            localStorage.setItem('userResult', JSON.stringify(result.user));
+
+            // Almacena el token en el localStorage
+            localStorage.setItem('authToken', result.token);
+
+            // Redirige al usuario al panel de control (dashboard)
             this.router.navigate(['dashboard']);
-          }else {
-            this.showError = true; // Mostrar el mensaje de error
+          } else {
+            this.showError = true; // Muestra un mensaje de error si no se recibe un token
           }
         },
-      })
-
+      });
     }
   }
-
   redirectToViewProfile(){
     this.router.navigate(['/perfil']);
   }

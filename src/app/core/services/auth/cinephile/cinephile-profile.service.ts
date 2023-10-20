@@ -15,8 +15,8 @@ export class CinephileProfileService {
     return this._http.post('http://localhost:8080/api/TuCine/v1/users/auth/sign-up',data);
   }
 
-  addPerson(data: User): Observable<any>{
-    return this._http.post('http://localhost:8080/api/TuCine/v1/users/auth/sign-up',data);
+  signInPerson(data: any): Observable<any>{
+    return this._http.post('http://localhost:8080/api/TuCine/v1/users/auth/sign-in',data);
   }
 
   getPersonList(): Observable<any>{
@@ -28,6 +28,16 @@ export class CinephileProfileService {
     return this._http.get('http://localhost:8080/api/TuCine/v1/genders');
   }
 
+  //Business Type
+  getBusinessTypeList(): Observable<any>{
+    return this._http.get('http://localhost:8080/api/TuCine/v1/businessTypes');
+  }
+
+  addBusiness(data: any):Observable<any>{
+    return this._http.post('http://localhost:8080/api/TuCine/v1/businesses',data);
+  }
+
+
   //Customer
   addCustomer(data: any): Observable<any>{
     return this._http.post('https://backend-tucine-production.up.railway.app/api/TuCine/v1/customers',data);
@@ -36,18 +46,13 @@ export class CinephileProfileService {
     return this._http.get('https://backend-tucine-production.up.railway.app/api/TuCine/v1/customers');
   }
 
-  //Owner
-  getBusinessTypeList(): Observable<any>{
-    return this._http.get('https://backend-tucine-production.up.railway.app/api/TuCine/v1/businessTypes');
-  }
+
 
   addOwner(data: any): Observable<any>{
     return this._http.post('https://backend-tucine-production.up.railway.app/api/TuCine/v1/owners',data);
   }
 
-  addBusiness(data: any):Observable<any>{
-    return this._http.post('https://backend-tucine-production.up.railway.app/api/TuCine/v1/businesses',data);
-  }
+
 
   validateCredentials(email: string, password: string): Observable<any>{
     return this.getPersonList().pipe(

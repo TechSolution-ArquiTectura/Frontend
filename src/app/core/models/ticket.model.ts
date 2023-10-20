@@ -1,9 +1,10 @@
 import { Showtime } from "./showtime.model";
-import { Customer } from "./user-profile.model";
+import { User } from "./user-profile.model";
+
 
 export interface Ticket {
     id?: number;
-    customer?: Customer;
+    customer?: User;
     showtime?: Showtime;
     numberSeats?: number;
     totalPrice?: number;

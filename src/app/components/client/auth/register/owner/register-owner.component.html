@@ -48,26 +48,14 @@
                 <mat-label>Género</mat-label>
                 <mat-select formControlName="Gender_id">
                     <mat-option>--</mat-option>
-                    <mat-option *ngFor="let gender of genders" [value]="gender.id">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.name">
                         {{gender.name}}
                     </mat-option> 
                 </mat-select>
                 <mat-error *ngIf="firstFormGroup.get('Gender_id')?.touched && firstFormGroup.get('Gender_id')?.hasError('required')">
                     Campo <strong>obligatorio</strong>
                 </mat-error>  
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Número de documento</mat-label>
-                <input matInput type="text" placeholder="Ej. 72920060" formControlName="number_dni">
-                <mat-error *ngIf="firstFormGroup.get('number_dni')?.touched">
-                    <ng-container *ngIf="firstFormGroup.get('number_dni')?.hasError('required')">
-                        DNI is <strong>required</strong>
-                    </ng-container>
-                    <ng-container *ngIf="firstFormGroup.get('number_dni')?.hasError('pattern')">
-                        DNI is <strong>8 caracteres</strong>
-                    </ng-container>
-                </mat-error>      
-            </mat-form-field>       
+            </mat-form-field>   
         </div>
 
         <div class="row">
@@ -122,18 +110,6 @@
                     </ng-container>
                 </mat-error>                  
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Teléfono</mat-label>
-                <input matInput type="text" placeholder="Ej. 964184051" formControlName="phone">
-                <mat-error *ngIf="secondFormGroup.get('phone')?.touched">
-                    <ng-container *ngIf="secondFormGroup.get('phone')?.hasError('required')">
-                        Campo <strong>obligatorio</strong>
-                    </ng-container>
-                    <ng-container *ngIf="secondFormGroup.get('phone')?.hasError('pattern')">
-                        Se requiere <strong>9 caracteres</strong>
-                    </ng-container>
-                </mat-error>     
-            </mat-form-field>  
         </div>
 
 
@@ -168,15 +144,6 @@
         </div>
         <div class="row">
             <mat-form-field appearance="outline">
-                <mat-label>Cuenta bancaria</mat-label>
-                <input matInput type="text" placeholder="Ej. " formControlName="bank_account">          
-                <mat-error *ngIf="secondFormGroup.get('bank_account')?.touched">
-                    <ng-container *ngIf="secondFormGroup.get('bank_account')?.hasError('required')">
-                        Campo <strong>obligatorio</strong>
-                    </ng-container>
-                </mat-error>                  
-            </mat-form-field>
-            <mat-form-field appearance="outline">
                 <mat-label>Tipo de cineclub</mat-label>
                 <mat-select formControlName="BusinessType_id">
                     <mat-option>--</mat-option>
@@ -190,74 +157,28 @@
             </mat-form-field>
         </div>
 
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Descrición del negocio</mat-label>
+                <textarea matInput type="text" formControlName="description"></textarea>
+              </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Dirección</mat-label>
+                <input matInput type="text" placeholder="" formControlName="address">
+                <mat-error *ngIf="secondFormGroup.get('address')?.touched && secondFormGroup.get('address')?.hasError('required')">                   
+                    Campo <strong>obligatorio</strong>
+                </mat-error> 
+            </mat-form-field>
+        </div> 
+
         <div>         
             <button mat-button matStepperPrevious>Atras</button>
             <button mat-raised-button matStepperNext>Siguiente</button>
         </div>
       </form>
-    </mat-step>
-
-    <mat-step [stepControl]="thirdFormGroup" label="Perfil de cineclub">
-        <form [formGroup]="thirdFormGroup" class="form">
-        
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Imagen logo</mat-label>
-                    <input matInput type="text" placeholder="" formControlName="image_logo">
-                    <mat-error *ngIf="thirdFormGroup.get('image_logo')?.touched && thirdFormGroup.get('image_logo')?.hasError('required')">                   
-                        Campo <strong>obligatorio</strong>
-                    </mat-error> 
-                </mat-form-field>
-            </div>
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Imagen banner</mat-label>
-                    <input matInput type="text" placeholder="" formControlName="image_banner">
-                    <mat-error *ngIf="thirdFormGroup.get('image_banner')?.touched && thirdFormGroup.get('image_banner')?.hasError('required')">                   
-                        Campo <strong>obligatorio</strong>
-                    </mat-error> 
-                </mat-form-field>
-            </div>
-            
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Descrición del negocio</mat-label>
-                    <textarea matInput type="text" formControlName="description"></textarea>
-                  </mat-form-field>
-            </div>
-
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Horario de atención</mat-label>
-                    <input matInput type="text" placeholder="" formControlName="date_attention">
-                    <mat-error *ngIf="thirdFormGroup.get('date_attention')?.touched && thirdFormGroup.get('date_attention')?.hasError('required')">                   
-                        Campo <strong>obligatorio</strong>
-                    </mat-error> 
-                </mat-form-field>
-            </div> 
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Dirección</mat-label>
-                    <input matInput type="text" placeholder="" formControlName="address">
-                    <mat-error *ngIf="thirdFormGroup.get('address')?.touched && thirdFormGroup.get('address')?.hasError('required')">                   
-                        Campo <strong>obligatorio</strong>
-                    </mat-error> 
-                </mat-form-field>
-            </div> 
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Referencias</mat-label>
-                    <input matInput type="text" placeholder="" formControlName="reference_address">
-                    <mat-error *ngIf="thirdFormGroup.get('reference_address')?.touched && thirdFormGroup.get('reference_address')?.hasError('required')">                   
-                        Campo <strong>obligatorio</strong>
-                    </mat-error> 
-                </mat-form-field>
-            </div> 
-            <div>               
-                <button mat-button matStepperPrevious>Atras</button>
-                <button mat-raised-button matStepperNext>Siguiente</button>
-              </div>
-        </form>
     </mat-step>
 
     <mat-step [stepControl]="fourthFormGroup" label="Email de acceso">

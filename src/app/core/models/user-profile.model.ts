@@ -12,7 +12,6 @@ export interface User{
     lastname?: string;
     birthdate?: string;
     email?: string;
-    emailVerified?: string
     password?: string;
     imageSrc?: string;
     phoneNumber?: string;
@@ -20,30 +19,6 @@ export interface User{
     typeUser?: string[];
 }
 
-export interface Person{
-    id?: any;
-    firstName?: string;
-    lastName?:string;
-    birthdate?:string;
-    phone?:string;
-    photo?: string;
-    email?: string;
-    password?:string;
-    numberDni?:string;
-    Gender_id?:Gender;
-    TypeUser_id?:TypeUser;
-  }
-
-export interface Customer {
-    id?: any;
-    Person_id?: Person
-}
-
-export interface Owner {
-    id?: any;
-    Person_id?: Person;
-    bankAccount?: string;
-}
 
 export interface Business {
   id?: any,
@@ -58,6 +33,7 @@ export interface Business {
   dateAttention?: string;
   address?: string;
   referenceAddress?: string;
-  owner?: Owner;
-  businessType?: BusinessType;
+  user?: User;
+  businessTypes?: BusinessType;
 }
+

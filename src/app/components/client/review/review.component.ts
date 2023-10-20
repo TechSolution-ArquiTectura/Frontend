@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Review } from 'src/app/core/models/review.models';
-import { Person } from 'src/app/core/models/user-profile.model';
 import { ReviewService } from 'src/app/core/services/review/review.service';
 
 @Component({
