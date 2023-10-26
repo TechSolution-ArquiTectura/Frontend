@@ -11,7 +11,7 @@ export class FilmService {
 
   public FilmList:Film[]=[]
 
-  private apiURL= "https://backend-production-d5ba.up.railway.app/api/TuCine/v1/films";
+  private apiURL= "http://localhost:8080/api/TuCine/v1/films";
 
   constructor(private http:HttpClient) {
     this.getFilms().subscribe((films)=>{
