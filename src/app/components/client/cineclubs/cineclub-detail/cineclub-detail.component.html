@@ -40,11 +40,14 @@
             <div>
                 <div class="user-card" *ngFor="let userReview of userReviews">
                     <div *ngIf="userReviews.length > 0">
-                        <img class="circle" src="'../../../../assets/user_profile.png" alt="">
+                        <img class="circle" *ngIf="userReview.user.imageSrc; else photoDefault" src={{userReview.user.imageSrc}} alt="">
+                        <ng-template #photoDefault>
+                            <img class="circle" src="'../../../../assets/user_profile.png" alt="">
+                        </ng-template>
                         <div class="user-review">
                             <div class="username-rating">
                                 <div class="username">
-                                    Nombre del usuario
+                                    {{userReview.user.name}} {{userReview.user.lastname}}
                                 </div>
                                 <div class="user-rating">
                                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

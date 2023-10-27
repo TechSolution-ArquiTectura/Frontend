@@ -2,11 +2,11 @@ import { Gender } from "./user-profile.model";
 
 export interface Person{
   id?: number;
-  firstName?: string;
-  lastName?:string;
+  name?: string;
+  lastname?:string;
   birthdate?:number;
-  phone?:number;
-  photo?: string;
+  phoneNumber?:number;
+  imageSrc?: string;
   email?: string;
   password?:string;
   numberDni?:string;
