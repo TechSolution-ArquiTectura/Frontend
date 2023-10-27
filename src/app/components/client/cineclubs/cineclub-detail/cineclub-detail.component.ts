@@ -73,6 +73,7 @@ export class CineclubDetailComponent {
     this.reviewService.getReviewsByBusinessId(this.idPost)
       .subscribe((data: any) => {
         this.userReviews = data;
+        this.userReviews.reverse();
       }
       );
   }
