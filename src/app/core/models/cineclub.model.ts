@@ -29,4 +29,6 @@ export interface Business {
   reference_address: string;
   Owner_id: number;
   BusinessType_id: any;
+  rating: any;
+  commentsCount: number;
 }
