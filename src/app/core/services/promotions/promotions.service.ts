@@ -39,6 +39,7 @@ export class PromotionsService {
   }
 
   putPromotion(promotion: Promotion, id: number): void {
+    console.log(promotion);
     this.http.put<Promotion>(`${this.apiUrl}/${id}`, promotion).subscribe(
       (data) => {
         console.log(data);

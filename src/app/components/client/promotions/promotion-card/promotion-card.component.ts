@@ -32,7 +32,8 @@ export class PromotionCardComponent implements OnInit {
     this.openMenu = false;
   }
 
-  openEditDialog() {
+  openEditDialog(e: Event) {
+    e.stopPropagation();
     this.closeMenu();
     const dialogRef = this._matDialog.open(NewPromotionDialogComponent, {
       width: '650px',
@@ -42,7 +43,8 @@ export class PromotionCardComponent implements OnInit {
     });
   }
 
-  openDeleteDialog() {
+  openDeleteDialog(e: Event) {
+    e.stopPropagation();
     this.closeMenu();
     const dialogRef = this._matDialog.open(DeletePromotionDialogComponent, {
       width: '450px',

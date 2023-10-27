@@ -12,6 +12,8 @@ import { format } from 'date-fns';
   styleUrls: ['./new-promotion-dialog.component.scss'],
 })
 export class NewPromotionDialogComponent {
+  BUSINESS_ID: number = 3;
+
   constructor(
     public _dialogRef: MatDialogRef<NewPromotionDialogComponent>,
     private _promotionService: PromotionsService,
@@ -48,7 +50,7 @@ export class NewPromotionDialogComponent {
           ...this.newFormBuilder.value,
           initDate: format(initDate, 'dd-MM-yyyy'),
           endDate: format(endDate, 'dd-MM-yyyy'),
-          business: { id: 1 },
+          business: { id: this.BUSINESS_ID },
         } as Promotion,
         this.data.promotion.id
       );
@@ -58,16 +60,16 @@ export class NewPromotionDialogComponent {
       });
       return;
     }
+    console.log(this.newFormBuilder.value);
     this._promotionService.postPromotion({
       ...this.newFormBuilder.value,
       initDate: format(initDate, 'dd-MM-yyyy'),
       endDate: format(endDate, 'dd-MM-yyyy'),
-      business: { id: 1 },
+      business: { id: this.BUSINESS_ID },
     } as Promotion);
     this.closeNewPromotionDialog();
     this._snackBar.open('Promoción añadida con éxito', 'Cerrar', {
       duration: 3000,
     });
-    return;
   }
 }

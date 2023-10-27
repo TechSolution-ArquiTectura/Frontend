@@ -6,7 +6,7 @@
       <button
         *ngFor="let promotion of promotions"
         class="promotion-button"
-        (click)="openPromotion(promotion)"
+        (click)="openPromotion(promotion, $event)"
       >
         <app-promotion-card
           [promotion]="promotion"

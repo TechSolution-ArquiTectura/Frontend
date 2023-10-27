@@ -40,11 +40,13 @@ export class PromotionsComponent implements OnInit {
   openNewPromotion() {
     const dialogRef = this._matDialog.open(NewPromotionDialogComponent, {
       width: '650px',
-      data: {},
+      data: {
+      },
     });
   }
 
-  openPromotion(promotion: Promotion) {
+  openPromotion(promotion: Promotion, e: Event) {
+    e.stopPropagation();
     this.router.navigate(['dashboard/payment'], { state: { promotion } });
   }
 }

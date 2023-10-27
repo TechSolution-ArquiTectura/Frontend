@@ -26,8 +26,8 @@
             ></mat-icon>
           </button>
           <div class="menu" *ngIf="openMenu">
-            <button (click)="openEditDialog()">Editar</button>
-            <button (click)="openDeleteDialog()">Eliminar</button>
+            <button (click)="openEditDialog($event)">Editar</button>
+            <button (click)="openDeleteDialog($event)">Eliminar</button>
           </div>
         </div>
       </div>
