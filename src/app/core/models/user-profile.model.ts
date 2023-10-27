@@ -46,4 +46,6 @@ export interface Business {
   referenceAddress?: string;
   owner?: Owner;
   businessType?: BusinessType;
+  rating?: any;
+  commentsCount?: number;
 }

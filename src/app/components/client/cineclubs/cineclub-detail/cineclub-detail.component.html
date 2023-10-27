@@ -1,6 +1,80 @@
 <ng-container>
     <div class="card">
-
+        <div class="cineclub-rating">
+            <div>
+                Calificación
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating == 5">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=4.5 && this.cineclub.rating < 5">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_half</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=4 && this.cineclub.rating < 4.5">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=3.5 && this.cineclub.rating < 4">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_half</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=3 && this.cineclub.rating < 3.5">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=2.5 && this.cineclub.rating < 3">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_half</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=2 && this.cineclub.rating < 2.5">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=1.5 && this.cineclub.rating < 2">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_half</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating >=1 && this.cineclub.rating < 1.5">
+                <mat-icon>star</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+            <div class="user-rating" *ngIf="this.cineclub.rating ==0">
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+                <mat-icon>star_border</mat-icon>
+            </div>
+        </div>
         <!-- comentarios -->
         <div>
             <form [formGroup]="reviewForm" class="form">
@@ -8,7 +82,7 @@
                     <div class="header">
                         <h1 class="pr-3" style="font-size: 24px;">
                             <mat-icon>chat_bubble_outline</mat-icon>  
-                            Reseñas
+                            Reseñas ({{this.cineclub.commentsCount}})
                         </h1>
                     </div>
                     <div class="rating">

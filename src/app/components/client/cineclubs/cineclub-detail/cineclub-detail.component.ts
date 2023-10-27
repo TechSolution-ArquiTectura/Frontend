@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import { Business } from 'src/app/core/models/user-profile.model';
+import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 import { ReviewService } from 'src/app/core/services/review/review.service';
 
@@ -22,7 +23,7 @@ export class CineclubDetailComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _empServiceMovie: FilmsProfileService ,
+    private _empServiceMovie: FilmsProfileService,
     private reviewService: ReviewService,
     //private _empServiceCineclub: CineclubService,
     private route : ActivatedRoute,
@@ -35,6 +36,7 @@ export class CineclubDetailComponent implements OnInit {
       }
     );
     this.getAllReviews();
+    this.getCineclubById();
   }
 
   reviewCineclub: ReviewCineclub = {
@@ -52,6 +54,17 @@ export class CineclubDetailComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.reviewService.refresh$.subscribe(() => {
       this.getAllReviews();
+    })
+  }
+  
+  getCineclubById(){
+    this._empServiceMovie.getCineclubById(this.idPost).subscribe({
+      next: (data) => {
+        this.cineclub = data;
+      },
+      error: (error) => {
+        console.log(error)
+      }
     })
   }
 
