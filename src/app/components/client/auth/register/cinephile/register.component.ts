@@ -25,11 +25,11 @@ export class RegisterComponent implements OnInit {
   genders: Gender[] = [];
 
   person: Person = {
-    firstName: '',
-    lastName: '',
+    name: '',
+    lastname: '',
     numberDni: '',
     birthdate: '',
-    photo: '',
+    imageSrc: '',
     phone: '',
     email: '',
     password: '',
@@ -86,8 +86,8 @@ export class RegisterComponent implements OnInit {
       const formValue = { ...this.empUserForm.value }; // Eliminar ConfirmPassword
       delete formValue.confirmPassword;
 
-      this.person.firstName = formValue.first_name;
-      this.person.lastName = formValue.last_name;
+      this.person.name = formValue.first_name;
+      this.person.lastname = formValue.last_name;
       this.person.numberDni = formValue.number_dni;
       this.person.birthdate = formValue.birthdate;
       this.person.phone = formValue.phone;

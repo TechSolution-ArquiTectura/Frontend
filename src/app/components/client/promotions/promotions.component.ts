@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class PromotionsComponent implements OnInit {
   BUSINESS_ID: number = 3;
-  TYPE_USER: string = 'client';
+  TYPE_USER: string = 'business';
   promotions: Promotion[] = [];
 
   constructor(
@@ -33,7 +33,6 @@ export class PromotionsComponent implements OnInit {
     } else {
       this.promotionsService.getPromotions().subscribe((data) => {
         this.promotions = data;
-        // this.updatePromotionRows();
       });
     }
   }
@@ -48,44 +47,4 @@ export class PromotionsComponent implements OnInit {
   openPromotion(promotion: Promotion) {
     this.router.navigate(['dashboard/payment'], { state: { promotion } });
   }
-
-  /*
-  currentIndex = 0;
-
-  prevPage() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-      this.updatePromotionRows();
-    }
-  }
-
-  nextPage() {
-    if (this.currentIndex < Math.ceil(this.promotions.length / 4) - 1) {
-      this.currentIndex++;
-      this.updatePromotionRows();
-    }
-  }
-
-  updatePromotionRows() {
-    const startIdx = this.currentIndex * 4;
-    const endIdx = startIdx + 4;
-    this.promotionRows = this.chunkArray(
-      this.promotions.slice(startIdx, endIdx),
-      2
-    );
-  }
-
-  chunkArray(array: Promotion[], size: number): Promotion[][] {
-    const chunkedArray = [];
-    for (let i = 0; i < array.length; i += size) {
-      chunkedArray.push(array.slice(i, i + size));
-    }
-    return chunkedArray;
-  }
-
-  navigateToPromotionDetail(promotionId: number) {
-    // Navegar a la ruta de detalle de la promoción con el ID
-    this.router.navigate(['promotions/detail', promotionId]);
-  }
-  */
 }

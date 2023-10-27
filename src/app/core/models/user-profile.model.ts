@@ -8,12 +8,12 @@ export interface Gender {
 
 export interface Person{
     id?: any;
-    firstName?: string;
-    lastName?: string;
+    name?: string;
+    lastname?: string;
     Gender_id?: Gender;
     numberDni?: string;
     birthdate?: string;
-    photo?: string;
+    imageSrc?: string;
     phone?: string;
     email?: string;
     password?: string;
