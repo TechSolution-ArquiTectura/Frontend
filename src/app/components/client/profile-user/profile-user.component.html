@@ -1,13 +1,13 @@
 <div class="profile">
   <div class="profile-details">
     <div class="profile-photo">
-      <img class="photo-user" width="200" *ngIf="dataEntrante?.photo; else photoDefauld" src={{dataEntrante?.photo}} alt="User Photo">
+      <img class="photo-user" width="200" *ngIf="dataEntrante?.imageSrc; else photoDefauld" src={{dataEntrante?.imageSrc}} alt="User Photo">
       <ng-template #photoDefauld>
         <img class="photo-user" width="200" src="https://i.pinimg.com/550x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg" alt="User Photo">
       </ng-template>
     </div>
     <div class="profile-info">
-      <h2 class="name">{{dataEntrante?.firstName}} {{dataEntrante?.lastName}}</h2>
+      <h2 class="name">{{dataEntrante?.name}} {{dataEntrante?.lastname}}</h2>
       <p class="description"> <strong>{{dataEntrante?.email}}</strong> </p>
       <p class="start-date">Miembro desde Abril 2023</p>
       <p class="location">Lima, Peru</p>

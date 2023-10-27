@@ -121,8 +121,8 @@ export class RegisterOwnerComponent implements OnInit {
     if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid && this.fourthFormGroup.valid ){
       const formDataPerson: Person = {
         id: null,
-        firstName: this.firstFormGroup.get('first_name')?.value as string,
-        lastName: this.firstFormGroup.get('last_name')?.value as string,
+        name: this.firstFormGroup.get('first_name')?.value as string,
+        lastname: this.firstFormGroup.get('last_name')?.value as string,
         Gender_id:{
             id: this.firstFormGroup.get('Gender_id')?.value as unknown as number
         },
