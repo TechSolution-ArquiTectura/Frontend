@@ -9,7 +9,7 @@
   }
 }
 
-.container {
+.films-container {
   position: relative;
   padding: 16px;
 
@@ -23,7 +23,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .container {
+  .films-container {
     padding: 0 10px;
   }
 }

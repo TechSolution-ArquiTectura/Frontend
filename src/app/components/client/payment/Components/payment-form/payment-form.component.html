@@ -1,4 +1,4 @@
-<mat-card class="container">
+<mat-card class="pay-container">
     <mat-card-title class="title">Adquirir promoción</mat-card-title>
     <mat-card-content>
       <form #tarjetaForm="ngForm">
@@ -7,7 +7,7 @@
             <input matInput placeholder="Número de tarjeta" name="numeroTarjeta" ngModel required>
           </mat-form-field>
         </div>
-  
+
         <div class="form-row">
           <mat-form-field appearance="outline" class="half-width">
             <input matInput placeholder="mm/aa" name="fecha" ngModel required>
@@ -16,7 +16,7 @@
             <input matInput placeholder="CVV" name="cvv" ngModel required>
           </mat-form-field>
         </div>
-  
+
         <div class="form-row">
           <mat-form-field appearance="outline" class="half-width">
             <input matInput placeholder="Nombres" name="nombres" ngModel required>
@@ -25,7 +25,7 @@
             <input matInput placeholder="Apellidos" name="apellidos" ngModel required>
           </mat-form-field>
         </div>
-  
+
         <div class="form-row">
           <mat-form-field appearance="outline" class="half-width">
             <input matInput placeholder="Correo" name="correo" ngModel required>
@@ -34,15 +34,14 @@
             <input matInput placeholder="Código postal" name="codigoPostal" ngModel required>
           </mat-form-field>
         </div>
-  
+
         <div class="form-row">
           <mat-checkbox name="recordarTarjeta">Recordar tarjeta</mat-checkbox>
         </div>
-  
+
         <div class="div-pay" style="margin-top: 20px;">
           <button (click)="dialogReview()" class ="bt-pay pr-6 pt-2 pl-6 pb-2" type="submit">Pagar</button>
         </div>
       </form>
     </mat-card-content>
   </mat-card>
-  
