@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import { Business } from 'src/app/core/models/user-profile.model';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
@@ -11,12 +12,13 @@ import { ReviewService } from 'src/app/core/services/review/review.service';
   templateUrl: './cineclub-detail.component.html',
   styleUrls: ['./cineclub-detail.component.scss']
 })
-export class CineclubDetailComponent {
+export class CineclubDetailComponent implements OnInit {
   idPost: any;
   cineclub!: Business;
   reviewForm!: FormGroup;
   p:number=1;
   public userReviews:Review[]=[];
+  subscription!: Subscription;
 
   constructor(
     private _fb: FormBuilder,
@@ -47,6 +49,11 @@ export class CineclubDetailComponent {
     }
   }
 
+  ngOnInit(): void {
+    this.subscription = this.reviewService.refresh$.subscribe(() => {
+      this.getAllReviews();
+    })
+  }
 
   saveReview() {
     if (this.reviewForm.valid) {
