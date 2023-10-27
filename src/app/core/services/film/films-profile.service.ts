@@ -8,6 +8,8 @@ import { Business } from '../../models/cineclub.model';
 })
 export class FilmsProfileService {
 
+  private apiURL="http://localhost:8080/api/TuCine/v1"
+
   constructor(private _http: HttpClient) {}
 
   addMovieProfile(data: any): Observable<any>{
@@ -64,7 +66,7 @@ export class FilmsProfileService {
   }
 
   getCineclubById(id: number): Observable<any>{
-    return this._http.get(`https://backend-tucine-production.up.railway.app/api/TuCine/v1/businesses/${id}`);
+    return this._http.get(`${this.apiURL}/businesses/${id}`);
   }
 
 }

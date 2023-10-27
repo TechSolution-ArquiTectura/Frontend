@@ -1,5 +1,4 @@
 import { BusinessType } from './cineclub.model';
-import { TypeUser } from './person.model';
 
 export interface Gender {
     id?: number;
@@ -27,12 +26,12 @@ export interface Business {
   ruc?: string;
   phone?: string;
   email?: string;
-  imageLogo?: string;
-  imageBanner?: string;
+  logoSrc?: string;
+  bannerSrc?: string;
   description?: string;
-  dateAttention?: string;
+  startTime?: string;
+  endTime?: string;
   address?: string;
-  referenceAddress?: string;
   user?: User;
   businessTypes?: BusinessType;
 }

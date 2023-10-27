@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CineclubDetailsComponent } from '../cineclub-details/cineclub-details.component';
-import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { Business } from 'src/app/core/models/user-profile.model';
-import { BusinessType } from '../../../../core/models/cineclub.model';
 
 @Component({
   selector: 'cineclub-cineclub-profile',

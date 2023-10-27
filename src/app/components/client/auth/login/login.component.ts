@@ -38,11 +38,11 @@ export class LoginComponent {
         next: (result) => {
           if (result.token) { // Verifica si se recibe un token
             console.log('Las credenciales son correctas');
-            console.log(result.user);
+            console.log(result);
 
             // Almacena el token en el localStorage
             localStorage.setItem('authToken', result.token);
-
+            console.log(result.token);
             // Redirige al usuario al panel de control (dashboard)
             this.router.navigate(['dashboard']);
           } else {
