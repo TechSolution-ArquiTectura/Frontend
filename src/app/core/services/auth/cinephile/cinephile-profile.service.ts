@@ -8,48 +8,50 @@ import { Person } from 'src/app/core/models/user-profile.model';
 })
 export class CinephileProfileService {
 
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1";
+
   constructor(private _http: HttpClient) {}
 
   //General
   addPerson(data: Person): Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/persons',data);
+    return this._http.post(`${this.apiURL}/persons`,data);
   }
 
   getPersonList(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/users');
+    return this._http.get(`${this.apiURL}/users`);
   }
 
   getUserGender(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/genders');
+    return this._http.get(`${this.apiURL}/genders`);
   }
 
   //Customer
   addCustomer(data: any): Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/customers',data);
+    return this._http.post(`${this.apiURL}/customers`, data);
   }
 
   getCustomerList(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/customers');
+    return this._http.get(`${this.apiURL}/customers`);
   }
 
   //Owner
   getBusinessTypeList(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/businessTypes');
+    return this._http.get(`${this.apiURL}/businessTypes`);
   }
 
   addOwner(data: any): Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/owners',data);
+    return this._http.post(`${this.apiURL}/owners`,data);
   }
 
   addBusiness(data: any):Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/businesses',data);
+    return this._http.post(`${this.apiURL}/businesses`,data);
   }
 
   validateCredentials(email: string, password: string): Observable<any>{
     return this.getPersonList().pipe(
       switchMap((userList: any[]) => {
         const user = userList.find(user => user.email === email);
-  
+
         if (user && user.password === password) {
           // Las credenciales coinciden
           return of({ valid: true, user: user });

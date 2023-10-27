@@ -6,13 +6,13 @@ import { Group } from 'src/app/core/models/group.model';
 
 @Injectable({
   providedIn: 'root'
-})  
+})
 export class GroupService {
 
   public groupList:Group[]=[]
 
-  private apiURL="https://backend-production-d5ba.up.railway.app/api/TuCine/v1/group"
-  
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/group"
+
   constructor(private http:HttpClient) {
     this.getGroups()
   }

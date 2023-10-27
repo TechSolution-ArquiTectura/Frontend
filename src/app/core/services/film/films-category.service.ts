@@ -10,7 +10,7 @@ export class FilmsCategoryService {
 
   public FilmCategoryList: FilmCategory[] = [];
 
-  private apiURL = "https://backend-production-d5ba.up.railway.app/api/TuCine/v1/filmCategory";
+  private apiURL = "https://tucine-api.onrender.com/api/TuCine/v1/filmCategory";
 
   constructor(private http: HttpClient) {
     this.getFilmCategory().subscribe((filmCategories) => {

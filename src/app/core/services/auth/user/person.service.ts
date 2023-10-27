@@ -9,7 +9,7 @@ import { Person } from 'src/app/core/models/person.model';
 })
 export class PersonService {
   public personsList:Person[]=[]
-  private apiURL="https://backend-production-d5ba.up.railway.app/api/TuCine/v1/persons"
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/persons"
   constructor(private http: HttpClient) {
     this.getPersons()
    }

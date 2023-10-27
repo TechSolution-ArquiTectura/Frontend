@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class OwnerProfileService {
 
-  private apiURL="https://backend-production-d5ba.up.railway.app/api/TuCine/v1"
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1"
 
   constructor(private _http: HttpClient) {}
 

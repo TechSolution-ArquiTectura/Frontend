@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class PromotionsService {
-  private apiUrl = 'http://localhost:8080/api/TuCine/v1/promotions';
+  private apiUrl = 'https://tucine-api.onrender.com/api/TuCine/v1/promotions';
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 

@@ -8,7 +8,7 @@ import { Review } from '../../models/review.models';
   providedIn: 'root'
 })
 export class ReviewService {
-  private apiUrl = 'https://backend-production-d5ba.up.railway.app/api/TuCine/v1';
+  private apiUrl = 'https://tucine-api.onrender.com/api/TuCine/v1';
 
   private _refresh$ = new Subject<void>();
 

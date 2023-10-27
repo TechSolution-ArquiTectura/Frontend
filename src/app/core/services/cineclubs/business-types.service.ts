@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BusinessTypesService {
-  private apiURL="https://backend-production-d5ba.up.railway.app/api/TuCine/v1/businessTypes";
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/businessTypes";
 
   public businessTypesList:BusinessType[]=[];
 

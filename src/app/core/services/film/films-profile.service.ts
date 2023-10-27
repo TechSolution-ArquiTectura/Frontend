@@ -8,7 +8,7 @@ import { Business } from '../../models/cineclub.model';
 })
 export class FilmsProfileService {
 
-  private apiUrl = 'https://backend-production-d5ba.up.railway.app/api/TuCine/v1';
+  private apiUrl = 'https://tucine-api.onrender.com/api/TuCine/v1';
 
   constructor(private _http: HttpClient) {}
 
@@ -25,7 +25,7 @@ export class FilmsProfileService {
   }
 
   getMoviebyId(id: number): Observable<any>{
-    return this._http.get(this.apiUrl+`/films/${id}`); 
+    return this._http.get(this.apiUrl+`/films/${id}`);
   }
 
   deleteMovieProfile(id: number): Observable<any>{

@@ -7,21 +7,23 @@ import { Observable } from 'rxjs';
 })
 export class PopularNowService {
 
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/popular-now";
+
   constructor(private _http: HttpClient) {}
 
   addPopularEventNow(data: any): Observable<any>{
-    return this._http.post('http://localhost:3000/popular-now',data);
+    return this._http.post(this.apiURL,data);
   }
 
   updatePopularEventNow(id: number, data: any): Observable<any>{
-    return this._http.put(`http://localhost:3000/popular-now/${id}`,data);
+    return this._http.put(`${this.apiURL}/${id}`,data);
   }
 
   getPopularEventNowList(): Observable<any>{
-    return this._http.get('http://localhost:3000/popular-now');
+    return this._http.get(this.apiURL);
   }
 
   deletePopularEventNow(id: number): Observable<any>{
-    return this._http.delete(`http://localhost:3000/popular-now/${id}`)
+    return this._http.delete(`${this.apiURL}/${id}`)
   }
 }
