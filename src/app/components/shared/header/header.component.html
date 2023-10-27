@@ -1,4 +1,4 @@
-<nav class="flex align-items-center tucine-nav-bar" mat-tab-nav-bar color="primary" >
+<!-- <nav class="flex align-items-center tucine-nav-bar" mat-tab-nav-bar color="primary" >
 
   <div class="m-2 flex align-items-center tucine-logo">
       <a><img class = "max-h-3rem" src="https://i.postimg.cc/T2JxZZ2d/brand.png" alt="TuCine"></a>
@@ -20,7 +20,7 @@
   <span class="tu-cine"></span>
 
   <div class="flex align-items-center">
-    
+
     <a class="nav-icon" mat-button><mat-icon>chat_bubble</mat-icon></a>
     <a class="nav-icon" mat-button><mat-icon>notifications</mat-icon></a>
     <a class="nav-icon" mat-button [routerLink]="['/dashboard/perfil']"><mat-icon>account_circle</mat-icon></a>
@@ -28,9 +28,23 @@
   </div>
 
 </nav>
-  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel> -->
 
-
+<nav class="nav">
+  <div class="options">
+    <a class="options_nav-icon" routerLink="/dashboard" ><img src="/assets/brand.png" alt="TuCine"></a>
+    <div class="options_links">
+      <a routerLink="/dashboard/peliculas" routerLinkActive="active"><div>Películas</div></a>
+      <a routerLink="/dashboard/cineclubs" routerLinkActive="active"><div>Cineclubes</div></a>
+      <a routerLink="/dashboard/promociones" routerLinkActive="active"><div>Promociones</div></a>
+    </div>
+  </div>
+  <div class="menu">
+    <a class="menu_item"><img src="/assets/icons/message-icon.svg" alt="" /></a>
+    <a class="menu_item"><img src="/assets/icons/bell-icon.svg" alt="" /></a>
+    <a class="menu_profile" [routerLink]="['/dashboard/perfil']"><img src="/assets/pictures/user/empty-user.png" alt="" /></a>
+  </div>
+</nav>
 
 
 

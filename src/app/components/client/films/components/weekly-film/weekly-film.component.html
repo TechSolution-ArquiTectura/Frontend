@@ -17,16 +17,16 @@
       />
       <div class="overlay">
         <span
-          [routerLink]="['/dashboard/peliculas/pelicula', movie.id]"
-          class="button"
-          >VER HORARIOS</span
+        [routerLink]="['/dashboard/peliculas/pelicula', movie.id]"
+        class="button"
+        >VER HORARIOS</span
         >
       </div>
     </div>
   </div>
 
   <div class="no-found" *ngIf="movies.length == 0">
-    <img src="/assets/pictures/icons/no-shows-found.svg" alt="" />
+    <img src="/assets/icons/no-shows-found.svg" alt="" />
     <p>No hay películas disponibles</p>
   </div>
 </div>

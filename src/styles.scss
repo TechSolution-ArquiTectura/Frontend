@@ -14,10 +14,13 @@
 html,
 body {
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   background-color: var(--secondary-color);
 }
-body {
-  margin: 0;
+
+* {
   font-family: Inter, "Helvetica Neue", sans-serif;
 }
 
