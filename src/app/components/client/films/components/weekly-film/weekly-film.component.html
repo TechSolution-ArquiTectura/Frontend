@@ -1,32 +1,42 @@
-<h2 class="billboard">CARTELERA DE CINE SEMANAL</h2>
+<h2 class="billboard">Resultados</h2>
+<p class="caption">
+  Se encontraron {{ movies.length }} resultados para su búsqueda
+</p>
 
-<div class="film-container">
-  <div *ngIf="movies.length > 0">
-    <div *ngFor="let movie of movies | paginate: { itemsPerPage: 4, currentPage: p }" class="weeklyFilm">
-
-
-      <img src="{{movie.poster}}"
-      alt="{{movie.title}}" style="width: 200px;">
-        <div class="overlay">
-          <span [routerLink]="['/dashboard/peliculas/pelicula', movie.id]" class="button">VER HORARIOS</span>
-        </div>
-
-
+<div>
+  <div *ngIf="movies.length > 0" class="film-container__elements">
+    <div
+      *ngFor="
+        let movie of movies | paginate : { itemsPerPage: 8, currentPage: p }
+      "
+      class="weekly-film"
+    >
+      <img
+        src="{{ movie.poster }}"
+        alt="{{ movie.title }}"
+      />
+      <div class="overlay">
+        <span
+        [routerLink]="['/dashboard/peliculas/pelicula', movie.id]"
+        class="button"
+        >VER HORARIOS</span
+        >
+      </div>
     </div>
   </div>
-  <div *ngIf="movies.length == 0">
+
+  <div class="no-found" *ngIf="movies.length == 0">
+    <img src="/assets/icons/no-shows-found.svg" alt="" />
     <p>No hay películas disponibles</p>
   </div>
 </div>
 
 <div class="paginator">
-  <pagination-controls (pageChange)="p = $event"
-  previousLabel="Anterior"
-  nextLabel="Siguiente"
-  autoHide:true
+  <pagination-controls
+    (pageChange)="p = $event"
+    previousLabel=" "
+    nextLabel=" "
+    autoHide:true
+    class="my-pagination"
   ></pagination-controls>
 </div>
-
-
-
-

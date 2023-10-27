@@ -4,7 +4,6 @@ import { Film } from 'src/app/core/models/film.model';
 
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 import { FilmsCategoryService } from 'src/app/core/services/film/films-category.service';
-import { T } from '@angular/cdk/keycodes';
 import { CategoryService } from 'src/app/core/services/film/category.service';
 
 interface Genre {
@@ -22,7 +21,7 @@ export class FilmsComponent implements OnInit {
   @ViewChild('filterBar')
   filterBarComponent!: FilterBarComponent;
 
-  currentMovieImage = "https://i.postimg.cc/BQ4pYSnk/image-9.png";
+  currentMovieImage = "/assets/pictures/banners/suzume_banner.jpg";
   Films: Film[] = [];
   FilmsCopy: Film[] = [];
   CategoryList= this.categoryService.categoriesList;
