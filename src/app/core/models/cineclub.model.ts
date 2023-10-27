@@ -7,8 +7,6 @@
 //}
 // New Models
 
-import { Owner } from "./user-profile.model";
-
 export interface BusinessType{
   id?:       number;
   name?:    string;
@@ -17,16 +15,15 @@ export interface BusinessType{
 export interface Business {
   id: any,
   name: string;
-  social_reason: string;
-  RUC: string;
+  socialReason: string;
+  ruc: string;
   phone: string;
-  email: string;
-  imageLogo: string;
-  image_banner: string;
+  logoSrc: string;
+  bannerSrc: string;
   description: string;
-  date_attention: string;
   address: string;
-  reference_address: string;
-  Owner_id: number;
-  BusinessType_id: any;
+  startTime: Date;
+  endTime: Date;
+  user: any;
+  businessTypes: any;
 }

@@ -24,12 +24,14 @@ export class HomeComponent implements OnInit {
       this.cineClubs = response;
 
       this.cineClubs.map(cineClub => {
-        this.businessTypeService.getBusinessTypeById(cineClub.BusinessType_id).subscribe(res => {
-          cineClub.BusinessType_id = res;
+        this.businessTypeService.getBusinessTypeById(cineClub.businessTypes).subscribe(res => {
+          cineClub.businessTypes = res;
         })
       })
 
       this.cineClubCopy = response.slice();
+
+      console.log(this.cineClubs)
     });
   }
 

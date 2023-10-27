@@ -1,18 +1,29 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
-  padding: 20px;
+.wrapper {
+  width: 100%;
+  min-height: calc(100vh - 90px);
+  margin: 0 auto;
+  background-color: var(--white-color);
+
+  @media screen and (min-width: 1201px) {
+    max-width: 1200px;
+  }
 }
 
-.container-cineclubs{
-  margin-left: 11.5rem;
-  margin-right: 11.5rem;
+.container {
+  position: relative;
+  padding: 16px;
+
+  @media screen and (min-width: 720px) {
+    padding: 24px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 75px 48px;
+  }
 }
 
-@media (max-width: 600px) {
-  .container-cineclubs {
-      margin-left: 1rem;
-      margin-right: 1rem;
+@media only screen and (max-width: 767px) {
+  .container {
+    padding: 0 10px;
   }
 }

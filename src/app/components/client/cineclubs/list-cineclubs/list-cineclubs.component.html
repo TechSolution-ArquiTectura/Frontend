@@ -1,34 +1,48 @@
-<div class="cineclubs-container">
-  <h2>CINECLUBS!</h2>
+<h2 class="billboard">Resultados</h2>
+<p class="caption">
+  Se encontraron {{ cineClubs.length }} resultados para su búsqueda
+</p>
 
-  <div class="grid">
-    <div class="cineclubCard" *ngFor="let cineclub of cineClubs | paginate: { itemsPerPage: 4, currentPage: p }">
-      <div *ngIf="cineClubs.length > 0">  
-        <mat-card-header>
-          <img mat-card-image src="{{cineclub.imageLogo}}" alt="{{cineclub.name}}"  class="card-img">
-        </mat-card-header>
-        <mat-card-content>
-          <mat-card-title>{{cineclub.BusinessType_id?.name}}</mat-card-title>
-          <mat-card-title>{{cineclub.name}}</mat-card-title>
-          <mat-card-subtitle>{{cineclub.description}}</mat-card-subtitle>
-        </mat-card-content>
-        <mat-card-actions>     
-            <button mat-button [routerLink]="['cineclub/',cineclub.id]">Ver mas</button>
-        </mat-card-actions>
+<div>
+  <div *ngIf="cineClubs.length > 0" class="cineclub-container__elements">
+    <div
+      class="cineclub-card"
+      *ngFor="
+        let cineclub of cineClubs
+          | paginate : { itemsPerPage: 8, currentPage: p }
+      "
+    >
+      <div class="card-img">
+        <img
+          mat-card-image
+          src="{{ cineclub.logoSrc }}"
+          alt="{{ cineclub.name }}"
+        />
       </div>
+      <div class="card-body">
+        <p class="type">{{ cineclub.businessTypes?.name }}</p>
+        <p class="name">{{ cineclub.name }}</p>
+        <p class="address">{{ cineclub.address }}</p>
+        <p class="description">{{ cineclub.description }}</p>
+      </div>
+      <button class="action-btn" [routerLink]="['cineclub/', cineclub.id]">
+        VER MAS
+      </button>
     </div>
-  
-    <div *ngIf="cineClubs.length == 0">
-      <p>No se encontraron coincidencias</p>
-    </div>
-  
   </div>
-  <div class="paginator">
-    <pagination-controls (pageChange)="p = $event"
-    previousLabel="Anterior"
-    nextLabel="Siguiente"
+
+  <div class="not-found" *ngIf="cineClubs.length == 0">
+    <img src="/assets/icons/no-shows-found.svg" alt="" />
+    <p>No hay cineclubes disponibles</p>
+  </div>
+</div>
+
+<div class="paginator">
+  <pagination-controls
+    (pageChange)="p = $event"
+    previousLabel=" "
+    nextLabel=" "
     autoHide:true
-    ></pagination-controls>
-  </div>
-  
+    class="my-pagination"
+  ></pagination-controls>
 </div>
