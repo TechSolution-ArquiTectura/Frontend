@@ -25,10 +25,7 @@
     </div>
   </div>
 
-  <div class="not-found" *ngIf="movies.length == 0">
-    <img src="/assets/icons/no-shows-found.svg" alt="" />
-    <p>No hay películas disponibles</p>
-  </div>
+  <app-not-found *ngIf="movies.length == 0" message="películas"></app-not-found>
 </div>
 
 <div class="paginator">

@@ -31,10 +31,7 @@
     </div>
   </div>
 
-  <div class="not-found" *ngIf="cineClubs.length == 0">
-    <img src="/assets/icons/no-shows-found.svg" alt="" />
-    <p>No hay cineclubes disponibles</p>
-  </div>
+  <app-not-found *ngIf="cineClubs.length == 0" message="cineclubs"></app-not-found>
 </div>
 
 <div class="paginator">
