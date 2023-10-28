@@ -1,51 +1,35 @@
-<!-- <nav class="flex align-items-center tucine-nav-bar" mat-tab-nav-bar color="primary" >
-
-  <div class="m-2 flex align-items-center tucine-logo">
-      <a><img class = "max-h-3rem" src="https://i.postimg.cc/T2JxZZ2d/brand.png" alt="TuCine"></a>
-  </div>
-
-  <div class="m-0 flex align-items-center">
-      <a class="nav-options" mat-tab-link *ngFor="let link of links" [routerLink]="['/dashboard', link.toLowerCase()]" routerLinkActive="router-link-active" (click)="activeLink = link" [active]="activeLink == link">
-        {{link}}
-        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="link === 'Mis grupos'">
-            <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['/dashboard/crear-grupo']">Crear nuevo grupo</button>
-            <button mat-menu-item [routerLink]="['/dashboard/mis-grupos']">Mis grupos</button>
-        </mat-menu>
-      </a>
-  </div>
-
-  <span class="tu-cine"></span>
-
-  <div class="flex align-items-center">
-
-    <a class="nav-icon" mat-button><mat-icon>chat_bubble</mat-icon></a>
-    <a class="nav-icon" mat-button><mat-icon>notifications</mat-icon></a>
-    <a class="nav-icon" mat-button [routerLink]="['/dashboard/perfil']"><mat-icon>account_circle</mat-icon></a>
-
-  </div>
-
-</nav>
-  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel> -->
-
 <nav class="nav">
   <div class="options">
-    <a class="options_nav-icon" routerLink="/dashboard" ><img src="/assets/brand.png" alt="TuCine"></a>
+    <a class="options_nav-icon" routerLink="/dashboard"
+      ><img src="/assets/brand.png" alt="TuCine"
+    /></a>
     <div class="options_links">
-      <a routerLink="/dashboard/peliculas" routerLinkActive="active"><div>Películas</div></a>
-      <a routerLink="/dashboard/cineclubs" routerLinkActive="active"><div>Cineclubes</div></a>
-      <a routerLink="/dashboard/promociones" routerLinkActive="active"><div>Promociones</div></a>
+      <a routerLink="/dashboard/peliculas" routerLinkActive="active"
+        ><div>Películas</div></a
+      >
+      <a routerLink="/dashboard/cineclubs" routerLinkActive="active"
+        ><div>Cineclubes</div></a
+      >
+      <a routerLink="/dashboard/promociones" routerLinkActive="active"
+        ><div>Promociones</div></a
+      >
     </div>
   </div>
   <div class="menu">
     <a class="menu_item"><img src="/assets/icons/message-icon.svg" alt="" /></a>
     <a class="menu_item"><img src="/assets/icons/bell-icon.svg" alt="" /></a>
-    <a class="menu_profile" [routerLink]="['/dashboard/perfil']"><img src="/assets/pictures/user/empty-user.png" alt="" /></a>
+    <div
+      class="relative"
+      (mouseenter)="toggleMenu(true)"
+      (mouseleave)="toggleMenu(false)"
+    >
+      <a class="menu_profile"
+        ><img src="/assets/pictures/user/empty-user.png" alt=""
+      /></a>
+      <div class="submenu" *ngIf="openMenu">
+        <button (click)="goToProfile()">Ver perfil</button>
+        <button (click)="signOut()">Cerrar sesión</button>
+      </div>
+    </div>
   </div>
 </nav>
-
-
-
-

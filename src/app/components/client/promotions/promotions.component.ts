@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./promotions.component.scss'],
 })
 export class PromotionsComponent implements OnInit {
-  BUSINESS_ID: number = 3;
+  BUSINESS_ID: number = 1;
   TYPE_USER: string = 'business';
   promotions: Promotion[] = [];
 
