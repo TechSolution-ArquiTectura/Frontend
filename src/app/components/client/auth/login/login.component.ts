@@ -37,12 +37,13 @@ export class LoginComponent {
       this._empService.signInPerson(this.empLoginForm.value).subscribe({
         next: (result) => {
           if (result.token) { // Verifica si se recibe un token
-            console.log('Las credenciales son correctas');
-            console.log(result);
-
+            //console.log('Las credenciales son correctas');
+            //console.log(result);
             // Almacena el token en el localStorage
             localStorage.setItem('authToken', result.token);
-            console.log(result.token);
+            //console.log(result.token);
+            // User id
+            localStorage.setItem('id', result.id);
             // Redirige al usuario al panel de control (dashboard)
             this.router.navigate(['dashboard']);
           } else {
