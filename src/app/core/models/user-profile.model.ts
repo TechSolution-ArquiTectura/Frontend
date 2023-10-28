@@ -1,12 +1,11 @@
 import { BusinessType } from './cineclub.model';
-import { TypeUser } from './person.model';
 
 export interface Gender {
     id?: number;
-    name?: string;
+    name: string;
 }
 
-export interface Person{
+export interface User{
     id?: any;
     name?: string;
     lastname?: string;
@@ -17,19 +16,11 @@ export interface Person{
     phone?: string;
     email?: string;
     password?: string;
-    TypeUser_id?: TypeUser;
+    phoneNumber?: string;
+    gender?: string[];    
+    typeUser?: string[];
 }
 
-export interface Customer {
-    id?: any;
-    Person_id?: Person
-}
-
-export interface Owner {
-    id?: any;
-    Person_id?: Person;
-    bankAccount?: string;
-}
 
 export interface Business {
   id?: any,
@@ -38,14 +29,18 @@ export interface Business {
   ruc?: string;
   phone?: string;
   email?: string;
-  imageLogo?: string;
-  imageBanner?: string;
+  logoSrc?: string;
+  bannerSrc?: string;
   description?: string;
-  dateAttention?: string;
+  startTime?: string;
+  endTime?: string;
   address?: string;
   referenceAddress?: string;
-  owner?: Owner;
+  owner?: any;
   businessType?: BusinessType;
   rating?: any;
   commentsCount?: number;
+  user?: User;
+  businessTypes?: BusinessType;
 }
+

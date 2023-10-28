@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterOwnerComponent } from './register-owner.component';
+import { RegisterOwnerComponent } from './RegisterOwnerComponent';
 
 describe('RegisterOwnerComponent', () => {
   let component: RegisterOwnerComponent;

@@ -3,14 +3,11 @@ import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Observable, map } from 'rxjs';
-import { Gender } from 'src/app/core/models/user-profile.model';
-import { Person } from 'src/app/core/models/user-profile.model';
-import { Owner } from 'src/app/core/models/user-profile.model';
+import { Gender, User } from 'src/app/core/models/user-profile.model';
 import { BusinessType } from 'src/app/core/models/cineclub.model';
 import { Business } from 'src/app/core/models/user-profile.model';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 
-const dniPattern = /^[0-9]{8}$/;
 const phonePattern = /^[0-9]{9}$/;
 const RUCPattern = /^[0-9]{11}$/;
 
@@ -24,6 +21,7 @@ export class RegisterOwnerComponent implements OnInit {
   hide = true;
   genders: Gender[] = [];
   cineclubs: BusinessType[] = [];
+
 
   passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
     const password = control.get('password');
@@ -49,10 +47,6 @@ export class RegisterOwnerComponent implements OnInit {
       Validators.maxLength(80),
     ]),
     Gender_id: new FormControl('', Validators.required),
-    number_dni: new FormControl('', [
-      Validators.required,
-      Validators.pattern(dniPattern),
-    ]),
     birthdate: new FormControl('', Validators.required),
     phone: new FormControl('', [
       Validators.required,
@@ -79,18 +73,10 @@ export class RegisterOwnerComponent implements OnInit {
       Validators.required,
       Validators.pattern(RUCPattern),
     ]),
-    bank_account: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
     BusinessType_id: new FormControl('', Validators.required),
   },);
-
-  thirdFormGroup = this._formBuilder.group({
-    image_logo: new FormControl('', Validators.required),
-    image_banner: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    date_attention: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    reference_address: new FormControl('', Validators.required),
-  });
 
   fourthFormGroup = this._formBuilder.group({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -118,57 +104,38 @@ export class RegisterOwnerComponent implements OnInit {
   }
 
   onFormSubmit(){
-    if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid && this.fourthFormGroup.valid ){
-      const formDataPerson: Person = {
-        id: null,
+    if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.fourthFormGroup.valid ){
+      const genderName = this.firstFormGroup.get('Gender_id')?.value as string;
+      const selectedGender = this.genders.find(gender => gender.name === genderName);
+
+      const formDataPerson: User = {
         name: this.firstFormGroup.get('first_name')?.value as string,
         lastname: this.firstFormGroup.get('last_name')?.value as string,
-        Gender_id:{
-            id: this.firstFormGroup.get('Gender_id')?.value as unknown as number
-        },
-        numberDni: this.firstFormGroup.get('number_dni')?.value as string,
-        birthdate: this.firstFormGroup.get('birthdate')?.value as string,
-        phone: this.firstFormGroup.get('phone')?.value as string,
         email: this.fourthFormGroup.get('email')?.value,
+        phoneNumber: this.firstFormGroup.get('phone')?.value as string,
+        birthdate: this.firstFormGroup.get('birthdate')?.value as string,
         password: this.fourthFormGroup.get('password')?.value,
-        TypeUser_id: {
-          id: 2,
-        }
-      }
+        gender: ['FEMALE'],        
+        typeUser: ['BUSINESS']
+      };
 
-      this._empService.addPerson(formDataPerson).subscribe({
+      console.log(formDataPerson);
+      this._empService.signUpPerson(formDataPerson).subscribe({
         next: (addedPerson:any) =>{
-
-          const formDataOwner: Owner = {
-            id: null,
-            Person_id: {
-              id: addedPerson.id,
-            },
-            bankAccount: this.secondFormGroup.get('bank_account')?.value as string,
-          };
-
-          this._empService.addOwner(formDataOwner).subscribe({
-            next: (addedOwner: any) =>{
               const formDataBusiness: Business = {
-                id: null,
                 name: this.secondFormGroup.get('name')?.value as string,
                 socialReason: this.secondFormGroup.get('social_reason')?.value as string,
                 ruc: this.secondFormGroup.get('RUC')?.value as string,
-                phone: this.secondFormGroup.get('phone')?.value as string,
-                email: this.fourthFormGroup.get('email')?.value as string,
-                imageLogo: this.thirdFormGroup.get('image_logo')?.value as string,
-                imageBanner: this.thirdFormGroup.get('image_banner')?.value as string,
-                description: this.thirdFormGroup.get('description')?.value as string,
-                dateAttention: this.thirdFormGroup.get('date_attention')?.value as string,
-                address: this.thirdFormGroup.get('address')?.value as string,
-                referenceAddress: this.thirdFormGroup.get('reference_address')?.value as string,
-                owner: {
-                  id: addedOwner.id,
+                description: this.secondFormGroup.get('description')?.value as string,
+                address: this.secondFormGroup.get('address')?.value as string,
+                user: {
+                  id: addedPerson.id,
                 },
-                businessType: {
+                businessTypes: {
                   id: this.secondFormGroup.get('BusinessType_id')?.value as unknown as number,
                 }
               };
+
               this._empService.addBusiness(formDataBusiness) .subscribe({
                 next: (addedBusiness: any) => {
                   console.log(addedBusiness)
@@ -179,16 +146,8 @@ export class RegisterOwnerComponent implements OnInit {
                   console.error(error);
                 }
               })
-            },
-            error: (error: any) => {
-              console.error(error);
             }
-          })
-        },
-        error: (error: any) => {
-          console.error(error);
-        }
-      })
+        })
     }
   }
 

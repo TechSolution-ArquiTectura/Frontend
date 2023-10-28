@@ -1,7 +1,7 @@
 <ng-container>
     <div class="card">
         <div class="poster flex align-items-center justify-content-center ">
-            <img src={{cineclub.imageBanner}} alt="banner">
+            <img src={{cineclub.bannerSrc}} alt="banner">
         </div>
         <div class="flex flex-column card-container">
             <div class="flex align-items-center justify-content-center ">
@@ -11,7 +11,7 @@
                             <div class="flex flex-column pt-5 ">
                                 <div class="flex flex-row align-content-center">
                                     <h1 class="pr-3" style="font-size: 24px;">
-                                        <strong> {{cineclub.businessType!.name}} {{cineclub.name}}</strong>
+                                        <strong> {{cineclub.businessTypes!.name}} {{cineclub.name}}</strong>
                                     </h1>
                                     <mat-icon style="color: #FFAD00;">bookmark</mat-icon>
                                   </div>
@@ -24,14 +24,13 @@
                                         <h1 class="flex align-items-center justify-content-center" style="font-size: 24px; color: #FFAD00;"> <strong>Dirección</strong></h1>
                                     </div>
                                     <p>{{cineclub.address}}</p>
-                                    <p><strong>Referencias: </strong>{{cineclub.referenceAddress}} </p>
                                 </div>
                                 <div class="date">
                                     <div class="flex flex-row">                                   
                                         <mat-icon class="pr-2" style="color: #FFAD00;">schedule</mat-icon>
                                         <h1 style="font-size: 24px; color: #FFAD00;"> <strong>Horario de atención</strong> </h1>
                                     </div>
-                                    <p>{{cineclub.dateAttention}}
+                                    <p>{{cineclub.startTime}}
                                     </p>
                                 </div>
                             </div>

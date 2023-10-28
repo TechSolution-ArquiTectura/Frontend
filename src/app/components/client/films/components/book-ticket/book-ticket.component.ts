@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Film } from 'src/app/core/models/film.model';
 import { Showtime } from '../../../../../core/models/showtime.model';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
-import { Customer } from '../../../../../core/models/user-profile.model';
 import { TicketService } from 'src/app/core/services/ticket/ticket.service';
 import { Ticket } from 'src/app/core/models/ticket.model';
 
