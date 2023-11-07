@@ -12,41 +12,41 @@ export class CinephileProfileService {
 
   //General
   addPerson(data: Person): Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app//api/TuCine/v1/persons',data);
+    return this._http.post('https://tucine-api.onrender.com/api/TuCine/v1/users/auth/singup',data);
   }
 
   getPersonList(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app/api/TuCine/v1/users');
+    return this._http.get('https://tucine-api.onrender.com/api/TuCine/v1/users');
   }
 
   getUserGender(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app//api/TuCine/v1/genders');
+    return this._http.get('https://tucine-api.onrender.com/api/TuCine/v1/genders');
   }
 
   //Customer
   addCustomer(data: any): Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app//api/TuCine/v1/customers',data);
+    return this._http.post('https://tucine-api.onrender.com/api/TuCine/v1/customers',data);
   }
 
   getCustomerList(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app//api/TuCine/v1/customers');
+    return this._http.get('https://tucine-api.onrender.com/api/TuCine/v1/customers');
   }
 
   //Owner
   getBusinessTypeList(): Observable<any>{
-    return this._http.get('https://backend-production-d5ba.up.railway.app//api/TuCine/v1/businessTypes');
+    return this._http.get('https://tucine-api.onrender.com/api/TuCine/v1/businessTypes');
   }
 
   addOwner(data: any): Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app//api/TuCine/v1/owners',data);
+    return this._http.post('https://tucine-api.onrender.com/api/TuCine/v1/owners',data);
   }
 
   addBusiness(data: any):Observable<any>{
-    return this._http.post('https://backend-production-d5ba.up.railway.app//api/TuCine/v1/businesses',data);
+    return this._http.post('https://tucine-api.onrender.com/api/TuCine/v1/businesses',data);
   }
 
   updateProfile(data: any): Observable<any> {
-    const url = `https://backend-production-d5ba.up.railway.app/api/TuCine/v1/persons/${data.id}`; // Asume que la URL es correcta
+    const url = `https://tucine-api.onrender.com/api/TuCine/v1/persons/${data.id}`; // Asume que la URL es correcta
     return this._http.put(url, data);
   }
 
