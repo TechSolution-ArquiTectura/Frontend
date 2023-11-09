@@ -33,3 +33,42 @@
         width: 100%;
       }
 }
+
+.card{
+  background-color: #fffdea;
+}
+
+.card-details{
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.details{
+  display: flex;
+  align-items: center;
+  padding-top: 7px;
+
+}
+.quantity-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff7c5;
+}
+.total-price-details{
+  display: flex;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  text-align: center; /* Centra el texto horizontalmente */
+  height: 100%; 
+}
+.total-price{
+  color: #ffad00;
+}
+
+.payment-details{
+  margin-top: 20px;
+}

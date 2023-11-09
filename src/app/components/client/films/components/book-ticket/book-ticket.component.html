@@ -1,68 +1,62 @@
-<div mat-dialog-title>
-    <h1> <strong>Reservas</strong> </h1>
-</div>
-<form [formGroup]="empOfferForm" (ngSubmit)="onFormSubmit()">
-    <div mat-dialog-content class="content">
-        <div class="card">
-            <div class="card-container flex align-items-center justify-content-start">
-                <div class="flex w-4rem align-items-center justify-content-center p-4  mr-3">
-                    <img src={{data.film.poster}} alt="poster" style="width: 100%;">
-                </div>
-                <div class=" flex align-items-center justify-content-center p-4  mr-3">
-                    <div>
-                        <div class="mb-1">
-                            <strong>DESCRIPCIÓN DE LA RESERVA</strong> 
-                         </div>
-                        <div>
-                            <strong>Película: </strong>
-                            <span>{{data.title}}</span>    
-                        </div>
-                            <strong>Cineclub: </strong>
-                            <span>{{data.cineclub}}</span>   
-                        <div>
-                            <strong>Fecha: </strong>
-                            <span>{{data.date}}</span>  
-                        </div>
-                            <strong>Hora: </strong>
-                            <span>{{data.time}}</span>  
-                        <div >
-                            <strong>Dirección: </strong>
-                            <span>{{data.address}}</span>  
-                        </div> 
+<div>
+    <form [formGroup]="empOfferForm" (ngSubmit)="onFormSubmit()">
+        <div class="content">
+            <div class="booking-deatils">
+                <h2>DETALLE DE LA RESERVA</h2>
+            </div>
+            <div class="card">
+                <div class="card-details pt-2">
+                    <div class="details">
+                        <strong>Cineclub Lima Park</strong> 
                     </div>
-
+                    <div class="details">
+                        <strong>08-10-2023 | 17:40</strong> 
+                    </div>
+                    <div class="details">
+                        <mat-icon aria-hidden="false" aria-label="location" fontIcon="location_on"></mat-icon>
+                        <span>Dirección</span>
+                    </div> 
                 </div>
             </div>
+            <div class="quantity-details">
+                <div>
+                    <div class="details">
+                        <strong>General:</strong>
+                        <span>S/</span>
+                    </div>
+                    <div class="flex align-items-center justify-content-start details">
+                        <div class="flex align-items-center justify-content-center ">
+                            <strong>Cantidad: </strong>
+                        </div>
+        
+                        <div class="counter flex align-items-center justify-content-center">
+                            <button mat-raised-button (click)="decrement()">-</button>
+                            <span>{{ count }}</span>
+                            <button mat-raised-button (click)="increment()">+</button>
+                        </div>
+                    </div>
+                </div>  
+                <div class="total-price-details">
+                    <div>
+                        <p>TOTAL</p>
+                    </div>
+                    <div>
+                        <h1 class="total-price">S/ {{ totalPrice }}</h1>
+                    </div>                  
+                </div>
+            </div>
+    
         </div>
-        <div class="ticket-details">
-            <div class="mb-1">
-               <strong>DETALLE DE LA RESERVA</strong> 
-            </div>
-            <div>
-                <strong>General: </strong>
-                <span>S/ {{data.price}}</span>
-            </div>
-            <div class="flex align-items-center justify-content-start">
-                <div class="flex align-items-center justify-content-center ">
-                    <strong>Cantidad: </strong>
-                </div>
 
-                <div class="counter flex align-items-center justify-content-center">
-                    <button mat-raised-button (click)="decrement()">-</button>
-                    <span>{{ count }}</span>
-                    <button mat-raised-button (click)="increment()">+</button>
-                </div>
-            </div >
-
-            <div>
-                <strong>Total: </strong>
-                <span>S/ {{ totalPrice }}</span>
-            </div>
+        <div class="payment-details">
+            <h2>INFORMACIÓN DE PAGO</h2>
+            <app-payment-form></app-payment-form>
         </div>
 
-    </div>
-    <div mat-dialog-actions class="action">
-        <button mat-raised-button type = "button" [mat-dialog-close]="false">Cancelar</button>
-        <button mat-raised-button color="primary" (click)="postTicket()">Reservar</button>
-    </div>
-</form>
+        <div class="action">
+            <button mat-raised-button type = "button">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="postTicket()">Reservar</button>
+        </div>
+    </form>
+</div>
+

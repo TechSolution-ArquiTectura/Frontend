@@ -57,6 +57,9 @@ import { DeletePromotionDialogComponent } from './components/client/promotions/d
 import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
 import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-detail/cineclub-detail.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { ShowtimesTableComponent } from './components/client/films/components/showtime-table/showtimes-table/showtimes-table.component';
+import { BookingStepperComponent } from './components/client/films/components/stepper/booking-stepper/booking-stepper.component';
+
 
 @NgModule({
   declarations: [
@@ -104,6 +107,8 @@ import { NotFoundComponent } from './components/shared/not-found/not-found.compo
     NewPromotionDialogComponent,
     CineclubDetailComponent,
     NotFoundComponent,
+    ShowtimesTableComponent,
+    BookingStepperComponent,
   ],
   imports: [
     AppRoutingModule,

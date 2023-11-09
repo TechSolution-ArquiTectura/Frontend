@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Film } from 'src/app/core/models/film.model';
 import { Showtime } from '../../../../../core/models/showtime.model';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
@@ -15,7 +14,8 @@ const userResult = localStorage.getItem('userResult');
   styleUrls: ['./book-ticket.component.scss']
 })
 export class BookTicketComponent implements OnInit {
-
+  //@Input() data!: any;
+  data!: any;
   empOfferForm: FormGroup;
   FilmProfile!: Film;
   ShowtimeProfile!: Showtime;
@@ -33,18 +33,17 @@ export class BookTicketComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     //Para cerrar el modulo
-    private _dialogRef: MatDialogRef<BookTicketComponent>,
     private _servMoviesProfile: FilmsProfileService,
     private _servTicket: TicketService,
-    //Para recibir la data
-    @Inject(MAT_DIALOG_DATA) public data: any
   ){
     this.empOfferForm = this._fb.group({
     })
   }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
+
   onFormSubmit(){
   }
 
@@ -62,8 +61,7 @@ export class BookTicketComponent implements OnInit {
     this.ticket.totalPrice = this.totalPrice;
 
     this._servTicket.addTicket(this.ticket).subscribe((res) => {
-      //console.log(res);
-      this._dialogRef.close();
+      console.log(res);
     }, (err) => { console.log(err); }
     );
   }

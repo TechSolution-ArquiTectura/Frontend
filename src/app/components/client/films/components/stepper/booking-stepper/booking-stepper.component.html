@@ -1,0 +1,11 @@
+<mat-horizontal-stepper>
+    <!-- Paso 1 -->
+    <mat-step label="Paso 1" >
+      <film-showtimes-table [filmId]="filmId" ></film-showtimes-table>
+    </mat-step>
+  
+    <!-- Paso 2 -->
+    <mat-step label="Paso 2" >
+      <app-book-ticket></app-book-ticket>
+    </mat-step>
+</mat-horizontal-stepper>
