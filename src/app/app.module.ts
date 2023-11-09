@@ -57,6 +57,9 @@ import { DeletePromotionDialogComponent } from './components/client/promotions/d
 import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
 import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-detail/cineclub-detail.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { EditProfileModalComponent } from './components/client/profile-user/edit-profile-modal/edit-profile-modal.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -104,6 +107,9 @@ import { NotFoundComponent } from './components/shared/not-found/not-found.compo
     NewPromotionDialogComponent,
     CineclubDetailComponent,
     NotFoundComponent,
+    ProfileUserComponent,
+    EditProfileModalComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -115,11 +121,14 @@ import { NotFoundComponent } from './components/shared/not-found/not-found.compo
     MatPaginatorModule,
     MatDialogModule,
     NgxStarRatingModule,
+    CommonModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
       libraries: ['places'],
     }),
   ],
+  entryComponents: [EditProfileModalComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
