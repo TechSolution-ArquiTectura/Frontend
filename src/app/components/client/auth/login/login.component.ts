@@ -44,6 +44,7 @@ export class LoginComponent {
             //console.log(result.token);
             // User id
             localStorage.setItem('id', result.id);
+            localStorage.setItem('logged', 'true');
             // Redirige al usuario al panel de control (dashboard)
             this.router.navigate(['dashboard']);
           } else {

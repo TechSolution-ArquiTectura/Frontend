@@ -66,7 +66,7 @@ export class CinephileProfileService {
   }
 
   updateProfile(data: any): Observable<any> {
-    const url = `https://tucine-api.onrender.com/api/TuCine/v1/persons/${data.id}`; // Asume que la URL es correcta
+    const url = `${this.apiURL}/persons/${data.id}`; // Asume que la URL es correcta
     return this._http.put(url, data);
   }
 
