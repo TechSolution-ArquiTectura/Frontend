@@ -14,7 +14,8 @@ const userResult = localStorage.getItem('userResult');
   styleUrls: ['./book-ticket.component.scss']
 })
 export class BookTicketComponent implements OnInit {
-  //@Input() data!: any;
+  @Input() selectedElement: any;
+  
   data!: any;
   empOfferForm: FormGroup;
   FilmProfile!: Film;
@@ -41,7 +42,8 @@ export class BookTicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+      // Utiliza this.selectedElement para mostrar la información en el paso 2
+      console.log(this.selectedElement);
   }
 
   onFormSubmit(){

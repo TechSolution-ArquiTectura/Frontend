@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,9 +12,13 @@ import { FilmsProfileService } from 'src/app/core/services/film/films-profile.se
 })
 
 export class ShowtimesTableComponent implements OnInit{
+onBuyTicket($event: Event) {
+throw new Error('Method not implemented.');
+}
 
   @Input() filmId!: number;
-
+  @Output() buyTicket = new EventEmitter<any>();
+  
   displayedColumns: string[] = ['cineclub', 'category', 'price', 'date','time', 'action'];
 
   data: AvailableFilm[] = [];
@@ -52,8 +56,8 @@ export class ShowtimesTableComponent implements OnInit{
     );
   }
 
-  openBuyTicket(showtime: any) {
-      throw new Error('Method not implemented.');
+  openBuyTicket(element: any) {
+    this.buyTicket.emit(element);
   }
 
   applyFilter(event: Event){

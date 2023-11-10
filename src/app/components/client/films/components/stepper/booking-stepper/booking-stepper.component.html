@@ -1,11 +1,11 @@
 <mat-horizontal-stepper>
-    <!-- Paso 1 -->
-    <mat-step label="Paso 1" >
-      <film-showtimes-table [filmId]="filmId" ></film-showtimes-table>
-    </mat-step>
-  
-    <!-- Paso 2 -->
-    <mat-step label="Paso 2" >
-      <app-book-ticket></app-book-ticket>
-    </mat-step>
+  <!-- Paso 1 -->
+  <mat-step label="Seleccionar una función">
+    <film-showtimes-table [filmId]="filmId" (buyTicket)="onBuyTicket($event)"></film-showtimes-table>
+  </mat-step>
+
+  <!-- Paso 2 -->
+  <mat-step label="Reserva">
+    <app-book-ticket [selectedElement]="selectedElement"></app-book-ticket>
+  </mat-step>
 </mat-horizontal-stepper>
