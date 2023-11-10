@@ -54,7 +54,7 @@ export class ReviewComponent implements OnInit{
 
       this.review.comment = formValue.comment;
       this.review.rating = formValue.rating;
-      this.review.user.id = JSON.parse(localStorage.getItem("userResult") || '{}').id;
+      this.review.user.id = JSON.parse(localStorage.getItem("id") || '{}');
       console.log(this.review.user.id);
     }
 
