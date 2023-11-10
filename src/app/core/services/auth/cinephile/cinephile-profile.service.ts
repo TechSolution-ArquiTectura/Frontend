@@ -37,6 +37,11 @@ export class CinephileProfileService {
     return this._http.get(`${this.apiURL}/users/profile`, { headers });
   }
 
+  //Payment Method
+  postPaymentMethod(data: any): Observable<any>{
+    return this._http.post(`${this.apiURL}/paymentMethods`,data);
+  }
+
   //Gender
   getUserGender(): Observable<any>{
     return this._http.get(`${this.apiURL}/genders`);
