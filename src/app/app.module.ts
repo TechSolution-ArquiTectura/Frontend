@@ -59,6 +59,7 @@ import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { EditProfileModalComponent } from './components/client/profile-user/edit-profile-modal/edit-profile-modal.component';
 import { CommonModule } from '@angular/common';
+import { EditCineclubComponent } from './components/client/cineclubs/edit-cineclub/edit-cineclub.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { CommonModule } from '@angular/common';
     NotFoundComponent,
     ProfileUserComponent,
     EditProfileModalComponent,
+    EditCineclubComponent,
 
   ],
   imports: [

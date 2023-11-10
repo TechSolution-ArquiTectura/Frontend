@@ -22,9 +22,17 @@ export class CineclubService {
     return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 
+  public getCineclubByUserId(userId: number): Observable<any> {
+    return this.http.get<any>(`https://tucine-api.onrender.com/api/TuCine/v1/business/${userId}`);
+  }
+
   public searchCineclubs(title: string, cineclubs: Business[]): Business[] {
 
     return cineclubs.filter(cineclub => cineclub.name.toLowerCase().includes(title.toLowerCase()));
+  }
+
+  public updateCineclub(id: number, data: any): Observable<any>{
+    return this.http.put(this.apiURL+`/${id}`,data);
   }
 
   public get(url:string){

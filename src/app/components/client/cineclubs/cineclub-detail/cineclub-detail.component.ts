@@ -25,7 +25,6 @@ export class CineclubDetailComponent implements OnInit {
     private _fb: FormBuilder,
     private _empServiceMovie: FilmsProfileService,
     private reviewService: ReviewService,
-    //private _empServiceCineclub: CineclubService,
     private route : ActivatedRoute,
   ){
     this.idPost = this.route.snapshot.paramMap.get('id');
@@ -36,7 +35,6 @@ export class CineclubDetailComponent implements OnInit {
       }
     );
     this.getAllReviews();
-    this.getCineclubById();
   }
 
   reviewCineclub: ReviewCineclub = {
@@ -52,18 +50,20 @@ export class CineclubDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCineclubById();
     this.subscription = this.reviewService.refresh$.subscribe(() => {
       this.getAllReviews();
     })
   }
-  
+
   getCineclubById(){
     this._empServiceMovie.getCineclubById(this.idPost).subscribe({
-      next: (data) => {
-        this.cineclub = data;
+      next: (res) => {
+        this.cineclub = res;
+        console.log(res)
       },
-      error: (error) => {
-        console.log(error)
+      error: (err) => {
+        console.log(err)
       }
     })
   }
@@ -74,14 +74,12 @@ export class CineclubDetailComponent implements OnInit {
 
       this.reviewCineclub.comment = formValue.comment;
       this.reviewCineclub.rating = formValue.rating;
-      this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("userResult") || '{}').id;
+      this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("id") || '{}');
       this.reviewCineclub.business.id = this.idPost;
-      console.log(this.reviewCineclub.user.id);
     }
 
     this.reviewService.postReview(this.reviewCineclub).subscribe({
       next: (addedReview: any) => {
-        alert('Review successfully created');
       },
       error: (error: any) => {
         console.error(error);

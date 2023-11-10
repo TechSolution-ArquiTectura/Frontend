@@ -38,7 +38,12 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile() {
-    this.router.navigate(['dashboard/perfil']);
+    if (JSON.parse(localStorage.getItem('cineclub') || '{}') == true) {
+      this.router.navigate(['dashboard/perfil-cineclub']);
+    }
+    else {
+      this.router.navigate(['dashboard/perfil']);
+    }
   }
 
   goToRegister() {

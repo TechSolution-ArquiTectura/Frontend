@@ -1,19 +1,35 @@
+.card{
+    margin-left: 11.5rem;
+    margin-right: 11.5rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-container{
+    margin-right: 2rem;
+    margin-left: 2rem;
+    
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+  }
+
+@media (max-width: 1100px) {
+.card {
+    margin-left: 0;
+    margin-right: 0;
+}
+}
+
 mat-icon{
     font-family: 'Material Icons' !important;
   }
 
-.card{
-    margin-left: 11.5rem;
-    margin-right: 11.5rem;
-    margin-top: 1rem;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
 .form {
     border-radius: 5px;
-    margin: 10px;
+    padding-top: 10px;
 }
 .review {
     display: flex;
@@ -22,15 +38,14 @@ mat-icon{
     vertical-align: middle;
 }
 .rating {
-    margin-top: 15px;
+    margin-top: 10px;
     display: inline-block;
     vertical-align: middle;
 }
   
 ::ng-deep label.star {
-    padding: 5px !important;
-    font-size: 15px !important;
-    color: #FFAD00;
+    padding: 3px !important;
+    font-size: 19px !important;
 }
   
 .mat-card-actions {
@@ -40,8 +55,8 @@ mat-icon{
 }
 
 .send-button{
-    background-color: #FFAD00;
-    color: white;
+    background-color: #FFAD00 !important;
+    color: white !important;
     margin-left: 10px;
     top: 50%;
     left: 50%;
@@ -66,7 +81,6 @@ mat-icon{
     height: 65px;
     width: 65px;
     border-radius: 50%;
-    border:1px solid black;
     line-height: 65px;
     text-align: center;
     margin-right: 10px;
@@ -96,7 +110,10 @@ mat-icon{
     color: #FFAD00;
 }
 
-.cineclub-rating {
-    border-radius: 5px;
-    margin: 20px;
+.description {
+    padding-top: 10px;
+}
+
+.users-reviews {
+    padding-bottom: 30px;
 }
