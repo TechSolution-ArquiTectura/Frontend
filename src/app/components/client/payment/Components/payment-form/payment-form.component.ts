@@ -70,7 +70,7 @@ export class PaymentFormComponent implements OnInit {
   }
 
   dialogReview() {
-    this.dialog.open(ReviewComponent);
+    
   }
 
   onFormSubmit() {
@@ -83,6 +83,7 @@ export class PaymentFormComponent implements OnInit {
       this._paymentService.postPaymentMethod(this.payment).subscribe(
         (res) => {
           console.log(res);
+          alert('Payment method added successfully');
         },
         (err) => {
           console.log(err);
