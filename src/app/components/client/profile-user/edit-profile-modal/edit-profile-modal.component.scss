@@ -1,0 +1,78 @@
+/* Estilo general del modal */
+.app-edit-profile-modal {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 20px; /* Añade un padding alrededor del contenido */
+}
+
+/* Título del modal */
+h2 {
+    color: orange;
+    border-bottom: 2px solid orange;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Contenido del modal */
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Aumenta el espacio entre los elementos */
+}
+
+/* Campos de formulario */
+mat-form-field {
+    width: 100%;
+}
+
+/* Botones del modal */
+mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px; /* Aumenta el espacio por encima de los botones */
+}
+
+button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff8c00; /* Un tono más oscuro de naranja para el efecto hover */
+}
+
+/* Estilo para pantallas grandes */
+@media only screen and (min-width: 1024px) {
+    .app-edit-profile-modal {
+        max-width: 800px; /* Limita el ancho máximo del modal */
+        margin: 0 auto;   /* Centra el modal horizontalmente */
+    }
+}
+
+/* Estilo para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+    .app-edit-profile-modal {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    mat-dialog-content {
+        gap: 15px;
+    }
+
+    mat-form-field {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+}

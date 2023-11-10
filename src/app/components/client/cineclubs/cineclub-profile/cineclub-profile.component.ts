@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Business } from 'src/app/core/models/user-profile.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReviewService } from 'src/app/core/services/review/review.service';
@@ -24,9 +24,9 @@ export class CineclubProfileComponent implements OnInit  {
     private _fb: FormBuilder,
     private _empServiceMovie: FilmsProfileService,
     private reviewService: ReviewService,
-    private route : ActivatedRoute,
+    private router: Router,
   ){
-    this.idPost = this.route.snapshot.paramMap.get('id');
+    this.idPost = JSON.parse(localStorage.getItem("cineclubId") || '{}');
     this.reviewForm = this._fb.group(
       {
         comment: new FormControl('', [Validators.required, Validators.maxLength(250),]),
@@ -59,7 +59,6 @@ export class CineclubProfileComponent implements OnInit  {
     this._empServiceMovie.getCineclubById(this.idPost).subscribe({
       next: (res) => {
         this.cineclub = res;
-        console.log(res)
       },
       error: (err) => {
         console.log(err)
@@ -75,7 +74,6 @@ export class CineclubProfileComponent implements OnInit  {
       this.reviewCineclub.rating = formValue.rating;
       this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("id") || '{}');
       this.reviewCineclub.business.id = this.idPost;
-      console.log(this.reviewCineclub.user.id);
     }
 
     this.reviewService.postReview(this.reviewCineclub).subscribe({
@@ -94,5 +92,9 @@ export class CineclubProfileComponent implements OnInit  {
         this.userReviews.reverse();
       }
       );
+  }
+
+  goToEditCineclub() {
+    this.router.navigate(['dashboard/edit-cineclub']);
   }
 }

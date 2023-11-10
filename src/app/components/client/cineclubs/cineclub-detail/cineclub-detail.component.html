@@ -1,166 +1,205 @@
 <ng-container>
     <div class="card">
-        <div class="cineclub-rating">
-            <div>
-                Calificación
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating == 5">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=4.5 && this.cineclub.rating < 5">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_half</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=4 && this.cineclub.rating < 4.5">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=3.5 && this.cineclub.rating < 4">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_half</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=3 && this.cineclub.rating < 3.5">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=2.5 && this.cineclub.rating < 3">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_half</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=2 && this.cineclub.rating < 2.5">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=1.5 && this.cineclub.rating < 2">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_half</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating >=1 && this.cineclub.rating < 1.5">
-                <mat-icon>star</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
-            <div class="user-rating" *ngIf="this.cineclub.rating ==0">
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-                <mat-icon>star_border</mat-icon>
-            </div>
+        <div class="poster flex align-items-center justify-content-center ">
+            <img class="banner" src={{cineclub.bannerSrc}} alt="banner">
         </div>
-        <!-- comentarios -->
-        <div>
-            <form [formGroup]="reviewForm" class="form">
-                <div class="form">
-                    <div class="header">
-                        <h1 class="pr-3" style="font-size: 24px;">
-                            <mat-icon>chat_bubble_outline</mat-icon>  
-                            Reseñas ({{this.cineclub.commentsCount}})
-                        </h1>
-                    </div>
-                    <div class="rating">
-                        <mat-card-content>Calificación:</mat-card-content>
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
-                    </div>
-                    <div class="review">
-                        <mat-form-field [style.width.%]="95" appearance="outline">
-                        <textarea class="text" matInput type="text" placeholder="Escribir reseña" formControlName="comment"></textarea>      
-                        <mat-error *ngIf="reviewForm.get('comment')?.touched">
-                            <ng-container *ngIf="reviewForm.get('comment')?.hasError('required')">
-                                Campo <strong>obligatorio</strong>
-                            </ng-container>
-                            <ng-container *ngIf="reviewForm.get('comment')?.hasError('maxlength')">
-                                Máximo <strong>250 caracteres</strong>
-                            </ng-container>
-                        </mat-error>
-                        </mat-form-field>
-                        <mat-card-actions *ngIf="!reviewForm.get('comment')?.hasError('required') && reviewForm.value.rating!=0" class="mat-card-actions">
-                            <button class="send-button" (click)="saveReview()" mat-raised-button mat-dialog-close >Publicar</button>
-                        </mat-card-actions>
-                        <mat-card-actions *ngIf="reviewForm.get('comment')?.hasError('required') || reviewForm.value.rating == 0" class="mat-card-actions">
-                            <button class="disabled-button"  mat-raised-button>Publicar</button>
-                        </mat-card-actions>
-                    </div>
-                </div>
-            </form>
-            <div>
-                <div class="user-card" *ngFor="let userReview of userReviews">
-                    <div *ngIf="userReviews.length > 0">
-                        <img class="circle" *ngIf="userReview.user.imageSrc; else photoDefault" src={{userReview.user.imageSrc}} alt="">
-                        <ng-template #photoDefault>
-                            <img class="circle" src="'../../../../assets/user_profile.png" alt="">
-                        </ng-template>
-                        <div class="user-review">
-                            <div class="username-rating">
-                                <div class="username">
-                                    {{userReview.user.name}} {{userReview.user.lastname}}
+        <div class="flex flex-column card-container">
+            <div class="flex align-items-center justify-content-center ">
+                <div class="general flex flex-column">
+                    <div class="grid">                        
+                        <div class="col-12 md:col-6 ">
+                            <div class="flex flex-column pt-5 ">
+                                <div class="flex flex-row align-content-center">
+                                    <h1 class="pr-3" style="font-size: 24px;">
+                                        <strong> {{cineclub.businessTypes!.name}} {{cineclub.name}}</strong>
+                                    </h1>
+                                    <mat-icon style="color: #FFAD00;">bookmark</mat-icon>
+                                  </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating == 5">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=4.5 && this.cineclub.rating < 5">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_half</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=4 && this.cineclub.rating < 4.5">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=3.5 && this.cineclub.rating < 4">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_half</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=3 && this.cineclub.rating < 3.5">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=2.5 && this.cineclub.rating < 3">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_half</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=2 && this.cineclub.rating < 2.5">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=1.5 && this.cineclub.rating < 2">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_half</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating >=1 && this.cineclub.rating < 1.5">
+                                        <mat-icon>star</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                    <div class="user-rating" *ngIf="this.cineclub.rating ==0">
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                        <mat-icon>star_border</mat-icon>
+                                    </div>
+                                <div class="flex pb-2 description">
+                                    <p>{{cineclub.description}}</p>
                                 </div>
-                                <div class="user-rating" *ngIf="userReview.rating == 5">
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
+                                <div class="address flex-colum pb-2">
+                                    <div class="flex flex-row align-content-center">                                   
+                                        <mat-icon class="flex align-items-center justify-content-center pr-2" style="color: #FFAD00;">location_on</mat-icon>
+                                        <h1 class="flex align-items-center justify-content-center" style="font-size: 24px; color: #FFAD00;"> <strong>Dirección</strong></h1>
+                                    </div>
+                                    <p>{{cineclub.address}}</p>
                                 </div>
-                                <div class="user-rating" *ngIf="userReview.rating == 4">
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                </div>
-                                <div class="user-rating" *ngIf="userReview.rating == 3">
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                </div>
-                                <div class="user-rating" *ngIf="userReview.rating == 2">
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                </div>
-                                <div class="user-rating" *ngIf="userReview.rating == 1">
-                                    <mat-icon>star</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
-                                    <mat-icon>star_border</mat-icon>
+                                <div class="date">
+                                    <div class="flex flex-row">                                   
+                                        <mat-icon class="pr-2" style="color: #FFAD00;">schedule</mat-icon>
+                                        <h1 style="font-size: 24px; color: #FFAD00;"> <strong> Horario de atención</strong> </h1>
+                                    </div>
+                                    <p>{{cineclub.startTime}}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="user-text">
-                                {{userReview.comment}}
+                        </div>
+                        <div class="col-12 md:col-6">
+                            <cineclubs-movies-available></cineclubs-movies-available>                    
+                        </div>
+                    </div>
+                    <div>
+                        <form [formGroup]="reviewForm" class="form">
+                            <div class="form">
+                                <div class="header" style="color: #FFAD00;">
+                                    <h1 class="pr-2" style="font-size: 24px;">
+                                        <mat-icon>chat_bubble</mat-icon>  
+                                        <strong> Reseñas ({{this.cineclub.commentsCount}})</strong>
+                                    </h1>
+                                </div>
+                                <div class="rating">
+                                    <mat-card-content>Escribe tu reseña</mat-card-content>
+                                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                                    <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+                                </div>
+                                <div class="review">
+                                    <mat-form-field [style.width.%]="95" appearance="outline">
+                                    <textarea class="text" matInput type="text" placeholder="Escribir reseña" formControlName="comment"></textarea>      
+                                    <mat-error *ngIf="reviewForm.get('comment')?.touched">
+                                        <ng-container *ngIf="reviewForm.get('comment')?.hasError('required')">
+                                            Campo <strong>obligatorio</strong>
+                                        </ng-container>
+                                        <ng-container *ngIf="reviewForm.get('comment')?.hasError('maxlength')">
+                                            Máximo <strong>250 caracteres</strong>
+                                        </ng-container>
+                                    </mat-error>
+                                    </mat-form-field>
+                                    <mat-card-actions *ngIf="!reviewForm.get('comment')?.hasError('required') && reviewForm.value.rating!=0" class="mat-card-actions">
+                                        <button class="send-button" (click)="saveReview()" mat-raised-button mat-dialog-close >Publicar</button>
+                                    </mat-card-actions>
+                                    <mat-card-actions *ngIf="reviewForm.get('comment')?.hasError('required') || reviewForm.value.rating == 0" class="mat-card-actions">
+                                        <button class="disabled-button"  mat-raised-button>Publicar</button>
+                                    </mat-card-actions>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="users-reviews">
+                            <div *ngIf="userReviews.length > 0">
+                                <div class="user-card" *ngFor="let userReview of userReviews">
+                                    <img class="circle" *ngIf="userReview.user.imageSrc; else photoDefault" src={{userReview.user.imageSrc}} alt="">
+                                    <ng-template #photoDefault>
+                                        <img class="circle" src="/assets/pictures/user/empty-user.png" alt="">
+                                    </ng-template>
+                                    <div class="user-review">
+                                        <div class="username-rating">
+                                            <div class="username">
+                                                {{userReview.user.name}} {{userReview.user.lastname}}
+                                            </div>
+                                            <div class="user-rating" *ngIf="userReview.rating == 5">
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                            </div>
+                                            <div class="user-rating" *ngIf="userReview.rating == 4">
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                            </div>
+                                            <div class="user-rating" *ngIf="userReview.rating == 3">
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                            </div>
+                                            <div class="user-rating" *ngIf="userReview.rating == 2">
+                                                <mat-icon class="star">star</mat-icon>
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                            </div>
+                                            <div class="user-rating" *ngIf="userReview.rating == 1">
+                                                <mat-icon>star</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                                <mat-icon>star_border</mat-icon>
+                                            </div>
+                                        </div>
+                                        <div class="user-text">
+                                            {{userReview.comment}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex align-items-center justify-content-center" *ngIf="userReviews.length == 0">
+                                <mat-card-content>Este cineclub aún no tiene reseñas</mat-card-content>
                             </div>
                         </div>
                     </div>
@@ -169,3 +208,4 @@
         </div>
     </div>
 </ng-container>
+

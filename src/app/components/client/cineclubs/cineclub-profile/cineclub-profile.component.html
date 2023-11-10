@@ -14,6 +14,7 @@
                                         <strong> {{cineclub.businessTypes!.name}} {{cineclub.name}}</strong>
                                     </h1>
                                     <mat-icon style="color: #FFAD00;">bookmark</mat-icon>
+                                    <mat-icon class="pr-2" style="color: #FFAD00;" (click)="goToEditCineclub()">edit</mat-icon>
                                   </div>
                                     <div class="user-rating" *ngIf="this.cineclub.rating == 5">
                                         <mat-icon>star</mat-icon>

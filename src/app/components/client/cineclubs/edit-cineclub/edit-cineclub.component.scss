@@ -1,0 +1,44 @@
+.card{
+    margin-left: 11.5rem;
+    margin-right: 11.5rem;
+    background-color: white;
+}
+
+.back-button{
+    background-color: #FFAD00 !important;
+    color: white !important;
+}
+
+.save-button{
+    background-color: #FFAD00 !important;
+    color: white !important;
+}
+
+.text {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.form {
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.column {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 38%;
+    padding-right: 38%;
+}

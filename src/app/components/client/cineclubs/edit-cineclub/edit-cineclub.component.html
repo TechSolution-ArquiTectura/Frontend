@@ -1,0 +1,63 @@
+<ng-container>
+    <div class="card">
+        <form [formGroup]="cineclubForm" class="form">
+            <h1 class="pr-3 column" style="font-size: 24px;">
+                <strong>Editar información de cineclub</strong>
+            </h1>
+            <div>
+                <mat-form-field class="column" [style.width.%]="95" appearance="outline">
+                    <mat-label>URL del banner</mat-label>
+                    <input matInput type="text" formControlName="bannerSrc">     
+                    <mat-error *ngIf="cineclubForm.get('bannerSrc')?.touched">
+                        <ng-container *ngIf="cineclubForm.get('bannerSrc')?.hasError('required')">
+                            Campo <strong>obligatorio</strong>
+                        </ng-container>
+                        <ng-container *ngIf="cineclubForm.get('bannerSrc')?.hasError('maxlength')">
+                            Máximo <strong>100 caracteres</strong>
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="column" [style.width.%]="95" appearance="outline">
+                    <mat-label>Descripción del cineclub</mat-label>
+                    <textarea matInput type="text" formControlName="description"></textarea>      
+                    <mat-error *ngIf="cineclubForm.get('description')?.touched">
+                        <ng-container *ngIf="cineclubForm.get('description')?.hasError('required')">
+                            Campo <strong>obligatorio</strong>
+                        </ng-container>
+                        <ng-container *ngIf="cineclubForm.get('description')?.hasError('maxlength')">
+                            Máximo <strong>250 caracteres</strong>
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="column" [style.width.%]="95" appearance="outline">
+                    <mat-label>Dirección del cineclub</mat-label>
+                    <input matInput type="text" placeholder="Dirección del cineclub" formControlName="address">  
+                    <mat-error *ngIf="cineclubForm.get('address')?.touched">
+                        <ng-container *ngIf="cineclubForm.get('address')?.hasError('required')">
+                            Campo <strong>obligatorio</strong>
+                        </ng-container>
+                        <ng-container *ngIf="cineclubForm.get('address')?.hasError('maxlength')">
+                            Máximo <strong>150 caracteres</strong>
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+        
+        <div class="row">
+            <mat-card-actions class="mat-card-actions">
+                <button class="back-button" (click)="goToProfileCineclub()" mat-raised-button>Regresar</button>
+            </mat-card-actions>
+            <mat-card-actions *ngIf="!cineclubForm.get('bannerSrc')?.hasError('required') && !cineclubForm.get('description')?.hasError('required')
+                                && !cineclubForm.get('address')?.hasError('required')" class="mat-card-actions">
+                <button class="save-button" (click)="save()" mat-raised-button>Guardar cambios</button>
+            </mat-card-actions>
+            <mat-card-actions *ngIf="cineclubForm.get('bannerSrc')?.hasError('required') || cineclubForm.get('description')?.hasError('required')
+                                || cineclubForm.get('address')?.hasError('required')" class="mat-card-actions">
+                <button class="disabled-button"  mat-raised-button>Guardar cambios</button>
+            </mat-card-actions>
+        </div>
+    </div>
+</ng-container>

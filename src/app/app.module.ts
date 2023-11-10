@@ -59,6 +59,9 @@ import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { ShowtimesTableComponent } from './components/client/films/components/showtime-table/showtimes-table/showtimes-table.component';
 import { BookingStepperComponent } from './components/client/films/components/stepper/booking-stepper/booking-stepper.component';
+import { EditProfileModalComponent } from './components/client/profile-user/edit-profile-modal/edit-profile-modal.component';
+import { CommonModule } from '@angular/common';
+import { EditCineclubComponent } from './components/client/cineclubs/edit-cineclub/edit-cineclub.component';
 
 
 @NgModule({
@@ -109,6 +112,10 @@ import { BookingStepperComponent } from './components/client/films/components/st
     NotFoundComponent,
     ShowtimesTableComponent,
     BookingStepperComponent,
+    ProfileUserComponent,
+    EditProfileModalComponent,
+    EditCineclubComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -120,11 +127,14 @@ import { BookingStepperComponent } from './components/client/films/components/st
     MatPaginatorModule,
     MatDialogModule,
     NgxStarRatingModule,
+    CommonModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
       libraries: ['places'],
     }),
   ],
+  entryComponents: [EditProfileModalComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

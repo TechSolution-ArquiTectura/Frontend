@@ -59,8 +59,15 @@ export class CinephileProfileService {
     return this._http.get(`${this.apiURL}/customers`);
   }
 
+  //Owner
+
   addOwner(data: any): Observable<any>{
     return this._http.post(`${this.apiURL}/owners`,data);
+  }
+
+  updateProfile(data: any): Observable<any> {
+    const url = `${this.apiURL}/persons/${data.id}`; // Asume que la URL es correcta
+    return this._http.put(url, data);
   }
 
   validateCredentials(email: string, password: string): Observable<any>{

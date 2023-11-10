@@ -9,7 +9,7 @@ import { Person } from 'src/app/core/models/person.model';
 })
 export class PersonService {
   public personsList:Person[]=[]
-  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/persons"
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/users"
   constructor(private http: HttpClient) {
     this.getPersons()
    }
@@ -17,7 +17,7 @@ export class PersonService {
     return this.http.get<Person[]>(this.apiURL);
   }
 
-  public getPersonById(id: any): Observable<Person> {
+  public getPersonById(id: any): Observable<any> {
     return this.http.get<Person>(`${this.apiURL}/${id}`);
   }
 

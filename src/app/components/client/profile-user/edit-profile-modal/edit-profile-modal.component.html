@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Editar perfil</h2>
+<mat-dialog-content>
+  <!-- Campo para editar el nombre -->
+  <mat-form-field>
+    <input matInput placeholder="Nombre" [(ngModel)]="dataEntrante.name">
+  </mat-form-field>
+
+  <!-- Campo para editar el apellido -->
+  <mat-form-field>
+    <input matInput placeholder="Apellido" [(ngModel)]="dataEntrante.lastname">
+  </mat-form-field>
+
+  <!-- Campo para editar la fecha de nacimiento -->
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="dataEntrante.birthdate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="saveChanges()">Guardar cambios</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

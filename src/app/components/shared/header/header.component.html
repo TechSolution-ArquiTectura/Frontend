@@ -27,9 +27,12 @@
         ><img src="/assets/pictures/user/empty-user.png" alt=""
       /></a>
       <div class="submenu" *ngIf="openMenu">
-        <button (click)="goToProfile()">Ver perfil</button>
-        <button (click)="signOut()">Cerrar sesión</button>
+        <button *ngIf="this._logged" (click)="goToProfile()">Ver perfil</button>
+        <button *ngIf="this._logged" (click)="signOut()">Cerrar sesión</button>
+        <button *ngIf="!this._logged" (click)="goToSignIn()">Iniciar sesión</button>
+        <button *ngIf="!this._logged" (click)="goToRegister()">Registrarse</button>
       </div>
+      
     </div>
   </div>
 </nav>
