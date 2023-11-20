@@ -40,6 +40,8 @@ export class CineclubProfileComponent implements OnInit {
       this.idPost = this.route.snapshot.paramMap.get('id');
     }
 
+    console.log(this.idPost)
+
     this.reviewForm = this._fb.group({
       comment: new FormControl('', [
         Validators.required,

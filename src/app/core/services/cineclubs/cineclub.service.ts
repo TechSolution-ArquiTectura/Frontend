@@ -23,7 +23,7 @@ export class CineclubService {
   }
 
   public getCineclubByUserId(userId: any): Observable<Business> {
-    return this.http.get<Business>(`https://tucine-api.onrender.com/api/TuCine/v1/business/${userId}`);
+    return this.http.get<Business>(`${this.apiURL}/user/${userId}`);
   }
 
   public searchCineclubs(title: string, cineclubs: Business[]): Business[] {
