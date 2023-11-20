@@ -2,37 +2,51 @@ import { Component, OnInit } from '@angular/core';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Business } from 'src/app/core/models/users.model';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import { Subscription } from 'rxjs';
+import { isBusiness } from 'src/app/util';
 
 @Component({
   selector: 'cineclub-cineclub-profile',
   templateUrl: './cineclub-profile.component.html',
-  styleUrls: ['./cineclub-profile.component.scss']
+  styleUrls: ['./cineclub-profile.component.scss'],
 })
-export class CineclubProfileComponent implements OnInit  {
+export class CineclubProfileComponent implements OnInit {
   idPost: any;
   cineclub!: Business;
   reviewForm!: FormGroup;
-  p:number=1;
-  public userReviews:Review[]=[];
   subscription!: Subscription;
+  isBusiness: boolean = isBusiness();
+  p: number = 1;
+  public userReviews: Review[] = [];
 
   constructor(
     private _fb: FormBuilder,
     private _empServiceMovie: FilmsProfileService,
     private reviewService: ReviewService,
     private router: Router,
-  ){
-    this.idPost = JSON.parse(localStorage.getItem("businessId") || '{}');
-    this.reviewForm = this._fb.group(
-      {
-        comment: new FormControl('', [Validators.required, Validators.maxLength(250),]),
-        rating: ['', Validators.required]
-      }
-    );
+    private route: ActivatedRoute
+  ) {
+    if (this.isBusiness) {
+      this.idPost = JSON.parse(localStorage.getItem('businessId') ?? '{}');
+    } else {
+      this.idPost = this.route.snapshot.paramMap.get('id');
+    }
+
+    this.reviewForm = this._fb.group({
+      comment: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(250),
+      ]),
+      rating: ['', Validators.required],
+    });
     this.getAllReviews();
   }
 
@@ -41,29 +55,34 @@ export class CineclubProfileComponent implements OnInit  {
     comment: '',
     rating: 0,
     user: {
-      id: 0
+      id: 0,
     },
     business: {
-      id: 0
-    }
-  }
+      id: 0,
+    },
+  };
 
   ngOnInit(): void {
     this.getCineclubById();
     this.subscription = this.reviewService.refresh$.subscribe(() => {
       this.getAllReviews();
-    })
+    });
   }
 
-  getCineclubById(){
+  getRange(rating: number): number[] {
+    const roundedRating = Math.floor(rating);
+    return Array.from({ length: roundedRating }, (_, index) => index + 1);
+  }
+
+  getCineclubById() {
     this._empServiceMovie.getCineclubById(this.idPost).subscribe({
       next: (res) => {
         this.cineclub = res;
       },
       error: (err) => {
-        console.log(err)
-      }
-    })
+        console.log(err);
+      },
+    });
   }
 
   saveReview() {
@@ -72,26 +91,27 @@ export class CineclubProfileComponent implements OnInit  {
 
       this.reviewCineclub.comment = formValue.comment;
       this.reviewCineclub.rating = formValue.rating;
-      this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("userId") || '{}');
+      this.reviewCineclub.user.id = JSON.parse(
+        localStorage.getItem('userId') || '{}'
+      );
       this.reviewCineclub.business.id = this.idPost;
     }
 
     this.reviewService.postReview(this.reviewCineclub).subscribe({
-      next: (addedReview: any) => {
-      },
+      next: (addedReview: any) => {},
       error: (error: any) => {
         console.error(error);
-      }
-    })
+      },
+    });
   }
 
   getAllReviews() {
-    this.reviewService.getReviewsByBusinessId(this.idPost)
+    this.reviewService
+      .getReviewsByBusinessId(this.idPost)
       .subscribe((data: any) => {
         this.userReviews = data;
         this.userReviews.reverse();
-      }
-      );
+      });
   }
 
   goToEditCineclub() {
