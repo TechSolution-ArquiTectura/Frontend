@@ -16,7 +16,7 @@ export class PaymentFormComponent implements OnInit {
 
   empPaymentForm: FormGroup;
   userId: number | undefined;
-  
+
   payment = {
     user: {
       id: 0,
@@ -32,7 +32,7 @@ export class PaymentFormComponent implements OnInit {
     private _paymentService: CinephileProfileService,
   ) {
 
-    this.userId = parseInt(localStorage.getItem('id') || '0', 10);
+    this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
 
     this.empPaymentForm = this._fb.group(
       {
@@ -70,7 +70,7 @@ export class PaymentFormComponent implements OnInit {
   }
 
   dialogReview() {
-    this.dialog.open(ReviewComponent);
+
   }
 
   onFormSubmit() {
@@ -83,6 +83,7 @@ export class PaymentFormComponent implements OnInit {
       this._paymentService.postPaymentMethod(this.payment).subscribe(
         (res) => {
           console.log(res);
+          alert('Payment method added successfully');
         },
         (err) => {
           console.log(err);
@@ -97,33 +98,33 @@ export class PaymentFormComponent implements OnInit {
   formatCreditCardNumber(event: any): void {
 
     let value = event.target.value.replace(/\D/g, '');
-  
+
     value = value.substring(0, 16);
     value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-  
+
     this.empPaymentForm.patchValue({ card_number: value });
   }
 
   validateCardNumberLength(control: FormControl): { [key: string]: boolean } | null {
     const value = control.value;
     const isValidLength = value && value.replace(/\D/g, '').length === 16;
-  
+
     return isValidLength ? null : { 'invalidLength': true };
   }
 
   formatExpiryDate(event: any): void {
     let value = event.target.value.replace(/\D/g, '');
-  
+
     if (value.length > 4) {
       value = value.substring(0, 4);
     }
-  
+
     if (value.length >= 2) {
       const month = Math.min(parseInt(value.substring(0, 2), 10), 12);
       value = month.toString().padStart(2, '0') + value.substring(2);
       value = value.replace(/(\d{2})(\d{0,2})/, '$1/$2');
     }
-  
+
     this.empPaymentForm.patchValue({ MMAA: value });
   }
 

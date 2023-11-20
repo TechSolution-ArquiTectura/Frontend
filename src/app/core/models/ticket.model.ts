@@ -1,5 +1,5 @@
 import { Showtime } from "./showtime.model";
-import { User } from "./user-profile.model";
+import { User } from "./users.model";
 
 
 export interface Ticket {

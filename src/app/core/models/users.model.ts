@@ -5,7 +5,7 @@ export interface Gender {
     name: string;
 }
 
-export interface User{
+export interface User {
     id?: any;
     name?: string;
     lastname?: string;
@@ -17,30 +17,25 @@ export interface User{
     email?: string;
     password?: string;
     phoneNumber?: string;
-    gender?: string[];    
+    gender?: string[];
     typeUser?: string[];
 }
 
-
 export interface Business {
-  id?: any,
+  id?: number,
   name?: string;
   socialReason?: string;
   ruc?: string;
   phone?: string;
-  email?: string;
   logoSrc?: string;
   bannerSrc?: string;
   description?: string;
+  address?: string;
   startTime?: string;
   endTime?: string;
-  address?: string;
-  referenceAddress?: string;
-  owner?: any;
-  businessType?: BusinessType;
   rating?: any;
   commentsCount?: number;
-  user?: User;
   businessTypes?: BusinessType;
+  user?: User;
 }
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { isLogged, getTypeUser, getUserId } from 'src/app/util';
+import { PersonService } from 'src/app/core/services/auth/user/person.service';
+import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 
 @Component({
   selector: 'app-header',
@@ -7,43 +10,50 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  id: string | null = '';
+  imgProfile: string = '';
   openMenu: boolean = false;
   _logged: boolean = false;
+  typeUser: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private personService: PersonService,
+    private businessService: CineclubService
+  ) {}
 
   ngOnInit(): void {
-    //this.router.navigate(['/dashboard/cineclubs']);
-    const user = JSON.parse(localStorage.getItem('userResult') || '{}');
-    this.id = user?.id;
-    
-    if (localStorage.getItem('logged') == null) {
-      localStorage.setItem('logged', 'false')
-    }
-    this._logged = this.isLogged();
-  }
+    this.typeUser = getTypeUser();
+    this._logged = isLogged();
 
-  isLogged() {
-    if (JSON.parse(localStorage.getItem('logged') || '{}') == true) {
-      return true;
-    } else {
-      return false;
+    if (this._logged) {
+      if (this.typeUser == 'cinephile') {
+        this.personService.getPersonById(getUserId()).subscribe((data) => {
+          this.imgProfile = data.imageSrc ?? '';
+        });
+      } else {
+        this.businessService
+          .getCineclubByUserId(getUserId())
+          .subscribe((data) => {
+            this.imgProfile = data.bannerSrc ?? '';
+          });
+      }
     }
   }
 
   toggleMenu(isHovered: boolean) {
     this.openMenu = isHovered;
-    this._logged = this.isLogged();
+    this._logged = isLogged();
   }
 
   goToProfile() {
-    if (JSON.parse(localStorage.getItem('cineclub') || '{}') == true) {
+    if (this.typeUser == 'business') {
       this.router.navigate(['dashboard/perfil-cineclub']);
-    }
-    else {
+    } else {
       this.router.navigate(['dashboard/perfil']);
     }
+  }
+  goToPromotions() {
+    this.router.navigate(['dashboard/promociones']);
   }
 
   goToRegister() {
@@ -56,7 +66,7 @@ export class HeaderComponent implements OnInit {
 
   signOut() {
     console.log('signOut');
-    this.router.navigate(['dashboard']);
     localStorage.clear();
+    this.router.navigate(['/']);
   }
 }

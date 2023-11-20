@@ -1,119 +1,157 @@
-.card{
-    margin-left: 11.5rem;
-    margin-right: 11.5rem;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.card-container{
-    margin-right: 2rem;
-    margin-left: 2rem;
-    
-}
-
 .banner {
+  & > img {
     width: 100%;
-    height: auto;
+    height: 400px;
+    object-fit: cover;
   }
-
-@media (max-width: 1100px) {
-.card {
-    margin-left: 0;
-    margin-right: 0;
-}
 }
 
-mat-icon{
-    font-family: 'Material Icons' !important;
+.profile {
+  display: block;
+  padding: 48px;
+
+  &__left {
+    flex-basis: 40%;
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & > h1 {
+        font-size: 28px;
+        margin: 0;
+        font-weight: 600;
+        font-family: Inter, "Helvetica Neue", sans-serif;
+      }
+
+      .icon {
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+    }
+
+    .rating {
+      color: var(--primary-color);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .address {
+      margin: 0;
+      color: var(--primary-color);
+      font-size: 24px;
+    }
   }
+
+  &__right {
+    flex-basis: 60%;
+
+  }
+
+  @media (min-width: 1024px) {
+    display: flex;
+    gap: 48px;
+  }
+}
+
+.comments {
+  padding: 0 48px 48px;
+}
 
 .form {
-    border-radius: 5px;
-    padding-top: 10px;
-}
-.review {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    vertical-align: middle;
-}
-.rating {
-    margin-top: 10px;
-    display: inline-block;
-    vertical-align: middle;
-}
-  
-::ng-deep label.star {
-    padding: 3px !important;
-    font-size: 19px !important;
-}
-  
-.mat-card-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border-radius: 5px;
+  padding-top: 10px;
 }
 
-.send-button{
-    background-color: #FFAD00 !important;
-    color: white !important;
-    margin-left: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.review {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.rating {
+  margin-top: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+::ng-deep label.star {
+  padding: 3px !important;
+  font-size: 19px !important;
+}
+
+.mat-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-button {
+  background-color: #ffad00 !important;
+  color: white !important;
+  margin-left: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .disabled-button {
-    margin-left: 10px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  margin-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .text {
-    margin-top: 2px;
-    margin-bottom: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
-.circle{
-    height: 65px;
-    width: 65px;
-    border-radius: 50%;
-    line-height: 65px;
-    text-align: center;
-    margin-right: 10px;
+.circle {
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  line-height: 65px;
+  text-align: center;
+  margin-right: 10px;
 }
 
 .user-review {
-    display: inline-block;
+  display: inline-block;
 }
 
 .user-card {
-    margin-right: 20px;
-    margin-left: 20px;
-    display: flex;
-    padding: 15px;
-    background-color:#EFF2F7;
-    border-radius: 15px;
-    margin-bottom: 15px;
+  margin-right: 20px;
+  margin-left: 20px;
+  display: flex;
+  padding: 15px;
+  background-color: #eff2f7;
+  border-radius: 15px;
+  margin-bottom: 15px;
 }
 
 .username-rating {
-    display: inline-block;
+  display: inline-block;
+
+  .rating-stars {
+    color: var(--primary-color);
+  }
 }
 
 .user-rating {
-    display: inline-block;
-    vertical-align: middle;
-    color: #FFAD00;
+  display: inline-block;
+  vertical-align: middle;
+  color: #ffad00;
 }
 
 .description {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .users-reviews {
-    padding-bottom: 30px;
+  padding-bottom: 30px;
 }

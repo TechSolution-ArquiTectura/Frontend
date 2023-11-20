@@ -1,17 +1,17 @@
-import { Person } from "./person.model";
-import { Business } from "./user-profile.model";
+import { User } from "./users.model";
+import { Business } from "./users.model";
 
 export interface Review{
     id?: any;
     comment: string;
     rating: number;
-    user: Person
+    user: User
 }
 
 export interface ReviewCineclub{
     id?: any;
     comment: string;
     rating: number;
-    user: Person;
+    user: User;
     business: Business;
 }

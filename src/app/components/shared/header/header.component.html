@@ -1,38 +1,55 @@
 <nav class="nav">
   <div class="options">
-    <a class="options_nav-icon" routerLink="/dashboard"
-      ><img src="/assets/brand.png" alt="TuCine"
+    <a class="options_nav-icon" routerLink="/"
+      ><img src="/assets/pictures/logo.png" alt="TuCine"
     /></a>
-    <div class="options_links">
+    <div class="options-links">
       <a routerLink="/dashboard/peliculas" routerLinkActive="active"
         ><div>Películas</div></a
       >
-      <a routerLink="/dashboard/cineclubs" routerLinkActive="active"
+      <a
+        routerLink="/dashboard/cineclubs"
+        routerLinkActive="active"
+        *ngIf="typeUser != 'business'"
         ><div>Cineclubes</div></a
       >
-      <a routerLink="/dashboard/promociones" routerLinkActive="active"
+      <a
+        routerLink="/dashboard/promociones"
+        routerLinkActive="active"
+        *ngIf="typeUser != 'business'"
         ><div>Promociones</div></a
       >
     </div>
   </div>
   <div class="menu">
-    <a class="menu_item"><img src="/assets/icons/message-icon.svg" alt="" /></a>
-    <a class="menu_item"><img src="/assets/icons/bell-icon.svg" alt="" /></a>
+    <a class="menu-item"><img src="/assets/icons/message-icon.svg" alt="" /></a>
+    <a class="menu-item"><img src="/assets/icons/bell-icon.svg" alt="" /></a>
     <div
       class="relative"
       (mouseenter)="toggleMenu(true)"
       (mouseleave)="toggleMenu(false)"
     >
-      <a class="menu_profile"
-        ><img src="/assets/pictures/user/empty-user.png" alt=""
+      <a class="menu-profile"
+        ><img
+          src="{{
+            imgProfile != ''
+              ? imgProfile
+              : '/assets/pictures/user/empty-user.png'
+          }}"
+          alt=""
       /></a>
       <div class="submenu" *ngIf="openMenu">
-        <button *ngIf="this._logged" (click)="goToProfile()">Ver perfil</button>
-        <button *ngIf="this._logged" (click)="signOut()">Cerrar sesión</button>
-        <button *ngIf="!this._logged" (click)="goToSignIn()">Iniciar sesión</button>
-        <button *ngIf="!this._logged" (click)="goToRegister()">Registrarse</button>
+        <button *ngIf="_logged" (click)="goToProfile()">Ver perfil</button>
+        <button
+          *ngIf="_logged && typeUser == 'business'"
+          (click)="goToPromotions()"
+        >
+          Administrar promociones
+        </button>
+        <button *ngIf="_logged" (click)="signOut()">Cerrar sesión</button>
+        <button *ngIf="!_logged" (click)="goToSignIn()">Iniciar sesión</button>
+        <button *ngIf="!_logged" (click)="goToRegister()">Registrarse</button>
       </div>
-      
     </div>
   </div>
 </nav>

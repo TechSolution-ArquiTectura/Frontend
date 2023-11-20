@@ -21,7 +21,7 @@ export class FilmsComponent implements OnInit {
   @ViewChild('filterBar')
   filterBarComponent!: FilterBarComponent;
 
-  currentMovieImage = "/assets/pictures/banners/suzume_banner.jpg";
+  currentMovieImage = "/assets/pictures/banners/suzume-banner.jpg";
   Films: Film[] = [];
   FilmsCopy: Film[] = [];
   CategoryList= this.categoryService.categoriesList;
@@ -86,9 +86,5 @@ export class FilmsComponent implements OnInit {
       )
       return selectedFilms.size > 0 ? Array.from(selectedFilms) : []; //Si hay peliculas que cumplen el filtro devolvemos el array de peliculas que cumplen el filtro, si no, devolvemos un array vacio
     }
-
-
   }
-
-
 }

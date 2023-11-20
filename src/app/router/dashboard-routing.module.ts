@@ -12,7 +12,6 @@ import { ViewComponent } from '../components/client/profile-user/view/view.compo
 import { PaymentComponent } from '../components/client/payment/payment/payment.component';
 import { PromotionsComponent } from '../components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from '../components/client/promotions-detail/promotions-detail.component';
-import { CineclubDetailComponent } from '../components/client/cineclubs/cineclub-detail/cineclub-detail.component';
 import { EditCineclubComponent } from '../components/client/cineclubs/edit-cineclub/edit-cineclub.component';
 
 const routes: Routes = [
@@ -20,13 +19,13 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: '', component: FilmsComponent},
+      { path: '', component: FilmsComponent },
       { path: 'peliculas', component: FilmsComponent },
       { path: 'peliculas/pelicula/:id', component: ProfileComponent },
       { path: 'explorar', component: MainComponent },
       { path: 'cineclubs', component: HomeComponent },
-      { path: 'cineclubs/cineclub/:id', component: CineclubDetailComponent},
-      { path: 'perfil-cineclub', component: CineclubProfileComponent},
+      { path: 'cineclubs/cineclub/:id', component: CineclubProfileComponent },
+      { path: 'perfil-cineclub', component: CineclubProfileComponent },
       { path: 'edit-cineclub', component: EditCineclubComponent },
       { path: 'crear-grupo', component: NewGroupComponent },
       { path: 'mis-grupos', component: MyGroupComponent },
@@ -36,12 +35,12 @@ const routes: Routes = [
       // {path:'**',pathMatch:'full',redirectTo:'explorar'},
       { path: 'promociones/detail/:id', component: PromotionsDetailComponent },
       { path: 'payment', component: PaymentComponent },
-    ]
-  }
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

@@ -12,7 +12,7 @@ import { ReviewService } from 'src/app/core/services/review/review.service';
 export class ReviewComponent implements OnInit{
   reviewForm!: FormGroup;
   rating: number;
-  constructor(private _fb: FormBuilder, 
+  constructor(private _fb: FormBuilder,
     private dialog: MatDialog,
     private reviewService: ReviewService) {
     this.rating = 0;
@@ -36,7 +36,7 @@ export class ReviewComponent implements OnInit{
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-  
+
   getUserId() {
     return 1
   }
@@ -45,16 +45,16 @@ export class ReviewComponent implements OnInit{
 
     user = new Person
 
-    return 
+    return
   }*/
-  
+
   saveReview() {
     if (this.reviewForm.valid) {
       const formValue = { ...this.reviewForm.value };
 
       this.review.comment = formValue.comment;
       this.review.rating = formValue.rating;
-      this.review.user.id = JSON.parse(localStorage.getItem("userResult") || '{}').id;
+      this.review.user.id = JSON.parse(localStorage.getItem("userId") || '{}');
       console.log(this.review.user.id);
     }
 

@@ -1,14 +1,3 @@
-.wrapper {
-  width: 100%;
-  min-height: calc(100vh - 90px);
-  margin: 0 auto;
-  background-color: var(--white-color);
-
-  @media screen and (min-width: 1201px) {
-    max-width: 1200px;
-  }
-}
-
 .promotions {
   position: relative;
   padding: 16px;

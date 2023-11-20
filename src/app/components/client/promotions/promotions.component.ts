@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Promotion } from 'src/app/core/models/promotion';
 import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
 import { NewPromotionDialogComponent } from './new-promotion-dialog/new-promotion-dialog.component';
+import { getTypeUser, getBusinessId } from 'src/app/util';
 
 import { Router } from '@angular/router';
 
@@ -12,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./promotions.component.scss'],
 })
 export class PromotionsComponent implements OnInit {
-  BUSINESS_ID: number = 1;
-  TYPE_USER: string = 'business';
+  businessId: number | null = getBusinessId();
+  typeUser: string = getTypeUser();
   promotions: Promotion[] = [];
 
   constructor(
@@ -24,9 +25,9 @@ export class PromotionsComponent implements OnInit {
   {}
 
   ngOnInit() {
-    if (this.TYPE_USER == 'business') {
+    if (this.typeUser == 'business' && this.businessId != null) {
       this.promotionsService
-        .getPromotionsByBusinessId(this.BUSINESS_ID)
+        .getPromotionsByBusinessId(this.businessId)
         .subscribe((data) => {
           this.promotions = data;
         });

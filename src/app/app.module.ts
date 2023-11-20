@@ -55,7 +55,6 @@ import { ReviewComponent } from './components/client/review/review.component';
 import { PromotionCardComponent } from './components/client/promotions/promotion-card/promotion-card.component';
 import { DeletePromotionDialogComponent } from './components/client/promotions/delete-promotion-dialog/delete-promotion-dialog.component';
 import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
-import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-detail/cineclub-detail.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { ShowtimesTableComponent } from './components/client/films/components/showtime-table/showtimes-table/showtimes-table.component';
 import { BookingStepperComponent } from './components/client/films/components/stepper/booking-stepper/booking-stepper.component';
@@ -108,7 +107,6 @@ import { EditCineclubComponent } from './components/client/cineclubs/edit-cinecl
     PromotionCardComponent,
     DeletePromotionDialogComponent,
     NewPromotionDialogComponent,
-    CineclubDetailComponent,
     NotFoundComponent,
     ShowtimesTableComponent,
     BookingStepperComponent,

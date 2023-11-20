@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, switchMap } from 'rxjs';
-import { User } from 'src/app/core/models/user-profile.model';
+import { User } from 'src/app/core/models/users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class CinephileProfileService {
     return this._http.post(`${this.apiURL}/users/auth/sign-in`,data);
   }
 
-  getUserProfileByToken(token: string): Observable<any>{ 
+  getUserProfileByToken(token: string): Observable<any>{
     const headers = new HttpHeaders({
       'Authorization': token // Agrega el token en el encabezado de autorización
     });

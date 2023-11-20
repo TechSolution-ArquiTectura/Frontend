@@ -1,6 +1,6 @@
 import { Film } from "./film.model";
 import { Promotion } from "./promotion";
-import { Business } from "./user-profile.model";
+import { Business } from "./users.model";
 
 export interface Showtime{
     id?: number;

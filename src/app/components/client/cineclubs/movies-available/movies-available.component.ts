@@ -29,10 +29,4 @@ export class MoviesAvailableComponent implements OnInit {
       }
     })
   }
-
-  getShowtimesByFilmId(id: number){
-
-  }
-
-
 }
