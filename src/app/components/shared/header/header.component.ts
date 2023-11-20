@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     //this.router.navigate(['/dashboard/cineclubs']);
-    const user = JSON.parse(localStorage.getItem('userResult') || '{}');
+    const user = JSON.parse(localStorage.getItem('userResult') ?? '{}');
     this.id = user?.id;
 
     if (localStorage.getItem('logged') == null) {
@@ -25,11 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isLogged() {
-    if (JSON.parse(localStorage.getItem('logged') || '{}') == true) {
-      return true;
-    } else {
-      return false;
-    }
+    return JSON.parse(localStorage.getItem('logged') || '{}');
   }
 
   toggleMenu(isHovered: boolean) {
@@ -38,7 +34,8 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile() {
-    if (JSON.parse(localStorage.getItem('typeUser') || '{}') == 'business') {
+    console.log(localStorage.getItem('typeUser'))
+    if (localStorage.getItem('typeUser') == 'business') {
       this.router.navigate(['dashboard/perfil-cineclub']);
     }
     else {

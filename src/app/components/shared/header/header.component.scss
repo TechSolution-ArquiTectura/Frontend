@@ -50,6 +50,10 @@
     gap: 24px;
     padding-bottom: 16px;
 
+    & > a {
+      cursor: pointer;
+    }
+
     &_item > img {
       width: 24px;
       color: var(--text-input-color);
@@ -96,9 +100,10 @@
   }
 
   button {
-    background-color: var(--white-color);
-    padding: 14px 20px;
+    cursor: pointer;
     text-align: left;
+    padding: 14px 20px;
+    background-color: var(--white-color);
     &:hover {
       background-color: var(--secondary-color);
       color: var(--neutral-grey-hover);

@@ -64,7 +64,7 @@ export class LoginComponent {
                   console.log("You're registered as a cinephile!. TypeUser was set to cinephile");
                 }
               });
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['/']);
           } else {
             this.showError = true; // Muestra un mensaje de error si no se recibe un token
           }
