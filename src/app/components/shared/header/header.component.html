@@ -1,16 +1,16 @@
 <nav class="nav">
   <div class="options">
-    <a class="options_nav-icon" routerLink="/dashboard"
-      ><img src="/assets/brand.png" alt="TuCine"
+    <a class="options_nav-icon" routerLink="/"
+      ><img src="/assets/pictures/logo.png" alt="TuCine"
     /></a>
     <div class="options_links">
       <a routerLink="/dashboard/peliculas" routerLinkActive="active"
         ><div>Películas</div></a
       >
-      <a routerLink="/dashboard/cineclubs" routerLinkActive="active"
+      <a routerLink="/dashboard/cineclubs" routerLinkActive="active" *ngIf="typeUser != 'business'"
         ><div>Cineclubes</div></a
       >
-      <a routerLink="/dashboard/promociones" routerLinkActive="active"
+      <a routerLink="/dashboard/promociones" routerLinkActive="active" *ngIf="typeUser != 'business'"
         ><div>Promociones</div></a
       >
     </div>
@@ -28,11 +28,12 @@
       /></a>
       <div class="submenu" *ngIf="openMenu">
         <button *ngIf="this._logged" (click)="goToProfile()">Ver perfil</button>
+        <button *ngIf="this._logged && this.typeUser == 'business'" (click)="goToPromotions()">Administrar promociones</button>
         <button *ngIf="this._logged" (click)="signOut()">Cerrar sesión</button>
         <button *ngIf="!this._logged" (click)="goToSignIn()">Iniciar sesión</button>
         <button *ngIf="!this._logged" (click)="goToRegister()">Registrarse</button>
       </div>
-      
+
     </div>
   </div>
 </nav>

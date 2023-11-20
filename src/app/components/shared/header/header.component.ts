@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { isLogged, getTypeUser } from 'src/app/util';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ export class HeaderComponent implements OnInit {
   id: string | null = '';
   openMenu: boolean = false;
   _logged: boolean = false;
+  typeUser: string = '';
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
@@ -21,26 +23,25 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('logged') == null) {
       localStorage.setItem('logged', 'false')
     }
-    this._logged = this.isLogged();
-  }
-
-  isLogged() {
-    return JSON.parse(localStorage.getItem('logged') || '{}');
+    this._logged = isLogged();
+    this.typeUser = getTypeUser();
   }
 
   toggleMenu(isHovered: boolean) {
     this.openMenu = isHovered;
-    this._logged = this.isLogged();
+    this._logged = isLogged();
   }
 
   goToProfile() {
-    console.log(localStorage.getItem('typeUser'))
     if (localStorage.getItem('typeUser') == 'business') {
       this.router.navigate(['dashboard/perfil-cineclub']);
     }
     else {
       this.router.navigate(['dashboard/perfil']);
     }
+  }
+  goToPromotions() {
+      this.router.navigate(['dashboard/promociones']);
   }
 
   goToRegister() {

@@ -10,6 +10,7 @@ import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/ci
 import { PersonService } from 'src/app/core/services/auth/user/person.service';
 import { User } from 'src/app/core/models/user-profile.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
+import { set } from 'date-fns';
 
 @Component({
   selector: 'client-auth-login',
@@ -52,19 +53,25 @@ export class LoginComponent {
               .subscribe((data: any) => {
                 if (data.typeUser.name == 'BUSINESS') {
                   localStorage.setItem('typeUser', 'business');
-                  console.log("You're registered as a business!. TypeUser was set to business");
+                  console.log(
+                    "You're registered as a business!. TypeUser was set to business"
+                  );
                   this.cineclubService
                     .getCineclubByUserId(result.id)
                     .subscribe((cineclub: any) => {
                       localStorage.setItem('businessId', cineclub.id);
-                      console.log("Your business ID is: ", cineclub.id);
+                      console.log('Your business ID is: ', cineclub.id);
                     });
                 } else {
                   localStorage.setItem('typeUser', 'cinephile');
-                  console.log("You're registered as a cinephile!. TypeUser was set to cinephile");
+                  console.log(
+                    "You're registered as a cinephile!. TypeUser was set to cinephile"
+                  );
                 }
               });
-            this.router.navigate(['/']);
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 2000);
           } else {
             this.showError = true; // Muestra un mensaje de error si no se recibe un token
           }
