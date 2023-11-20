@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
-import { Gender,User } from 'src/app/core/models/user-profile.model';
+import { Gender,User } from 'src/app/core/models/users.model';
 
 const phonePattern = /^[0-9]{9}$/;
 
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     gender: [],
     typeUser: ['CINEPHILE'],
   }
-  
+
 
   constructor(
     private _fb: FormBuilder,
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
       { validator: this.passwordMatchValidator }
     );
   }
-  
+
   ngOnInit(){
     this.getUserGender();
   }
@@ -79,17 +79,17 @@ export class RegisterComponent implements OnInit {
 
       const selectedGender = this.genders.find(gender => gender.name === formValue.Gender_id);
       this.person.gender = selectedGender ? [selectedGender.name] : [];
-      
+
       console.log(this.person);
 
       this._empService.signUpPerson(this.person).subscribe({
         next: () =>{
-          alert('Account successfully created');          
+          alert('Account successfully created');
         },
         error: (err:any)=>{
           console.error(err);
         }
-      })    
+      })
     }
   }
 
@@ -107,14 +107,14 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-  
+
     if (password?.value !== confirmPassword?.value) {
       confirmPassword?.setErrors({ mismatch: true });
     } else {
       confirmPassword?.setErrors(null);
     }
-  
+
     return null;
   };
-  
+
 }

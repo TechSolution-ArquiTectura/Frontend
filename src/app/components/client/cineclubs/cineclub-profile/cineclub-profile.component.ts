@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Business } from 'src/app/core/models/user-profile.model';
+import { Business } from 'src/app/core/models/users.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';

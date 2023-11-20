@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { Business } from '../../models/cineclub.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

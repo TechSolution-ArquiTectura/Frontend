@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
-import { Business } from 'src/app/core/models/user-profile.model';
+import { Business } from 'src/app/core/models/users.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 import { ReviewService } from 'src/app/core/services/review/review.service';

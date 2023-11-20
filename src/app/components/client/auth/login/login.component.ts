@@ -8,9 +8,8 @@ import {
 import { Router } from '@angular/router';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { PersonService } from 'src/app/core/services/auth/user/person.service';
-import { User } from 'src/app/core/models/user-profile.model';
+import { User } from 'src/app/core/models/users.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
-import { set } from 'date-fns';
 
 @Component({
   selector: 'client-auth-login',

@@ -17,7 +17,7 @@ export class PersonService {
     return this.http.get<Person[]>(this.apiURL);
   }
 
-  public getPersonById(id: any): Observable<any> {
+  public getPersonById(id: any): Observable<Person> {
     return this.http.get<Person>(`${this.apiURL}/${id}`);
   }
 
@@ -28,7 +28,6 @@ export class PersonService {
 
   public get(url:string){
     return this.http.get(url); //Get host
-
   }
 }
 

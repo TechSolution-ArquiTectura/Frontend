@@ -54,13 +54,14 @@
       cursor: pointer;
     }
 
-    &_item > img {
+    &-item > img {
       width: 24px;
       color: var(--text-input-color);
     }
 
-    &_profile > img {
-      max-height: 42px;
+    &-profile > img {
+      height: 42px;
+      width: 42px;
       border-radius: 999px;
     }
   }

@@ -3,9 +3,8 @@ import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Observable, map } from 'rxjs';
-import { Gender, User } from 'src/app/core/models/user-profile.model';
+import { Gender, User, Business } from 'src/app/core/models/users.model';
 import { BusinessType } from 'src/app/core/models/cineclub.model';
-import { Business } from 'src/app/core/models/user-profile.model';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 
 const phonePattern = /^[0-9]{9}$/;
@@ -115,7 +114,7 @@ export class RegisterOwnerComponent implements OnInit {
         phoneNumber: this.firstFormGroup.get('phone')?.value as string,
         birthdate: this.firstFormGroup.get('birthdate')?.value as string,
         password: this.fourthFormGroup.get('password')?.value,
-        gender: ['FEMALE'],        
+        gender: ['FEMALE'],
         typeUser: ['BUSINESS']
       };
 

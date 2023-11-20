@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Business } from 'src/app/core/models/user-profile.model';
+import { Business } from 'src/app/core/models/users.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 
@@ -65,7 +65,7 @@ export class EditCineclubComponent {
       this.cineclub.description = formValue.description;
       this.cineclub.address = formValue.address;
 
-      this.cineclubService.updateCineclub(this.cineclub.id, this.cineclub).subscribe({
+      this.cineclubService.updateCineclub(this.cineclub.id as number, this.cineclub).subscribe({
         next: (_cineclub: any) => {
         },
         error: (error: any) => {

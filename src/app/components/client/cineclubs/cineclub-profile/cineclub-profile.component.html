@@ -1,12 +1,12 @@
 <ng-container>
     <div class="card">
-        <div class="poster flex align-items-center justify-content-center ">
+        <div class="poster flex align-items-center justify-content-center">
             <img class="banner" src={{cineclub.bannerSrc}} alt="banner">
         </div>
         <div class="flex flex-column card-container">
             <div class="flex align-items-center justify-content-center ">
                 <div class="general flex flex-column">
-                    <div class="grid">                        
+                    <div class="grid">
                         <div class="col-12 md:col-6 ">
                             <div class="flex flex-column pt-5 ">
                                 <div class="flex flex-row align-content-center">
@@ -90,14 +90,14 @@
                                     <p>{{cineclub.description}}</p>
                                 </div>
                                 <div class="address flex-colum pb-2">
-                                    <div class="flex flex-row align-content-center">                                   
+                                    <div class="flex flex-row align-content-center">
                                         <mat-icon class="flex align-items-center justify-content-center pr-2" style="color: #FFAD00;">location_on</mat-icon>
                                         <h1 class="flex align-items-center justify-content-center" style="font-size: 24px; color: #FFAD00;"> <strong>Dirección</strong></h1>
                                     </div>
                                     <p>{{cineclub.address}}</p>
                                 </div>
                                 <div class="date">
-                                    <div class="flex flex-row">                                   
+                                    <div class="flex flex-row">
                                         <mat-icon class="pr-2" style="color: #FFAD00;">schedule</mat-icon>
                                         <h1 style="font-size: 24px; color: #FFAD00;"> <strong> Horario de atención</strong> </h1>
                                     </div>
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                         <div class="col-12 md:col-6">
-                            <cineclubs-movies-available></cineclubs-movies-available>                    
+                            <cineclubs-movies-available></cineclubs-movies-available>
                         </div>
                     </div>
                     <div>
@@ -115,7 +115,7 @@
                             <div class="form">
                                 <div class="header" style="color: #FFAD00;">
                                     <h1 class="pr-2" style="font-size: 24px;">
-                                        <mat-icon>chat_bubble</mat-icon>  
+                                        <mat-icon>chat_bubble</mat-icon>
                                         <strong> Reseñas ({{this.cineclub.commentsCount}})</strong>
                                     </h1>
                                 </div>
@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="review">
                                     <mat-form-field [style.width.%]="95" appearance="outline">
-                                    <textarea class="text" matInput type="text" placeholder="Escribir reseña" formControlName="comment"></textarea>      
+                                    <textarea class="text" matInput type="text" placeholder="Escribir reseña" formControlName="comment"></textarea>
                                     <mat-error *ngIf="reviewForm.get('comment')?.touched">
                                         <ng-container *ngIf="reviewForm.get('comment')?.hasError('required')">
                                             Campo <strong>obligatorio</strong>

@@ -1,5 +1,5 @@
 export function isLogged(): boolean {
-  return JSON.parse(localStorage.getItem('logged') ?? '{}');
+  return JSON.parse(localStorage.getItem('logged') ?? 'false');
 }
 
 export function getTypeUser(): string {
@@ -7,6 +7,10 @@ export function getTypeUser(): string {
     return '';
   }
   return localStorage.getItem('typeUser') as string;
+}
+
+export function getUserId(): number | null {
+  return JSON.parse(localStorage.getItem('userId') ?? '{}');
 }
 
 export function isCinephile(): boolean {
