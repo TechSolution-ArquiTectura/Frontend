@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class PromotionsComponent implements OnInit {
   BUSINESS_ID: number = 1;
-  TYPE_USER: string = 'business';
+  TYPE_USER: string = localStorage.getItem('cineclub') ?? '';
   promotions: Promotion[] = [];
 
   constructor(

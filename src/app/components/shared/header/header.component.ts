@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     //this.router.navigate(['/dashboard/cineclubs']);
     const user = JSON.parse(localStorage.getItem('userResult') || '{}');
     this.id = user?.id;
-    
+
     if (localStorage.getItem('logged') == null) {
       localStorage.setItem('logged', 'false')
     }
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile() {
-    if (JSON.parse(localStorage.getItem('cineclub') || '{}') == true) {
+    if (JSON.parse(localStorage.getItem('typeUser') || '{}') == 'business') {
       this.router.navigate(['dashboard/perfil-cineclub']);
     }
     else {
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
 
   signOut() {
     console.log('signOut');
-    this.router.navigate(['dashboard']);
     localStorage.clear();
+    this.router.navigate(['/']);
   }
 }

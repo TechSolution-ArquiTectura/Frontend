@@ -26,7 +26,7 @@ export class CineclubProfileComponent implements OnInit  {
     private reviewService: ReviewService,
     private router: Router,
   ){
-    this.idPost = JSON.parse(localStorage.getItem("cineclubId") || '{}');
+    this.idPost = JSON.parse(localStorage.getItem("businessId") || '{}');
     this.reviewForm = this._fb.group(
       {
         comment: new FormControl('', [Validators.required, Validators.maxLength(250),]),
@@ -72,7 +72,7 @@ export class CineclubProfileComponent implements OnInit  {
 
       this.reviewCineclub.comment = formValue.comment;
       this.reviewCineclub.rating = formValue.rating;
-      this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("id") || '{}');
+      this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("userId") || '{}');
       this.reviewCineclub.business.id = this.idPost;
     }
 

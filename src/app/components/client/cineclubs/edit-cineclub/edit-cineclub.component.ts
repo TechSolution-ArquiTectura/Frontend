@@ -22,7 +22,7 @@ export class EditCineclubComponent {
     private router: Router,
     private cineclubService: CineclubService
   ){
-    this.idPost = JSON.parse(localStorage.getItem("cineclubId") || '{}');
+    this.idPost = JSON.parse(localStorage.getItem("businessId") || '{}');
     this.cineclubForm = this._fb.group(
       {
         bannerSrc: new FormControl('', [Validators.required, Validators.maxLength(100),]),
@@ -34,7 +34,7 @@ export class EditCineclubComponent {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   getCineclubById(){
@@ -64,7 +64,7 @@ export class EditCineclubComponent {
       this.cineclub.bannerSrc = formValue.bannerSrc;
       this.cineclub.description = formValue.description;
       this.cineclub.address = formValue.address;
-      
+
       this.cineclubService.updateCineclub(this.cineclub.id, this.cineclub).subscribe({
         next: (_cineclub: any) => {
         },

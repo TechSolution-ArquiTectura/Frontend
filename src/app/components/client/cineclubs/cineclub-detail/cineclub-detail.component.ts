@@ -74,7 +74,7 @@ export class CineclubDetailComponent implements OnInit {
 
       this.reviewCineclub.comment = formValue.comment;
       this.reviewCineclub.rating = formValue.rating;
-      this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("id") || '{}');
+      this.reviewCineclub.user.id = JSON.parse(localStorage.getItem("userId") || '{}');
       this.reviewCineclub.business.id = this.idPost;
     }
 
