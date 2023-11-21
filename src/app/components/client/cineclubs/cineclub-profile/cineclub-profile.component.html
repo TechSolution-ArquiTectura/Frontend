@@ -162,6 +162,9 @@
               {{ userReview.comment }}
             </div>
           </div>
+          <a style="color: #F44336;" class="cursor-pointer ml-auto" (click)="deleteReview(userReview.id)">
+            <mat-icon>delete</mat-icon>
+          </a>
         </div>
       </div>
       <div

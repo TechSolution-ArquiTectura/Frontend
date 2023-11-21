@@ -33,4 +33,12 @@ export class ReviewService {
   public getReviewsByBusinessId(businessId: Number): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.apiUrl}/reviews/${businessId}`);
   }
+
+  deleteReview(reviewId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/reviews/${reviewId}`).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
+  }
 }

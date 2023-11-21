@@ -119,4 +119,14 @@ export class CineclubProfileComponent implements OnInit {
   goToEditCineclub() {
     this.router.navigate(['dashboard/edit-cineclub']);
   }
+
+  deleteReview(reviewId: number) {
+    this.reviewService.deleteReview(reviewId).subscribe({
+      next: () => {
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
+  }
 }
