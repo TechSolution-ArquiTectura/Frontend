@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ShowtimeService } from 'src/app/core/services/showtime/showtime.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AvailableFilmsService } from 'src/app/core/services/available-films/available-films.service';
+import { NewMovieComponent } from './new-movie/new-movie/new-movie.component';
+import { MatDialog } from '@angular/material/dialog';
+import { isBusiness } from 'src/app/util';
 
 @Component({
   selector: 'cineclubs-movies-available',
@@ -11,22 +14,40 @@ export class MoviesAvailableComponent implements OnInit {
   idPost: any;
   films: any[] = [];
   dateAvailable: string[] = [];
+  isProfile: any;
+  isBusiness: boolean = isBusiness();
 
   constructor(
-    private _empServiceShowtime: ShowtimeService,
+    private _empServiceShowtime: AvailableFilmsService,
     private route: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog
   ) {
-    this.idPost = this.route.snapshot.paramMap.get('id');
-    //console.log(convertirFecha('01-01-2021'));
+    this.isProfile = this.router.url.endsWith('perfil-cineclub');
+    if(this.isProfile) {
+      this.idPost = JSON.parse(localStorage.getItem('businessId') ?? '{}');
+    } else {
+      this.idPost = this.route.snapshot.paramMap.get('id');
+    }
    }
 
   ngOnInit(): void {
-   this._empServiceShowtime.getAllShowtimesByBusinessId(this.idPost).subscribe({
+   this._empServiceShowtime.getAvailableFilmsByCineclubId(this.idPost).subscribe({
       next: (res) => {
-
         this.films = res;
-        console.log(res)
       }
     })
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(NewMovieComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this._empServiceShowtime.getAvailableFilmsByCineclubId(this.idPost).subscribe({
+        next: (res) => {
+          this.films = res;
+        }
+      })
+    });
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Film } from '../../models/film.model';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,10 @@ export class FilmsProfileService {
 
   getCineclubById(id: number): Observable<any>{
     return this._http.get(this.apiUrl+`/businesses/${id}`);
+  }
+
+  public getFilms(): Observable<Film[]> {
+    return this._http.get<Film[]>(this.apiUrl+'/films');
   }
 
 }

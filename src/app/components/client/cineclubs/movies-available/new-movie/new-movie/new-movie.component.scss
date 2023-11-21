@@ -1,0 +1,27 @@
+  .card {
+    border-radius: 5px;
+    margin: 10px;
+    width: 500px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    margin-top: 10px;
+}
+
+.back-button{
+  background-color: #FFAD00 !important;
+  color: white !important;
+}
+
+.save-button{
+  background-color: #FFAD00 !important;
+  color: white !important;
+}
+
+.form {
+  margin-top: 10px;
+}

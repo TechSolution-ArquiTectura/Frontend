@@ -1,7 +1,7 @@
 export interface Actor{
     id: number;
-    first_name: string,
-    last_name: string,
+    firstName: string,
+    lastName: string,
     biography: string,
-    birthdate: string
+    birthday: string
 }

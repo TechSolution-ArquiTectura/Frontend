@@ -11,7 +11,7 @@ import {
 import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import { Subscription } from 'rxjs';
-import { isBusiness } from 'src/app/util';
+import { isLogged, isBusiness } from 'src/app/util';
 
 @Component({
   selector: 'cineclub-cineclub-profile',
@@ -26,6 +26,7 @@ export class CineclubProfileComponent implements OnInit {
   isBusiness: boolean = isBusiness();
   p: number = 1;
   public userReviews: Review[] = [];
+  isLogged: boolean = isLogged();
 
   constructor(
     private _fb: FormBuilder,
@@ -68,6 +69,7 @@ export class CineclubProfileComponent implements OnInit {
     this.getCineclubById();
     this.subscription = this.reviewService.refresh$.subscribe(() => {
       this.getAllReviews();
+      this.getCineclubById();
     });
   }
 

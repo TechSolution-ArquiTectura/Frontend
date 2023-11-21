@@ -1,0 +1,196 @@
+<div class="card">
+    <div>
+        <mat-horizontal-stepper #stepper [linear]="true">
+            <mat-step [completed]="false" [stepControl]="filmForm" label="Agregar película">
+                <form [formGroup]="filmForm" class="form">
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Título</mat-label>
+                        <input matInput type="text" formControlName="title">     
+                        <mat-error *ngIf="filmForm.get('title')?.touched">
+                            <ng-container *ngIf="filmForm.get('title')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="filmForm.get('title')?.hasError('maxlength')">
+                                Máximo <strong>255 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Año</mat-label>
+                        <input matInput type="number" formControlName="year">     
+                        <mat-error *ngIf="filmForm.get('year')?.touched">
+                            <ng-container *ngIf="filmForm.get('year')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Sinopsis</mat-label>
+                        <textarea matInput type="text" formControlName="synopsis"></textarea>
+                        <mat-error *ngIf="filmForm.get('synopsis')?.touched">
+                            <ng-container *ngIf="filmForm.get('synopsis')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="filmForm.get('synopsis')?.hasError('maxlength')">
+                                Máximo <strong>255 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>URL del poster</mat-label>
+                        <input matInput type="text" formControlName="poster">     
+                        <mat-error *ngIf="filmForm.get('poster')?.touched">
+                            <ng-container *ngIf="filmForm.get('poster')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="filmForm.get('poster')?.hasError('maxlength')">
+                                Máximo <strong>255 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>URL del trailer</mat-label>
+                        <input matInput type="text" formControlName="trailer">     
+                        <mat-error *ngIf="filmForm.get('trailer')?.touched">
+                            <ng-container *ngIf="filmForm.get('trailer')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="filmForm.get('trailer')?.hasError('maxlength')">
+                                Máximo <strong>255 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Duración (minutos)</mat-label>
+                        <input matInput type="number" formControlName="duration">     
+                        <mat-error *ngIf="filmForm.get('duration')?.touched">
+                            <ng-container *ngIf="filmForm.get('duration')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Calificación de contenido</mat-label>
+                        <select #contentRating matNativeControl required (change)="onSelected(contentRating.value)">
+                            <option value="3">Todo público</option>
+                            <option value="4">Mayores de 12 años (+12)</option>
+                            <option value="5">Mayores de 16 años (+16)</option>
+                            <option value="6">Mayores de 18 años (+18)</option>
+                          </select>
+                      </mat-form-field>
+
+                    <div class="row">
+
+                        <mat-card-actions class="mat-card-actions">
+                            <button class="back-button"mat-dialog-close mat-raised-button>Salir</button>
+                        </mat-card-actions>
+
+                        <mat-card-actions *ngIf="!filmForm.get('title')?.hasError('required') && 
+                                                !filmForm.get('year')?.hasError('required') && 
+                                                !filmForm.get('synopsis')?.hasError('required') && 
+                                                !filmForm.get('poster')?.hasError('required') && 
+                                                !filmForm.get('trailer')?.hasError('required') && 
+                                                !filmForm.get('duration')?.hasError('required')" class="mat-card-actions">
+                            <button class="save-button" (click)="saveFilm()" mat-raised-button matStepperNext>Agregar película</button>
+                        </mat-card-actions>
+
+                        <mat-card-actions *ngIf="filmForm.get('title')?.hasError('required') ||
+                                                filmForm.get('year')?.hasError('required') ||
+                                                filmForm.get('synopsis')?.hasError('required') ||
+                                                filmForm.get('poster')?.hasError('required') ||
+                                                filmForm.get('trailer')?.hasError('required') ||
+                                                filmForm.get('duration')?.hasError('required')" class="mat-card-actions">
+                            <button class="disabled-button" mat-raised-button>Agregar película</button>
+                        </mat-card-actions>
+
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [completed]="false" [stepControl]="actorForm" label="Agregar actores">
+                <form [formGroup]="actorForm" class="form">
+                    <p style="text-align: center;">Agrega el reparto de actores de la película</p>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Nombres</mat-label>
+                        <input matInput type="text" formControlName="firstName">     
+                        <mat-error *ngIf="actorForm.get('firstName')?.touched">
+                            <ng-container *ngIf="actorForm.get('firstName')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="actorForm.get('firstName')?.hasError('maxlength')">
+                                Máximo <strong>100 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput type="text" formControlName="lastName">     
+                        <mat-error *ngIf="actorForm.get('lastName')?.touched">
+                            <ng-container *ngIf="actorForm.get('lastName')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="actorForm.get('lastName')?.hasError('maxlength')">
+                                Máximo <strong>100 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Biografía</mat-label>
+                        <textarea matInput type="text" formControlName="biography"></textarea>
+                        <mat-error *ngIf="actorForm.get('biography')?.touched">
+                            <ng-container *ngIf="actorForm.get('biography')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                            <ng-container *ngIf="actorForm.get('biography')?.hasError('maxlength')">
+                                Máximo <strong>255 caracteres</strong>
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="column" [style.width.%]="100" appearance="outline">
+                        <mat-label>Fecha de nacimiento</mat-label>
+                        <input matInput [matDatepicker]="picker" placeholder="DD/MM/AAAAA" formControlName="birthday" >
+                        <mat-error *ngIf="actorForm.get('birthday')?.touched">
+                            <ng-container *ngIf="actorForm.get('birthday')?.hasError('required')">
+                                Campo <strong>obligatorio</strong>
+                            </ng-container>
+                        </mat-error>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="row">
+
+                        <mat-card-actions class="mat-card-actions">
+                            <button class="back-button"mat-dialog-close mat-raised-button>Salir</button>
+                        </mat-card-actions>
+
+                        <mat-card-actions *ngIf="!actorForm.get('firstName')?.hasError('required') && 
+                                                !actorForm.get('lastName')?.hasError('required') && 
+                                                !actorForm.get('biography')?.hasError('required') && 
+                                                !actorForm.get('birthday')?.hasError('required')" class="mat-card-actions">
+                            <button type="submit" class="save-button" (click)="saveActor()" mat-raised-button>Agregar actor</button>
+                        </mat-card-actions>
+
+                        <mat-card-actions *ngIf="actorForm.get('firstName')?.hasError('required') ||
+                                                actorForm.get('lastName')?.hasError('required') ||
+                                                actorForm.get('biography')?.hasError('required') ||
+                                                actorForm.get('birthday')?.hasError('required')" class="mat-card-actions">
+                            <button class="disabled-button" mat-raised-button>Agregar actor</button>
+                        </mat-card-actions>
+
+                    </div>
+                </form>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>
