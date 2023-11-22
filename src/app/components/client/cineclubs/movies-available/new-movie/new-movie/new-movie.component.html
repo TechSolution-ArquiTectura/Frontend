@@ -41,7 +41,7 @@
                     </mat-form-field>
                     
                     <mat-form-field class="column" [style.width.%]="100" appearance="outline">
-                        <mat-label>URL del poster</mat-label>
+                        <mat-label>Enlace del poster</mat-label>
                         <input matInput type="text" formControlName="poster">     
                         <mat-error *ngIf="filmForm.get('poster')?.touched">
                             <ng-container *ngIf="filmForm.get('poster')?.hasError('required')">
@@ -54,7 +54,7 @@
                     </mat-form-field>
 
                     <mat-form-field class="column" [style.width.%]="100" appearance="outline">
-                        <mat-label>URL del trailer</mat-label>
+                        <mat-label>Enlace del trailer</mat-label>
                         <input matInput type="text" formControlName="trailer">     
                         <mat-error *ngIf="filmForm.get('trailer')?.touched">
                             <ng-container *ngIf="filmForm.get('trailer')?.hasError('required')">
@@ -89,7 +89,7 @@
                     <div class="row">
 
                         <mat-card-actions class="mat-card-actions">
-                            <button class="back-button"mat-dialog-close mat-raised-button>Salir</button>
+                            <button class="back-button"mat-dialog-close mat-raised-button>Cancelar</button>
                         </mat-card-actions>
 
                         <mat-card-actions *ngIf="!filmForm.get('title')?.hasError('required') && 
@@ -172,7 +172,7 @@
                     <div class="row">
 
                         <mat-card-actions class="mat-card-actions">
-                            <button class="back-button"mat-dialog-close mat-raised-button>Salir</button>
+                            <button class="back-button"mat-dialog-close mat-raised-button>Finalizar</button>
                         </mat-card-actions>
 
                         <mat-card-actions *ngIf="!actorForm.get('firstName')?.hasError('required') && 
