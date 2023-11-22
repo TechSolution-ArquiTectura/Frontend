@@ -17,9 +17,8 @@ export class NewMovieComponent {
   idCineclub: any;
   filmForm!: FormGroup;
   actorForm!: FormGroup;
-  filmId!: any;
-  actorId!: any;
   selectId: number = 3;
+  filmId!: number;
   constructor(private _fb: FormBuilder,
     private filmService: FilmsProfileService,
     private actorService: ActorService,
@@ -79,32 +78,6 @@ export class NewMovieComponent {
     }
   };
 
-  //Obtener el id de la nueva película agregada
-  getFilmId(title: string) {
-    this.filmService.getFilms().subscribe({
-      next: (res) => {
-        res.forEach((_film) => {
-          if (_film.title == title) {
-            this.filmId = _film.id;
-          }
-      });
-      }
-    })
-  }
-
-  //Obtener el id del actor que se acaba de crear
-  getActorId(actor: Actor) {
-    this.actorService.getActors().subscribe({
-      next: (res) => {
-        res.forEach((_actor) => {
-          if (_actor.firstName == actor.firstName && _actor.lastName == actor.lastName) {
-            this.actorId = _actor.id;
-          }
-      });
-      }
-    })
-  }
-
   onSelected(value:string): void {
 		this.selectId = Number(value);
 	}
@@ -123,18 +96,27 @@ export class NewMovieComponent {
 
       this.filmService.addMovieProfile(this.film).subscribe({
         next: (addedFilm: any) => {
-          this.getFilmId(this.film.title);
-          this.availableFilm.business.id = this.idCineclub;
-          this.availableFilm.film.id = this.filmId;
-          this.availableFilm.isAvailable = "1"; // 1: True
-  
-          this.availableFilmService.postAvailableFilms(this.availableFilm).subscribe({
-            next: (addedAvailableFilm: any) => {
-            },
-            error: (error: any) => {
-              console.error(error);
-            },
-          });
+          
+          this.filmService.getFilms().subscribe({
+            next: (res) => {
+              res.forEach((_film) => {
+                if (_film.title == this.film.title) {
+                  this.filmId = _film.id;
+                  this.availableFilm.business.id = this.idCineclub;
+                  this.availableFilm.film.id = _film.id;
+                  this.availableFilm.isAvailable = "1"; // 1: True
+          
+                  this.availableFilmService.postAvailableFilms(this.availableFilm).subscribe({
+                    next: (addedAvailableFilm: any) => {
+                    },
+                    error: (error: any) => {
+                      console.error(error);
+                    },
+                  });
+                }
+            });
+            }
+          })
         },
         error: (error: any) => {
           console.error(error);
@@ -154,14 +136,31 @@ export class NewMovieComponent {
 
       this.actorService.postActor(this.actor).subscribe({
         next: (addedActor: any) => {
-          this.getActorId(this.actor);
-          this.actorService.postActorCineclub(this.filmId, this.actorId);
+
+          this.actorService.getActors().subscribe({
+            next: (res) => {
+              res.forEach((_actor) => {
+                if (_actor.firstName == this.actor.firstName) {
+                  if (_actor.lastName == this.actor.lastName) {
+                    this.actorService.postActorCineclub(this.filmId, _actor.id).subscribe({
+                      next: (addedActorCineclub: any) => {
+                        alert('Actor ' + _actor.firstName + " " + _actor.lastName + ' agregado al reparto de la película');
+                      },
+                      error: (error: any) => {
+                        alert('Actor ' + _actor.firstName + " " + _actor.lastName + ' agregado al reparto de la película');
+                      },
+                    });;
+                  }
+                }
+            });
+            }
+          })
         },
         error: (error: any) => {
           console.error(error);
         },
       });
-  
+
       this.actorForm.reset();
     }
   }

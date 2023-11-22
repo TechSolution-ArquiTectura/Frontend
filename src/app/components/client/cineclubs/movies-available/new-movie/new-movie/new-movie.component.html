@@ -158,12 +158,13 @@
 
                     <mat-form-field class="column" [style.width.%]="100" appearance="outline">
                         <mat-label>Fecha de nacimiento</mat-label>
-                        <input matInput [matDatepicker]="picker" placeholder="DD/MM/AAAAA" formControlName="birthday" >
+                        <input matInput [matDatepicker]="picker" formControlName="birthday" >
                         <mat-error *ngIf="actorForm.get('birthday')?.touched">
                             <ng-container *ngIf="actorForm.get('birthday')?.hasError('required')">
                                 Campo <strong>obligatorio</strong>
                             </ng-container>
                         </mat-error>
+                        <mat-hint>MM/DD/YYYY</mat-hint>
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
