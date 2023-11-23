@@ -39,6 +39,7 @@ export class ShowtimesTableComponent implements OnInit{
   ngOnInit(): void {
     this.getShowtimesbyFilmId(this.filmId);
   }
+  
 
   getShowtimesbyFilmId(id: number){
     this._filmsProfileService.getShowtimesbyFilmId(id).subscribe((entryData) => {  
@@ -91,6 +92,13 @@ export class ShowtimesTableComponent implements OnInit{
     );
   }
 
-  
+  formatDate(date: string): string {
+    const months = [
+      'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'
+    ];
+    const [day, month, year] = date.split('-');
+    const shortMonth = months[parseInt(month, 10) - 1];
+    return `${day} ${shortMonth}. ${year}`;
+  }
 
 }

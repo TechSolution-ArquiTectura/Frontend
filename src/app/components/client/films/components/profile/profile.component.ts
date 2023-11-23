@@ -48,8 +48,9 @@ export class ProfileComponent implements OnInit {
   }
 
   getSafeTrailerUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.FilmProfile.trailer);
-  } 
+    return this.FilmProfile?.trailer ? this.sanitizer.bypassSecurityTrustResourceUrl(this.FilmProfile.trailer) : null;
+  }
+  
   
 
   // Detalles de la pelicula

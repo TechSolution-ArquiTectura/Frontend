@@ -1,7 +1,7 @@
 <div class="movie-details">
     <div class="movie-details-header">
         <h2 class="title">{{ showtime?.availableFilm?.film?.title }}</h2>
-        <span class="duration-box">120 min</span>
+        <span class="duration-box">{{showtime?.availableFilm?.film?.duration}} min</span>
     </div>
 
     <img src="{{ showtime?.availableFilm?.film?.poster }}" alt="Poster de la película" class="poster">
