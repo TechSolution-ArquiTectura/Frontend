@@ -1,11 +1,92 @@
-<mat-horizontal-stepper>
-  <!-- Paso 1 -->
-  <mat-step label="Seleccionar una función">
-    <film-showtimes-table [filmId]="filmId" (buyTicket)="onBuyTicket($event)"></film-showtimes-table>
-  </mat-step>
+<div class="booking-stepper">
 
-  <!-- Paso 2 -->
-  <mat-step label="Reserva">
-    <app-book-ticket [selectedElement]="selectedElement"></app-book-ticket>
-  </mat-step>
-</mat-horizontal-stepper>
+  <div class="booking-stepper-header">
+    <div class="booking-stepper-header-body">
+      <h1 class="booking-stepper-header-body-title">COMPRA DE ENTRADAS</h1>
+      <p class="booking-stepper-header-body-detail">Confirma el proceso para adquirir tus entradas a <strong>{{showtime?.availableFilm?.business?.name}}</strong></p>
+    </div>
+
+    <mat-horizontal-stepper labelPosition="bottom">
+
+      <mat-step label="01. Usuario">
+        <div class="film-profile">
+          <stepper-film-profile [showtime]="showtime"></stepper-film-profile>
+
+          <div class="user-step">
+            
+            
+            <div class="container-user">
+              <div class="container-user-header">
+                <span class="step-number">01</span>
+                <div class="container-user-header-body">
+                  <h2 class="container-user-header-body-title">USUARIO</h2>
+                  <p class="">Si no has ingresado, hazlo ahora</p>
+                </div>
+              </div>
+              <hr class="horizontal-line">
+
+              <div *ngIf="userId === 0">
+                <div class="no_loged">
+                  <span class="no_loged-icon"><mat-icon>priority_high</mat-icon></span>
+                  <div class="no_loged-box">
+                    <p class="no_loged-box_text">¡REGÍSTRATE COMO CLIENTE TUCINE Y ACCEDE MÁS RÁPIDO EN LA COMPRA ONLINE 
+                      ADEMÁS DE RECIBIR PROMOCIONES ÚNICAS EN BOLETERÍA Y CONFITERÍA! <br> REGISTRATE <button class="bt-register" (click)="goToRegister()">AQUÍ</button></p>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="userId != 0">
+                <div class="loged">
+                  <div class="loged-item">
+                    <span class="icon"><mat-icon>person</mat-icon></span>
+                    <p class="loged-label">NOMBRE</p>
+                    <P class="loged-data">{{user?.name}}</P>
+                  </div>
+
+                  <div class="loged-item">
+                    <span class="icon"><mat-icon>person</mat-icon></span>
+                    <p class="loged-label">APELLIDO</p>
+                    <P class="loged-data">{{user?.lastname}}</P>
+                  </div>
+
+                  <div class="loged-item">
+                    <span class="icon"><mat-icon>mail</mat-icon></span>
+                    <p class="loged-label">EMAIL</p>
+                    <P class="loged-data">{{user?.email}}</P>
+                  </div>
+
+                  <div class="loged-item">
+                    <span class="icon"><mat-icon>phone_iphone</mat-icon></span>
+                    <p class="loged-label">TELÉFONO</p>
+                    <P class="loged-data">{{user?.phoneNumber}}</P>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="film-profile-actions">
+              <button *ngIf="userId === 0" mat-raised-button class="bt-step1" (click)="goToSignIn()">Ingresar</button>
+              <button *ngIf="userId != 0" mat-raised-button class="bt-step1" (click)="stepper.next()">Comprar</button>
+            </div>
+          </div>
+        </div>
+        
+        
+      </mat-step>
+    
+      <!-- Paso 2 -->
+      <mat-step label="Reserva">
+        <div>
+          <stepper-film-profile [showtime]="showtime"></stepper-film-profile>
+          <app-book-ticket></app-book-ticket>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+
+  
+</div>

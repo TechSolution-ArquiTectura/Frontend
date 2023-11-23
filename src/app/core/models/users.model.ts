@@ -10,11 +10,10 @@ export interface User {
     name?: string;
     lastname?: string;
     Gender_id?: Gender;
-    numberDni?: string;
     birthdate?: string;
     imageSrc?: string;
-    phone?: string;
     email?: string;
+    emailVerified?: string;
     password?: string;
     phoneNumber?: string;
     gender?: string[];
