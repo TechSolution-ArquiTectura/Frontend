@@ -62,7 +62,7 @@ import { EditProfileModalComponent } from './components/client/profile-user/edit
 import { CommonModule } from '@angular/common';
 import { EditCineclubComponent } from './components/client/cineclubs/edit-cineclub/edit-cineclub.component';
 import { NewMovieComponent } from './components/client/cineclubs/movies-available/new-movie/new-movie/new-movie.component';
-
+import { AdminScheduleFilmsComponent } from './components/client/films/components/admin-schedule-films/admin-schedule-films.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +115,7 @@ import { NewMovieComponent } from './components/client/cineclubs/movies-availabl
     EditProfileModalComponent,
     EditCineclubComponent,
     NewMovieComponent,
+    AdminScheduleFilmsComponent,
 
   ],
   imports: [

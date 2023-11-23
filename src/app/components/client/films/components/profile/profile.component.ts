@@ -3,12 +3,10 @@ import { FilmsProfileService } from 'src/app/core/services/film/films-profile.se
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Film } from 'src/app/core/models/film.model';
-import { MatTableDataSource } from '@angular/material/table';
-import { Showtime } from 'src/app/core/models/showtime.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { BookTicketComponent } from '../book-ticket/book-ticket.component';
+import { isBusiness } from 'src/app/util';
 
 
 @Component({
@@ -22,6 +20,7 @@ export class ProfileComponent implements OnInit {
   FilmProfile!: Film;
   panelOpenState = false;
   ActorList: any[] = [];
+  isBusiness: boolean = isBusiness();
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -49,14 +48,14 @@ export class ProfileComponent implements OnInit {
 
   getSafeTrailerUrl() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.FilmProfile.trailer);
-  } 
-  
+  }
+
 
   // Detalles de la pelicula
   getActorListbyFilmId(Film_id: number) {
     return this._servMoviesProfile.getFilmActorbyFilmId(Film_id).subscribe((res) => {
-      
-      res.forEach((element: any) => { 
+
+      res.forEach((element: any) => {
           element.Actor = element.firstName + " " + element.lastName;
           this.ActorList.push(element);
       });

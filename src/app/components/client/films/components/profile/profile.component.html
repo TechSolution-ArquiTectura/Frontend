@@ -1,7 +1,7 @@
 <div>
   <div class="flex flex-column  xl:mx-8 lg:mx-8 md:mx-0 sm:mx-0" style="background-color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-    <div class="flex video-header justify-content-center"> 
-      <iframe [src]="getSafeTrailerUrl()" width="560" height="315" frameborder="0" allowfullscreen></iframe>    
+    <div class="flex video-header justify-content-center">
+      <!-- <iframe [src]="getSafeTrailerUrl()" width="560" height="315" frameborder="0" allowfullscreen></iframe> -->
     </div>
     <div class="card" style="margin-right: 2rem ; margin-left: 2rem;">
       <div class="flex flex-column justify-content-center my-4">
@@ -46,9 +46,10 @@
               </mat-accordion>
             </div>
           </div>
-          
+
           <div class="w-full">
-            <film-booking-stepper [filmId]="idPost"></film-booking-stepper>
+            <app-admin-schedule-films *ngIf="isBusiness"></app-admin-schedule-films>
+            <film-booking-stepper *ngIf="!isBusiness" [filmId]="idPost"></film-booking-stepper>
           </div>
       </div>
     </div>
