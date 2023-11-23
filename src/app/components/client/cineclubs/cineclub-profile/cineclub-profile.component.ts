@@ -73,10 +73,8 @@ export class CineclubProfileComponent implements OnInit {
     this.getCineclubById();
     this.subscription = this.reviewService.refresh$.subscribe(() => {
       this.getAllReviews();
-      this.getCineclubById();
     });
     this.subscription2 = this._empServiceMovie.refresh$.subscribe(() => {
-      this.getAllReviews();
       this.getCineclubById();
     });
   }
