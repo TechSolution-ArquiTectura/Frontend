@@ -4,8 +4,11 @@ import { User } from "./users.model";
 
 export interface Ticket {
     id?: number;
-    customer: User;
-    showtime: Showtime;
+    user: User;
+    showtime: {
+        id: number,
+    };
     numberSeats?: number;
+    paymentToken?: string;
     totalPrice?: number;
 }

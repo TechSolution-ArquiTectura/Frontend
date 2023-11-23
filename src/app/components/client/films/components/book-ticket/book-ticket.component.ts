@@ -1,4 +1,4 @@
-import { Component, DoCheck, Inject, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Film } from 'src/app/core/models/film.model';
 import { Showtime } from '../../../../../core/models/showtime.model';
@@ -15,6 +15,7 @@ const userResult = localStorage.getItem('userResult');
 export class BookTicketComponent implements OnInit, DoCheck {
 
   @Input() showtime: Showtime | undefined;
+  @Output() ticketData: EventEmitter<{ quantity: number, totalPrice: number }> = new EventEmitter();
   
   data!: any;
   empOfferForm: FormGroup;
@@ -57,7 +58,7 @@ export class BookTicketComponent implements OnInit, DoCheck {
   getShowtimebyId(id: number) { 
     this._showtimeService.getShowtimebyId(id).subscribe((res: any) => {
       this.showtime = res;
-      console.log('Showtime actualizado:', this.showtime);
+      //console.log('Showtime actualizado:', this.showtime);
       this.updateTotalPrice();
     });
   }
@@ -65,9 +66,10 @@ export class BookTicketComponent implements OnInit, DoCheck {
 
 
   updateTotalPrice(): void {
-    console.log('Cantidad seleccionada:', this.selectedQuantity);
+    //console.log('Cantidad seleccionada:', this.selectedQuantity);
     const unitPrice = this.showtime?.unitPrice || 0;
     this.totalPrice = unitPrice * this.selectedQuantity;
+    this.ticketData.emit({ quantity: this.selectedQuantity, totalPrice: this.totalPrice });
   }
   
   
