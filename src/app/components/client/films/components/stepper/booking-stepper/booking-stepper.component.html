@@ -65,24 +65,65 @@
               </div>
             </div>
 
-
-
-
             <div class="film-profile-actions">
               <button *ngIf="userId === 0" mat-raised-button class="bt-step1" (click)="goToSignIn()">Ingresar</button>
               <button *ngIf="userId != 0" mat-raised-button class="bt-step1" (click)="stepper.next()">Comprar</button>
             </div>
           </div>
+        </div>        
+      </mat-step>
+
+      <mat-step label="02. Entradas">
+        <div class="film-profile">
+          <stepper-film-profile [showtime]="showtime"></stepper-film-profile>
+          
+          <div class="user-step">
+            
+            
+            <div class="container-user">
+              <div class="container-user-header">
+                <span class="step-number">02</span>
+                <div class="container-user-header-body">
+                  <h2 class="container-user-header-body-title">ENTRADAS</h2>
+                  <p class="">Selecciona tus entradas. El valor se calculará luego de seleccionar las butacas</p>
+                </div>
+              </div>
+              <hr class="horizontal-line">
+
+              <app-book-ticket [showtime]="showtime"></app-book-ticket>
+
+            </div>
+
+            <div class="film-profile-actions">
+              <button  mat-raised-button class="bt-step1" (click)="stepper.next()">Siguiente</button>
+            </div>
+          </div>
+
+          
         </div>
-        
-        
       </mat-step>
     
       <!-- Paso 2 -->
-      <mat-step label="Reserva">
-        <div>
+      <mat-step label="03. Confirmación y pago">
+        <div class="film-profile">
           <stepper-film-profile [showtime]="showtime"></stepper-film-profile>
-          <app-book-ticket></app-book-ticket>
+
+          <div class="user-step">
+            <div class="container-user">
+              <div class="container-user-header">
+                <span class="step-number">03</span>
+                <div class="container-user-header-body">
+                  <h2 class="container-user-header-body-title">CONFIRMACIÓN Y PAGO</h2>
+                  <p class="">Llena tus datos como aparecen en tu tarjeta</p>
+                </div>
+              </div>
+              <hr class="horizontal-line">
+
+              <app-payment-form></app-payment-form>
+
+            </div>
+          </div>
+
         </div>
       </mat-step>
     </mat-horizontal-stepper>

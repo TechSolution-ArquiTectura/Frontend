@@ -40,24 +40,30 @@
 
 .card-details{
   align-items: center;
-  justify-content: space-between;
+  display: flex;
+
   padding: 10px 20px;
+}
+
+.banner{
+  width: 150px;
 }
 
 .details{
   display: flex;
-  align-items: center;
-  padding-top: 7px;
+  align-items: start;
+  padding-top: 10px;
 
 }
 .quantity-details{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  
   background-color: #fff7c5;
 }
 .total-price-details{
+  margin-right: 25px;
   display: flex;
   flex-direction: column; /* Alinea los elementos verticalmente */
   align-items: center; /* Centra los elementos horizontalmente */
@@ -71,4 +77,65 @@
 
 .payment-details{
   margin-top: 20px;
+}
+
+.showtime-details{
+  padding-left: 30px ;
+}
+
+.details-label{
+  color: #3a4252;
+  font-size: 16px;
+}
+
+.details-unitPrice{
+  margin-left: 10px;
+  color: #3a4252;
+  font-weight: bolder;
+  font-size: 20px;
+
+}
+
+.icon{
+  color: #3a4252;
+}
+
+.quantity-booking{
+  margin-left: 10px;
+  height: 25px;
+  width: 60px;
+}
+
+@media screen and (max-width: 900px) {
+  .details-container{
+    flex-direction: column;
+  }
+  .card-details{
+    flex-direction: column;
+  }
+  .details{
+    flex-direction: column;
+  }
+  .quantity-details{
+    flex-direction: column;
+  }
+  .total-price-details{
+    flex-direction: row;
+  }
+  .total-price{
+    margin-left: 10px;
+  }
+  .payment-details{
+    margin-top: 0px;
+  }
+  .showtime-details{
+    padding-left: 0px ;
+  }
+  .details-label{
+    font-size: 14px;
+  }
+  .icon{
+    font-size: 14px;
+  }
+  
 }
