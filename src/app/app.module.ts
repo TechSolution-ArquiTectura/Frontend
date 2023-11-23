@@ -62,6 +62,7 @@ import { EditProfileModalComponent } from './components/client/profile-user/edit
 import { CommonModule } from '@angular/common';
 import { EditCineclubComponent } from './components/client/cineclubs/edit-cineclub/edit-cineclub.component';
 import { NewMovieComponent } from './components/client/cineclubs/movies-available/new-movie/new-movie/new-movie.component';
+import { BottomSheetComponent } from './components/client/films/components/bottom-sheet/bottom-sheet/bottom-sheet.component';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { NewMovieComponent } from './components/client/cineclubs/movies-availabl
     EditProfileModalComponent,
     EditCineclubComponent,
     NewMovieComponent,
+    BottomSheetComponent,
 
   ],
   imports: [

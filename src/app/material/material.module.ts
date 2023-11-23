@@ -28,6 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatCheckboxModule,
     MatNativeDateModule,
     MatExpansionModule,
+    MatBottomSheetModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -95,6 +97,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatCheckboxModule,
     MatNativeDateModule,
     MatExpansionModule,
+    MatBottomSheetModule
   ],
 })
 export class MaterialModule {}

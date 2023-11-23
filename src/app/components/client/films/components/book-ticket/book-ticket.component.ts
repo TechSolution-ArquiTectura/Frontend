@@ -22,14 +22,17 @@ export class BookTicketComponent implements OnInit {
   ShowtimeProfile!: Showtime;
   count = 0;
   totalPrice = 0;
-  ticket : Ticket = {
+/*   ticket : Ticket = {
     showtime: {
       id: 0,
     },
+    numberSeats: 0,
+    totalPrice: 0,
+
     customer: {
       id: 0,
     },
-  }
+  } */
   
   constructor(
     private _fb: FormBuilder,
@@ -57,7 +60,7 @@ export class BookTicketComponent implements OnInit {
   }
 
   postTicket(){
-    this.ticket.customer!.id = this.getCustomerId().id;
+/*     this.ticket.customer!.id = this.getCustomerId().id;
     this.ticket.showtime!.id = this.data.id;
     this.ticket.numberSeats = this.count;
     this.ticket.totalPrice = this.totalPrice;
@@ -65,7 +68,7 @@ export class BookTicketComponent implements OnInit {
     this._servTicket.addTicket(this.ticket).subscribe((res) => {
       console.log(res);
     }, (err) => { console.log(err); }
-    );
+    ); */
   }
 
   getShowtimeDetails(){
