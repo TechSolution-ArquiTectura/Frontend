@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   panelOpenState = false;
   ActorList: any[] = [];
   isBusiness: boolean = isBusiness();
+  url!: string;
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -47,7 +48,15 @@ export class ProfileComponent implements OnInit {
   }
 
   getSafeTrailerUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.FilmProfile.trailer);
+    this.url = this.FilmProfile.trailer;
+    if (this.url.startsWith('https://www.youtube.com/watch?v=')) {
+      this.url = this.url.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
+    } else if (this.url.startsWith('https://youtu.be')) {
+      var temp = this.url.split('?si=');
+      this.url = temp[0];
+      this.url = this.url.replace('https://youtu.be/', 'https://www.youtube.com/embed/');
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
 
