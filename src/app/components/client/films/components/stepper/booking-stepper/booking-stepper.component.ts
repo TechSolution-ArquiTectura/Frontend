@@ -10,6 +10,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { PaymentComponent } from '../../../../payment/payment/payment.component';
 import { TicketService } from 'src/app/core/services/ticket/ticket.service';
+import { BookingSuccessComponent } from '../booking-success/booking-success.component';
+import { MatDialog } from '@angular/material/dialog';
 
 const postalcode  = /^[0-9]{5}$/;
 const cvv  = /^[0-9]{3}$/;
@@ -52,7 +54,8 @@ export class BookingStepperComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _paymentService: CinephileProfileService,
-    private _ticketService: TicketService
+    private _ticketService: TicketService,
+    private dialog: MatDialog
   ) {
     this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
 
@@ -155,6 +158,7 @@ export class BookingStepperComponent implements OnInit {
       console.log(this.ticket);
       this._ticketService.addTicket(this.ticket).subscribe(
         (res) => {
+          this.openSuccessDialog();
 /*           console.log(res);
           alert('Ticket added successfully'); */
         },
@@ -167,6 +171,23 @@ export class BookingStepperComponent implements OnInit {
       alert('Please fill the form correctly');
     }
   }
+  
+  openSuccessDialog(): void {
+    const dialogRef = this.dialog.open(BookingSuccessComponent, {
+      width: '400px', // Puedes ajustar el tamaño según tus necesidades
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // El usuario hizo clic en alguna opción, manejar lógica aquí si es necesario
+      } else {
+        // El usuario cerró el diálogo, manejar lógica aquí si es necesario
+      }
+    });
+  }
+
+
+
 
   formatCreditCardNumber(event: any): void {
 

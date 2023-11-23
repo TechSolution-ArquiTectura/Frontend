@@ -1,0 +1,48 @@
+/* booking-success.component.css */
+
+:host {
+    display: block;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .success-message {
+    margin-bottom: 20px;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  button {
+    min-width: 120px;
+  }
+
+
+  .icon-check {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Agrega margen inferior si es necesario */
+  }
+  
+  .check {
+    background-color: #28a745;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: larger;
+  }

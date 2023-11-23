@@ -64,6 +64,7 @@ import { EditCineclubComponent } from './components/client/cineclubs/edit-cinecl
 import { NewMovieComponent } from './components/client/cineclubs/movies-available/new-movie/new-movie/new-movie.component';
 import { BottomSheetComponent } from './components/client/films/components/bottom-sheet/bottom-sheet/bottom-sheet.component';
 import { FilmProfileComponent } from './components/client/films/components/stepper/film-profile/film-profile.component';
+import { BookingSuccessComponent } from './components/client/films/components/stepper/booking-success/booking-success.component';
 
 
 @NgModule({
@@ -119,6 +120,7 @@ import { FilmProfileComponent } from './components/client/films/components/stepp
     NewMovieComponent,
     BottomSheetComponent,
     FilmProfileComponent,
+    BookingSuccessComponent,
 
   ],
   imports: [
