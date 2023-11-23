@@ -43,8 +43,10 @@
               </mat-accordion>
             </div>
           </div>
-          
-          <div class="w-full" style="margin-left: 20px;">
+
+
+          <div class="w-full">
+            <app-admin-schedule-films *ngIf="isBusiness"></app-admin-schedule-films>
             <film-showtimes-table [filmId]="idPost"></film-showtimes-table>
           </div>
       </div>

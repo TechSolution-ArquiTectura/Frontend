@@ -13,6 +13,8 @@ import { isBusiness } from 'src/app/util';
 export class MoviesAvailableComponent implements OnInit {
   idPost: any;
   films: any[] = [];
+  availableFilms: any[] = [];
+  seeAll: boolean = false;
   dateAvailable: string[] = [];
   isProfile: any;
   isBusiness: boolean = isBusiness();
@@ -35,8 +37,23 @@ export class MoviesAvailableComponent implements OnInit {
    this._empServiceShowtime.getAvailableFilmsByCineclubId(this.idPost).subscribe({
       next: (res) => {
         this.films = res;
+        this.showMovies(this.seeAll);
       }
     })
+  }
+
+  toogleMovies() {
+    this.seeAll = !this.seeAll;
+    this.showMovies(this.seeAll);
+  }
+
+  showMovies(showAll: boolean) {
+    if (this.films.length > 2 && !showAll) {
+      this.availableFilms = this.films.slice(0, 2);
+    }
+    else {
+      this.availableFilms = this.films;
+    }
   }
 
   openDialog(): void {

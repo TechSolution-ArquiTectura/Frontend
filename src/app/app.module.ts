@@ -66,6 +66,7 @@ import { BottomSheetComponent } from './components/client/films/components/botto
 import { FilmProfileComponent } from './components/client/films/components/stepper/film-profile/film-profile.component';
 import { BookingSuccessComponent } from './components/client/films/components/stepper/booking-success/booking-success.component';
 
+import { AdminScheduleFilmsComponent } from './components/client/films/components/admin-schedule-films/admin-schedule-films.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { BookingSuccessComponent } from './components/client/films/components/st
     BottomSheetComponent,
     FilmProfileComponent,
     BookingSuccessComponent,
+    AdminScheduleFilmsComponent,
 
   ],
   imports: [
