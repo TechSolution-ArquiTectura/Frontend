@@ -55,6 +55,10 @@ button {
 .primary-btn {
   background-color: var(--primary-color);
   color: var(--white-color);
+
+  &:hover {
+    background-color: var(--text-disable-color);
+  }
 }
 
 /* Input styles */
