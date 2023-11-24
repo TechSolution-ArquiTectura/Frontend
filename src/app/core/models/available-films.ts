@@ -1,7 +1,12 @@
+import { Business } from "./cineclub.model";
+import { Film } from "./film.model";
+
 export interface AvailableFilm{
     id: number;
-    business: any,
-    film: any,
-    isAvailable: any
+    business: Business,
+    film: Film,
+    customNotice: string,
+    isAvailable: any,
+    promotion: any,
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
+import { YtVideoService } from 'src/app/core/services/yt-video/yt-video.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Film } from 'src/app/core/models/film.model';
@@ -21,12 +22,15 @@ export class ProfileComponent implements OnInit {
   panelOpenState = false;
   ActorList: any[] = [];
   isBusiness: boolean = isBusiness();
+  url!: string;
+  videoDetails: any;
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
    constructor(
     private _servMoviesProfile: FilmsProfileService,
+    private _ytVideo: YtVideoService,
     private route : ActivatedRoute,
     private sanitizer: DomSanitizer,
     private _dialog: MatDialog,
@@ -42,12 +46,28 @@ export class ProfileComponent implements OnInit {
   getMoviebyId(id: number){
     this._servMoviesProfile.getMoviebyId(id).subscribe((res) => {
       this.FilmProfile = res;
+      this.getVideoDetails(this.FilmProfile.trailer)
     }, (err) => { console.log(err); }
     );
   }
 
+  getVideoDetails(videoUrl: string) {
+    this._ytVideo.getVideoDetails(videoUrl)
+      .subscribe((data: any) => {
+        this.videoDetails = data.items[0].snippet;
+      });
+  }
+
   getSafeTrailerUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.FilmProfile.trailer);
+    this.url = this.FilmProfile.trailer;
+    if (this.url.startsWith('https://www.youtube.com/watch?v=')) {
+      this.url = this.url.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
+    } else if (this.url.startsWith('https://youtu.be')) {
+      var temp = this.url.split('?si=');
+      this.url = temp[0];
+      this.url = this.url.replace('https://youtu.be/', 'https://www.youtube.com/embed/');
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
 

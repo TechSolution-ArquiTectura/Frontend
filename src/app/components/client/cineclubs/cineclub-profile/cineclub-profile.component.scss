@@ -71,15 +71,18 @@
   vertical-align: middle;
 }
 
-.rating {
-  margin-top: 10px;
+.rating-review {
+  padding-top: 10px;
   display: inline-block;
   vertical-align: middle;
+  padding-left: 0px;
 }
 
 ::ng-deep label.star {
-  padding: 3px !important;
-  font-size: 19px !important;
+  padding: 2px !important;
+  font-size: 20px !important;
+  margin-bottom: 10px;
+  color: var(--primary-color) !important;
 }
 
 .mat-card-actions {
@@ -125,8 +128,6 @@
 }
 
 .user-card {
-  margin-right: 20px;
-  margin-left: 20px;
   display: flex;
   padding: 15px;
   background-color: #eff2f7;

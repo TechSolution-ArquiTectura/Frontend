@@ -13,6 +13,7 @@ import { PaymentComponent } from '../components/client/payment/payment/payment.c
 import { PromotionsComponent } from '../components/client/promotions/promotions.component';
 import { PromotionsDetailComponent } from '../components/client/promotions-detail/promotions-detail.component';
 import { EditCineclubComponent } from '../components/client/cineclubs/edit-cineclub/edit-cineclub.component';
+import { BookingStepperComponent } from '../components/client/films/components/stepper/booking-stepper/booking-stepper.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: '', component: FilmsComponent },
       { path: 'peliculas', component: FilmsComponent },
       { path: 'peliculas/pelicula/:id', component: ProfileComponent },
+      { path: 'peliculas/pelicula/:id/booking', component: BookingStepperComponent},
       { path: 'explorar', component: MainComponent },
       { path: 'cineclubs', component: HomeComponent },
       { path: 'cineclubs/cineclub/:id', component: CineclubProfileComponent },

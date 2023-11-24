@@ -66,8 +66,8 @@
             <strong> Reseñas ({{ this.cineclub.commentsCount }})</strong>
           </h1>
         </div>
-        <div class="rating" *ngIf="!isBusiness && isLogged">
-          <mat-card-content>Escribe tu reseña</mat-card-content>
+        <div class="rating-review" *ngIf="!isBusiness && isLogged">
+          <p>Escribe tu reseña</p>
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -78,9 +78,8 @@
           ></ngx-star-rating>
         </div>
         <div class="review" *ngIf="!isBusiness && isLogged">
-          <mat-form-field [style.width.%]="95" appearance="outline">
+          <mat-form-field [style.width.%]="100" appearance="outline">
             <textarea
-              class="text"
               matInput
               type="text"
               placeholder="Escribir reseña"
@@ -162,12 +161,14 @@
               {{ userReview.comment }}
             </div>
           </div>
+          <a style="color: #F44336;" class="cursor-pointer ml-auto" (click)="deleteReviewById(userReview.id)">
+            <mat-icon>delete</mat-icon>
+          </a>
         </div>
       </div>
       <div
         class="flex align-items-center justify-content-center"
-        *ngIf="userReviews.length == 0"
-      >
+        *ngIf="userReviews.length == 0">
         <app-not-found message="reseñas" />
       </div>
     </div>

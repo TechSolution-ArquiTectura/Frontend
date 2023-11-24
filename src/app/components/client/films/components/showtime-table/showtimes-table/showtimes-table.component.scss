@@ -1,0 +1,80 @@
+/* Tu archivo de estilos CSS */
+
+/* ... otros estilos ... */
+
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .cineclub-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .business-info {
+    margin-bottom: 10px;
+  }
+  
+  .business-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffad00;
+    text-transform: uppercase;
+  }
+  
+  .business-address {
+    color: #64748b;
+    font-weight: bold;
+  }
+  
+  .playtime-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  button.mat-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 1px solid var(--primary-color); /* Borde del color principal */
+    border-radius: 6px; /* Esquinas redondeadas */
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Cada botón en su línea */
+    margin: 5px; /* Espacio entre botones */
+    box-sizing: border-box; /* Tamaño total incluyendo el borde */
+  }
+  
+  button.mat-button:hover {
+    background-color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark); /* Cambia color del borde al pasar el mouse */
+  }
+  
+  button.mat-button.selected {
+    background-color: #ffad00; /* Color de fondo cuando esté seleccionado */
+    border-color: #ffad00; /* Borde cuando esté seleccionado */
+    color: #fff; /* Color del texto cuando esté seleccionado */
+  }
+
+
+  .business-address-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+
+  ::ng-deep .business-address-container-icon mat-icon {
+    color: #64748b; /* Cambia el color del ícono a tu preferencia */
+    font-size: 17px;
+  }

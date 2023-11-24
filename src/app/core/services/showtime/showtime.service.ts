@@ -13,4 +13,8 @@ export class ShowtimeService {
     return this._http.get(`https://tucine-api.onrender.com/api/TuCine/v1/businesses/${id}/showtimes`);
   }
 
+  getShowtimebyId(id: number): Observable<any>{
+    return this._http.get(`https://tucine-api.onrender.com/api/TuCine/v1/showtimes/${id}`);
+  }
+
 }

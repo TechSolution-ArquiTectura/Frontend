@@ -1,0 +1,77 @@
+$borderColor: #ccc; // Definir el color del borde
+
+// Reducir la luminosidad del color del borde
+$textColor: darken($borderColor, 10%); // Ajusta el porcentaje según lo oscuro que desees el texto
+
+.duration-box {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid $borderColor;
+  border-radius: 5px;
+  color: $textColor; // Aplicar el color ligeramente más oscuro al texto
+}
+
+.title {
+  font-size: 1.5em;
+  text-transform: uppercase;
+  margin: 0px;
+}
+.movie-details-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.poster {
+    max-width: 100%; /* Establecer un ancho máximo */
+    max-height: 450px; /* Establecer una altura máxima */
+    width: auto; /* Permitir que el ancho se ajuste automáticamente */
+}
+
+.cinema-container {
+    
+    align-items: center;
+  }
+  .subtitle-cineclub {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    margin: 0px;
+  }
+  .cinema-title {
+    font-size: 1.2em;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    color: #FFAD00;
+  }
+  .cinema-name-body{
+    margin: 10px 15px 30px 24px;
+    font-weight: bold;
+  }
+  .cinema-name {
+    font-size: 1.2em;
+    margin-right: 20px;
+  }
+mat-icon{
+    color: #FFAD00;
+    font-size: 19px;
+    margin: 0px;
+}
+
+.movie-details-body{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .poster {
+        max-height: 350px;
+    }   
+}
+
+@media screen and (max-width: 900px) {
+    .poster {
+        max-height: 250px;
+    }   
+}

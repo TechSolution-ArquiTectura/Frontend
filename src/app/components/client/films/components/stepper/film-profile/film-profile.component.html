@@ -1,0 +1,43 @@
+<div class="movie-details">
+    <div class="movie-details-header">
+        <h2 class="title">{{ showtime?.availableFilm?.film?.title }}</h2>
+        <span class="duration-box">{{showtime?.availableFilm?.film?.duration}} min</span>
+    </div>
+
+    <img src="{{ showtime?.availableFilm?.film?.poster }}" alt="Poster de la película" class="poster">
+
+    <div class="movie-details-body">
+        <div class="cinema-container">
+            <div class="subtitle-cineclub">
+                <mat-icon>arrow_forward_ios</mat-icon>
+                <p class="cinema-title">CINECLUB</p>
+            </div>
+            <div class="cinema-name-body">
+                <p class="cinema-name">{{ showtime?.availableFilm?.business?.name }}</p>
+            </div>
+            
+        </div>
+
+        <div class="cinema-container">
+            <div class="subtitle-cineclub">
+                <mat-icon>arrow_forward_ios</mat-icon>
+                <p class="cinema-title">Fecha</p>
+            </div>
+            <div class="cinema-name-body">
+                <p class="cinema-name">{{ showtime?.playDate }}</p>
+            </div>
+        </div>
+
+        <div class="cinema-container">
+            <div class="subtitle-cineclub">
+                <mat-icon>arrow_forward_ios</mat-icon>
+                <p class="cinema-title">Horario</p>
+            </div>
+            <div class="cinema-name-body">
+                <p class="cinema-name">{{ showtime?.playtime }}</p>
+            </div>
+            
+        </div>
+    </div>
+
+</div>

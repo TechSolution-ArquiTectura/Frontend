@@ -1,69 +1,23 @@
-          <div class="w-full">
-            <div class="flex flex-column mx-4">
-
-              <div class="flex justify-content-end ">
-                <mat-form-field appearance="outline" class="bg-white">
-                  <mat-label>Buscar</mat-label>
-                  <input matInput (keyup)="applyFilter($event)" #input>
-                </mat-form-field>
-              </div>
-            
-            <div class=" flex mat-elevation-z8">
-              <table mat-table [dataSource]="dataSource" matSort>
-            
-                <ng-container matColumnDef="cineclub">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by cineclub"
-                  > Cineclub </th>
-                  <td mat-cell *matCellDef="let element"> {{element.cineclub}} </td>
-                </ng-container>
-            
-                <!-- Weight Column -->
-                <ng-container matColumnDef="category">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by category"
-                  > Categoria </th>
-                  <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-                </ng-container>
-            
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date"
-                  > Fecha </th>
-                  <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="time">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by time"
-                  > Horario </th>
-                  <td mat-cell *matCellDef="let element"> {{element.time}} </td>
-                </ng-container>
-          
-                <ng-container matColumnDef="price">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price"
-                  > Precio </th>
-                  <td mat-cell *matCellDef="let element"> S/. {{element.price}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="action">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Reservar
-                  </th>
-                  <td mat-cell *matCellDef="let element"> 
-                    <button mat-icon-button color="primary" (click)="openBuyTicket(element)">
-                      <mat-icon>book_online</mat-icon>
-                    </button>
-                  </td>
-                </ng-container>
-            
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
-
+<div class="wrapper">
+  <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+    <mat-tab *ngFor="let date of uniquePlayDates; let i = index" [label]="formatDate(date)">
+      <div *ngIf="selectedTabIndex === i">
+        <div *ngFor="let business of businessWithFunctions" class="cineclub-section">
+          <div class="business-info">
+            <p class="business-name">{{ business.name }}</p>
+            <div class="business-address-container">
+              <span class="business-address-container-icon"><mat-icon>location_on</mat-icon></span>
+              <p class="business-address">{{ business.address }}</p>
             </div>
-            <div class="flex mat-elevation-z8 justify-content-end bg-white">
-              <mat-paginator [pageSizeOptions]="[5, 10, 15]"
-              showFirstLastButtons
-              aria-label="Select page of periodic elements">
-              </mat-paginator>
-            </div>
-          </div>    
+            
+          </div>
+          <div class="playtime-buttons">
+            <button mat-button *ngFor="let playtime of business.playtimes" (click)="showBottomSheet(playtime, business)">
+              {{ playtime.playtime }}
+            </button>
+          </div>
         </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,56 +1,74 @@
-<div>
-  <div class="flex flex-column  xl:mx-8 lg:mx-8 md:mx-0 sm:mx-0" style="background-color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
-    <div class="flex video-header justify-content-center">
-      <!-- <iframe [src]="getSafeTrailerUrl()" width="560" height="315" frameborder="0" allowfullscreen></iframe> -->
-    </div>
-    <div class="card" style="margin-right: 2rem ; margin-left: 2rem;">
-      <div class="flex flex-column justify-content-center my-4">
-        <div class="title">
-          <h1 class="font-bold">{{FilmProfile.title | uppercase }}</h1>
+<div class="wrapper">
+  <div class="flex video-header justify-content-center relative">
+    <a class="play-btn" href="{{FilmProfile.trailer}}" target="_blank"><img src="/assets/icons/play-circle.svg" alt="" /></a>
+    <img
+    [src]="
+        videoDetails.thumbnails.maxres ? videoDetails.thumbnails.maxres.url : videoDetails.thumbnails.high.url
+        "
+      alt="Video Thumbnail"
+      class="yt-video"
+      />
+      <!-- <iframe title="yt-iframe" [src]="getSafeTrailerUrl()" allowfullscreen class="yt-iframe"></iframe> -->
+  </div>
+  <div class="card">
+    <div class="flex flex-column justify-content-center my-4">
+      <div class="title">
+        <h1 class="font-bold">{{ FilmProfile.title | uppercase }}</h1>
+      </div>
+
+      <div class="flex flex-col lg:flex-row main gap-6">
+        <div class="flex flex-column" style="max-width: 300px; width: 100%">
+          <div class="img-container">
+            <img
+              class="img-poster"
+              src="{{
+                FilmProfile.poster.startsWith('http')
+                  ? FilmProfile.poster
+                  : '/assets/pictures/poster/no-poster.png'
+              }}"
+              alt="Imagen referencial"
+              style="width: 100%; height: auto; max-width: 100%"
+            />
+          </div>
+          <div
+            class="img-container"
+            fxLayout="column"
+            fxLayoutAlign="space-around center"
+            style="max-width: 300px; width: 100%"
+          >
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title> TÍTULO ORIGINAL </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{ FilmProfile.title }}</p>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title> REPARTO </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ul class="no-bullets">
+                  <li *ngFor="let actor of ActorList">{{ actor.Actor }}</li>
+                </ul>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title> SINOPSIS </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{ FilmProfile.synopsis }}</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
         </div>
-
-        <div class=" flex flex-row main">
-
-          <div class="flex flex-column"style="max-width: 300px; width: 100%;">
-            <div class="img-container" >
-              <img class="img-poster" src="{{ FilmProfile.poster }}" alt="Imagen referencial" style="width: 100%; height: auto; max-width: 100%;" />
-            </div>
-            <div class="img-container" fxLayout="column" fxLayoutAlign="space-around center" style="max-width: 300px; width: 100%;">
-              <mat-accordion>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      TÍTULO ORIGINAL
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <p>{{ FilmProfile.title }}</p>
-                </mat-expansion-panel>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      REPARTO
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <ul class="no-bullets">
-                    <li *ngFor="let actor of ActorList">{{ actor.Actor }}</li>
-                  </ul>
-                </mat-expansion-panel>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      SINOPSIS
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <p>{{ FilmProfile.synopsis }}</p>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </div>
-          </div>
-
-          <div class="w-full">
-            <app-admin-schedule-films *ngIf="isBusiness"></app-admin-schedule-films>
-            <film-booking-stepper *ngIf="!isBusiness" [filmId]="idPost"></film-booking-stepper>
-          </div>
+        <div class="w-full">
+          <film-showtimes-table
+            [filmId]="idPost"
+            *ngIf="!isBusiness"
+          ></film-showtimes-table>
+          <app-admin-schedule-films
+            *ngIf="isBusiness"
+          ></app-admin-schedule-films>
+        </div>
       </div>
     </div>
   </div>

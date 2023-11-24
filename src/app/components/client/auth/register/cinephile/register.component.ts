@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { Gender,User } from 'src/app/core/models/users.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const phonePattern = /^[0-9]{9}$/;
 
@@ -32,6 +33,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _empService: CinephileProfileService,
+    private router: Router
 
     ) {
     this.empUserForm = this._fb.group(
@@ -66,30 +68,30 @@ export class RegisterComponent implements OnInit {
 
   onFormSubmit() {
     if (this.empUserForm.valid) {
-
       const formValue = { ...this.empUserForm.value };
       delete formValue.confirmPassword;
-
+  
       this.person.name = formValue.first_name;
       this.person.lastname = formValue.last_name;
       this.person.birthdate = formValue.birthdate;
       this.person.phoneNumber = formValue.phone;
       this.person.email = formValue.email;
       this.person.password = formValue.password;
-
+  
       const selectedGender = this.genders.find(gender => gender.name === formValue.Gender_id);
       this.person.gender = selectedGender ? [selectedGender.name] : [];
-
-      console.log(this.person);
-
+  
       this._empService.signUpPerson(this.person).subscribe({
-        next: () =>{
-          alert('Account successfully created');
+        next: () => {
+          //alert('Account successfully created');
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
         },
-        error: (err:any)=>{
+        error: (err: any) => {
           console.error(err);
-        }
-      })
+        },
+      });
     }
   }
 

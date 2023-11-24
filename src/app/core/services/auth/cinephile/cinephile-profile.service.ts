@@ -21,6 +21,10 @@ export class CinephileProfileService {
     return this._http.get(`${this.apiURL}/users`);
   }
 
+  getPersonById(id:any): Observable<any>{
+    return this._http.get(`${this.apiURL}/users/${id}`);
+  }
+
   signUpPerson(data: User): Observable<any>{
     return this._http.post(`${this.apiURL}/users/auth/sign-up`,data);
   }
