@@ -124,11 +124,13 @@ export class BookingStepperComponent implements OnInit {
   }
 
   goToRegister() {
+    const currentUrl = this.router.url; // Obtén la URL actual
     this.router.navigate(['authPage/register/:cinephile']);
   }
-
+  
   goToSignIn() {
-    this.router.navigate(['authPage']);
+    const currentUrl = this.router.url; // Obtén la URL actual
+    this.router.navigate(['authPage'], { queryParams: { returnUrl: currentUrl } });
   }
 
 /*   PaymentComponent */
