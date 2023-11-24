@@ -1,8 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* You can add global styles to this file, and also import other style files */
 /* Colors */
 :root {
   --primary-color: #ffad00;
-  --secondary-color: #fffcef;
+  --secondary-color: #ffffff;
   --disable-color: #f3f3f3;
   --text-disable-color: #828282;
   --text-input-color: #64748b;
@@ -51,6 +55,10 @@ button {
 .primary-btn {
   background-color: var(--primary-color);
   color: var(--white-color);
+
+  &:hover {
+    background-color: var(--text-disable-color);
+  }
 }
 
 /* Input styles */
@@ -67,7 +75,7 @@ button {
 
 .input-text {
   display: block;
-  width: calc(100% - 24px);
+  width: 100%;
   margin-bottom: 16px;
   padding: 12px;
   font-size: 16px;
@@ -77,5 +85,54 @@ button {
 
   &::placeholder {
     color: var(--text-input-color);
+  }
+}
+
+.wrapper {
+  width: 100%;
+  min-height: calc(100vh - 90px);
+  margin: 0 auto;
+  background-color: var(--white-color);
+
+  @media screen and (min-width: 1201px) {
+    max-width: 1200px;
+  }
+}
+
+.options-links {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 auto;
+
+  & > * {
+    display: block;
+    font-family: "Inter", sans-serif;
+    color: var(--text-input-color);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+
+    & > div {
+      padding: 20px 24px 28px;
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    display: flex;
+  }
+}
+
+.options-links .active {
+  color: var(--primary-color) !important;
+  &::after {
+    content: "";
+    display: block;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
   }
 }

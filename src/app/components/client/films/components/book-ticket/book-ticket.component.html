@@ -1,68 +1,54 @@
-<div mat-dialog-title>
-    <h1> <strong>Reservas</strong> </h1>
-</div>
-<form [formGroup]="empOfferForm" (ngSubmit)="onFormSubmit()">
-    <div mat-dialog-content class="content">
-        <div class="card">
-            <div class="card-container flex align-items-center justify-content-start">
-                <div class="flex w-4rem align-items-center justify-content-center p-4  mr-3">
-                    <img src={{data.film.poster}} alt="poster" style="width: 100%;">
-                </div>
-                <div class=" flex align-items-center justify-content-center p-4  mr-3">
-                    <div>
-                        <div class="mb-1">
-                            <strong>DESCRIPCIÓN DE LA RESERVA</strong> 
-                         </div>
-                        <div>
-                            <strong>Película: </strong>
-                            <span>{{data.title}}</span>    
+<div>
+    <form [formGroup]="empOfferForm" (ngSubmit)="onFormSubmit()">
+        <div class="content">
+            <div class="card">
+                <div class="card-details p-5">
+                    <div class="banner">
+                        <img [src]="showtime?.availableFilm?.business?.bannerSrc" alt="logo">
+                    </div>
+                    <div class="showtime-details">
+                        <div class="details">
+                            <span class="details-label"><strong>Cineclub {{showtime?.availableFilm?.business?.name}}</strong></span> 
                         </div>
-                            <strong>Cineclub: </strong>
-                            <span>{{data.cineclub}}</span>   
-                        <div>
-                            <strong>Fecha: </strong>
-                            <span>{{data.date}}</span>  
+                        <div class="details">
+                            <span class="details-label"><strong>{{showtime?.playDate}} | {{showtime?.playtime}}</strong></span>
                         </div>
-                            <strong>Hora: </strong>
-                            <span>{{data.time}}</span>  
-                        <div >
-                            <strong>Dirección: </strong>
-                            <span>{{data.address}}</span>  
+                        <div class="details">
+                            <mat-icon aria-hidden="false" aria-label="location" fontIcon="location_on" class="icon"></mat-icon>
+                            <span class="details-label">{{showtime?.availableFilm?.business?.address}}</span>
                         </div> 
                     </div>
-
                 </div>
             </div>
+            <div class="quantity-details">
+                <div class="p-5">
+                    <div class="details pb-5">
+                        <span class= "details-label"><strong>GENERAL:</strong></span>
+                        <span class="details-unitPrice">S/ {{showtime?.unitPrice}}</span>
+                    </div>
+                    <div class="flex align-items-center justify-content-start details">
+                        <div class="flex align-items-center justify-content-center ">
+                            <span class= "details-label"><strong>CANTIDAD:</strong></span>
+                        </div>
+        
+                        <div class="counter flex align-items-center justify-content-center">
+                            <select formControlName="selectedQuantity" class="quantity-booking">
+                                <option *ngFor="let option of quantityOptions" [value]="option">{{ option }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>  
+                <div class="total-price-details">
+                    <div>
+                        <p>TOTAL</p>
+                    </div>
+                    <div>
+                        <h1 class="total-price"><strong>S/ {{ totalPrice }}</strong></h1>
+                    </div>                  
+                </div>
+            </div>
+    
         </div>
-        <div class="ticket-details">
-            <div class="mb-1">
-               <strong>DETALLE DE LA RESERVA</strong> 
-            </div>
-            <div>
-                <strong>General: </strong>
-                <span>S/ {{data.price}}</span>
-            </div>
-            <div class="flex align-items-center justify-content-start">
-                <div class="flex align-items-center justify-content-center ">
-                    <strong>Cantidad: </strong>
-                </div>
+    </form>
+</div>
 
-                <div class="counter flex align-items-center justify-content-center">
-                    <button mat-raised-button (click)="decrement()">-</button>
-                    <span>{{ count }}</span>
-                    <button mat-raised-button (click)="increment()">+</button>
-                </div>
-            </div >
-
-            <div>
-                <strong>Total: </strong>
-                <span>S/ {{ totalPrice }}</span>
-            </div>
-        </div>
-
-    </div>
-    <div mat-dialog-actions class="action">
-        <button mat-raised-button type = "button" [mat-dialog-close]="false">Cancelar</button>
-        <button mat-raised-button color="primary" (click)="postTicket()">Reservar</button>
-    </div>
-</form>

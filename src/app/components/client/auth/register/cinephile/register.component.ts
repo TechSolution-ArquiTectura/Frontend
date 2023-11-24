@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
-import { Gender } from 'src/app/core/models/user-profile.model';
-import { Customer } from 'src/app/core/models/user-profile.model';
-import { Person } from 'src/app/core/models/user-profile.model';
-import { Type } from '@angular/compiler';
-import { NgxStarRatingModule } from 'ngx-star-rating';
+import { Gender,User } from 'src/app/core/models/users.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
-
-const dniPattern = /^[0-9]{8}$/;
 const phonePattern = /^[0-9]{9}$/;
-
 
 @Component({
   selector: 'auth-register-cinephile',
@@ -24,26 +18,22 @@ export class RegisterComponent implements OnInit {
 
   genders: Gender[] = [];
 
-  person: Person = {
+  person: User = {
     name: '',
     lastname: '',
-    numberDni: '',
-    birthdate: '',
-    imageSrc: '',
-    phone: '',
     email: '',
+    phoneNumber: '',
     password: '',
-    Gender_id: {
-      id: 0,
-    },
-    TypeUser_id: {
-      id: 1,
-    }
+    birthdate: '',
+    gender: [],
+    typeUser: ['CINEPHILE'],
   }
+
 
   constructor(
     private _fb: FormBuilder,
     private _empService: CinephileProfileService,
+    private router: Router
 
     ) {
     this.empUserForm = this._fb.group(
@@ -59,10 +49,6 @@ export class RegisterComponent implements OnInit {
           Validators.maxLength(80),
         ]),
         Gender_id: new FormControl('', Validators.required),
-        number_dni: new FormControl('', [
-          Validators.required,
-          Validators.pattern(dniPattern),
-        ]),
         birthdate: new FormControl('', Validators.required),
         phone: new FormControl('', [
           Validators.required,
@@ -75,53 +61,37 @@ export class RegisterComponent implements OnInit {
       { validator: this.passwordMatchValidator }
     );
   }
-  
+
   ngOnInit(){
     this.getUserGender();
   }
 
   onFormSubmit() {
     if (this.empUserForm.valid) {
-
-      const formValue = { ...this.empUserForm.value }; // Eliminar ConfirmPassword
+      const formValue = { ...this.empUserForm.value };
       delete formValue.confirmPassword;
-
+  
       this.person.name = formValue.first_name;
       this.person.lastname = formValue.last_name;
-      this.person.numberDni = formValue.number_dni;
       this.person.birthdate = formValue.birthdate;
-      this.person.phone = formValue.phone;
+      this.person.phoneNumber = formValue.phone;
       this.person.email = formValue.email;
       this.person.password = formValue.password;
-      this.person.Gender_id!.id= formValue.Gender_id;
-
-      this._empService.addPerson(this.person).subscribe({
-        next: (addedPerson:any) =>{
-
-          const customerId = addedPerson.id;
-
-          const customer: Customer = {
-            id: null,
-            Person_id: {
-              id: customerId
-            }
-          };
-
-          this._empService.addCustomer(customer).subscribe({
-            next: (addedCustomer: any) => {
-              alert('Account successfully created');
-              //this._router.navigateByUrl('/home');
-            },
-            error: (error: any) => {
-              console.error(error);
-            }
-          });
-          
+  
+      const selectedGender = this.genders.find(gender => gender.name === formValue.Gender_id);
+      this.person.gender = selectedGender ? [selectedGender.name] : [];
+  
+      this._empService.signUpPerson(this.person).subscribe({
+        next: () => {
+          //alert('Account successfully created');
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
         },
-        error: (err:any)=>{
+        error: (err: any) => {
           console.error(err);
-        }
-      })    
+        },
+      });
     }
   }
 
@@ -139,15 +109,14 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-  
+
     if (password?.value !== confirmPassword?.value) {
       confirmPassword?.setErrors({ mismatch: true });
     } else {
       confirmPassword?.setErrors(null);
     }
-  
+
     return null;
   };
-  
 
 }

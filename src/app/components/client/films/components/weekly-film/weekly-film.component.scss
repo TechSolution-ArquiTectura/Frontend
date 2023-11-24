@@ -11,7 +11,7 @@
 
 .film-container__elements {
   display: flex;
-  gap: 24px;
+  gap: 30px;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -22,13 +22,11 @@
 @media only screen and (min-width: 840px) {
   .film-container__elements {
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 }
 
 .weekly-film {
-  position: relative;
-
   img {
     object-fit: cover;
     width: 250px;
@@ -37,7 +35,7 @@
 
   .overlay {
     position: absolute;
-    bottom: 5px;
+    bottom: 0;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -68,20 +66,14 @@
   }
 }
 
-.not-found {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 32px 0 40px;
-
-  & > p {
-    font-style: italic;
-    color: var(--text-input-color);
+.film-card {
+  &__poster {
+    position: relative;
   }
-  & > img {
-    width: 250px;
+  &__title {
+    font-weight: 600;
+    padding-top: 4px;
+    max-width: 250px;
   }
 }
 
@@ -125,7 +117,6 @@
 .my-pagination ::ng-deep .ngx-pagination .small-screen {
   display: none !important;
 }
-
 
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: var(--text-input-color);

@@ -1,14 +1,11 @@
-import { Film } from "./film.model";
-import { Promotion } from "./promotion";
-import { Business } from "./user-profile.model";
+import { AvailableFilm } from './available-films';
 
 export interface Showtime{
     id?: number;
-    date?: string;
-    time?: string;
-    price?: number;
-    film?: Film;
-    Business_id?: Business;
-    Promotion_id?: Promotion;
+    availableFilm: AvailableFilm;
+    playDate?: string;
+    playtime?: string;
+    capacity?: number;
+    unitPrice?: number;
 }
 

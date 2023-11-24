@@ -55,7 +55,18 @@ import { ReviewComponent } from './components/client/review/review.component';
 import { PromotionCardComponent } from './components/client/promotions/promotion-card/promotion-card.component';
 import { DeletePromotionDialogComponent } from './components/client/promotions/delete-promotion-dialog/delete-promotion-dialog.component';
 import { NewPromotionDialogComponent } from './components/client/promotions/new-promotion-dialog/new-promotion-dialog.component';
-import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-detail/cineclub-detail.component';
+import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { ShowtimesTableComponent } from './components/client/films/components/showtime-table/showtimes-table/showtimes-table.component';
+import { BookingStepperComponent } from './components/client/films/components/stepper/booking-stepper/booking-stepper.component';
+import { EditProfileModalComponent } from './components/client/profile-user/edit-profile-modal/edit-profile-modal.component';
+import { CommonModule } from '@angular/common';
+import { EditCineclubComponent } from './components/client/cineclubs/edit-cineclub/edit-cineclub.component';
+import { NewMovieComponent } from './components/client/cineclubs/movies-available/new-movie/new-movie/new-movie.component';
+import { BottomSheetComponent } from './components/client/films/components/bottom-sheet/bottom-sheet/bottom-sheet.component';
+import { FilmProfileComponent } from './components/client/films/components/stepper/film-profile/film-profile.component';
+import { BookingSuccessComponent } from './components/client/films/components/stepper/booking-success/booking-success.component';
+
+import { AdminScheduleFilmsComponent } from './components/client/films/components/admin-schedule-films/admin-schedule-films.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +112,18 @@ import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-
     PromotionCardComponent,
     DeletePromotionDialogComponent,
     NewPromotionDialogComponent,
-    CineclubDetailComponent,
+    NotFoundComponent,
+    ShowtimesTableComponent,
+    BookingStepperComponent,
+    ProfileUserComponent,
+    EditProfileModalComponent,
+    EditCineclubComponent,
+    NewMovieComponent,
+    BottomSheetComponent,
+    FilmProfileComponent,
+    BookingSuccessComponent,
+    AdminScheduleFilmsComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -113,11 +135,14 @@ import { CineclubDetailComponent } from './components/client/cineclubs/cineclub-
     MatPaginatorModule,
     MatDialogModule,
     NgxStarRatingModule,
+    CommonModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
       libraries: ['places'],
     }),
   ],
+  entryComponents: [EditProfileModalComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

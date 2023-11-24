@@ -1,7 +1,7 @@
 <section class="wrapper">
   <div class="promotions">
     <h1 class="title">Promociones</h1>
-    <div class="container">
+    <div class="promotions-container">
       <!-- Contenedor de promoción como botón -->
       <button
         *ngFor="let promotion of promotions"
@@ -10,11 +10,12 @@
       >
         <app-promotion-card
           [promotion]="promotion"
-          [typeUser]="TYPE_USER"
+          [typeUser]="typeUser"
         ></app-promotion-card>
       </button>
     </div>
-    <div class="actions" *ngIf="TYPE_USER == 'business'">
+    <app-not-found *ngIf="promotions.length == 0" message="promociones"></app-not-found>
+    <div class="actions" *ngIf="typeUser == 'business'">
       <button mat-fab class="new-promotion" (click)="openNewPromotion()">
         <mat-icon>add</mat-icon>
       </button>

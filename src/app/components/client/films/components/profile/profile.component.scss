@@ -11,14 +11,74 @@ mat-panel-title{
 }
 
 .card{
-  margin-right: 2rem ; 
+  margin-right: 2rem ;
   margin-left: 2rem;
-  
+
 }
 
-@media (max-width: 1100px) {
+.table{
+  margin-right: 10rem ;
+  margin-left: 10rem;
+}
+
+.card{
+  margin-right: 8rem ;
+  margin-left: 8rem;
+}
+
+@media (max-width: 1300px) {
   .img-poster{
     width: 30%;
     height: auto;
+  }
+
+  .table{
+    margin-right: 5rem ;
+    margin-left: 5rem;
+  }
+
+  .card{
+    margin-right: 2rem;
+    margin-left: 2rem;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .img-poster{
+    width: 30%;
+    height: auto;
+  }
+
+  .table{
+    margin: 0px;
+  }
+
+  .card{
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
+}
+
+.yt-video {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  filter: brightness(30%);
+}
+
+.play-btn {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  cursor: pointer;
+  transition: 0.3s;
+
+  & > img {
+    width: 64px;
+    height: 64px;
   }
 }

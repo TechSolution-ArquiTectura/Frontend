@@ -7,16 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent {
-  constructor(private router: Router) {}
-
-  redirectToAuthPage(){
-    this.router.navigate(['/authPage']);
+  constructor(private router: Router) {
+    this.router.navigate(['/dashboard/peliculas']);
   }
-
-
-  redirectToElection(){
-    this.router.navigate(['/user-election']);
-  }
-
-
 }

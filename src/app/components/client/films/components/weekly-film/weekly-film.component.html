@@ -11,24 +11,32 @@
       "
       class="weekly-film"
     >
-      <img
-        src="{{ movie.poster }}"
-        alt="{{ movie.title }}"
-      />
-      <div class="overlay">
-        <span
-        [routerLink]="['/dashboard/peliculas/pelicula', movie.id]"
-        class="button"
-        >VER HORARIOS</span
-        >
+      <div class="film-card">
+        <div class="film-card__poster">
+          <img
+            src="{{
+              movie.poster.startsWith('http')
+                ? movie.poster
+                : '/assets/pictures/poster/no-poster.png'
+            }}"
+            alt="{{ movie.title }}"
+          />
+          <div class="overlay">
+            <span
+              [routerLink]="['/dashboard/peliculas/pelicula', movie.id]"
+              class="button"
+              >VER HORARIOS</span
+            >
+          </div>
+        </div>
+        <div class="film-card__title">
+          {{ movie.title }} ({{ movie.year}})
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="not-found" *ngIf="movies.length == 0">
-    <img src="/assets/icons/no-shows-found.svg" alt="" />
-    <p>No hay películas disponibles</p>
-  </div>
+  <app-not-found *ngIf="movies.length == 0" message="películas"></app-not-found>
 </div>
 
 <div class="paginator">

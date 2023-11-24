@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { Business } from '../../models/cineclub.model';
+import { Observable, Subject, tap } from 'rxjs';
+import { Film } from '../../models/film.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,13 @@ export class FilmsProfileService {
 
   private apiUrl = 'https://tucine-api.onrender.com/api/TuCine/v1';
 
+  private _refresh$ = new Subject<void>();
+
   constructor(private _http: HttpClient) {}
+
+  get refresh$(){
+    return this._refresh$;
+  }
 
   addMovieProfile(data: any): Observable<any>{
     return this._http.post(this.apiUrl+'/films',data);
@@ -66,7 +72,15 @@ export class FilmsProfileService {
   }
 
   getCineclubById(id: number): Observable<any>{
-    return this._http.get(this.apiUrl+`/businesses/${id}`);
+    return this._http.get(this.apiUrl+`/businesses/${id}`).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );;
+  }
+
+  public getFilms(): Observable<Film[]> {
+    return this._http.get<Film[]>(this.apiUrl+'/films');
   }
 
 }

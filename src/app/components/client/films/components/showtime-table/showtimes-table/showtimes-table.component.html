@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+    <mat-tab *ngFor="let date of uniquePlayDates; let i = index" [label]="formatDate(date)">
+      <div *ngIf="selectedTabIndex === i">
+        <div *ngFor="let business of businessWithFunctions" class="cineclub-section">
+          <div class="business-info">
+            <p class="business-name">{{ business.name }}</p>
+            <div class="business-address-container">
+              <span class="business-address-container-icon"><mat-icon>location_on</mat-icon></span>
+              <p class="business-address">{{ business.address }}</p>
+            </div>
+            
+          </div>
+          <div class="playtime-buttons">
+            <button mat-button *ngFor="let playtime of business.playtimes" (click)="showBottomSheet(playtime, business)">
+              {{ playtime.playtime }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

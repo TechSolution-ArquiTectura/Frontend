@@ -9,7 +9,7 @@ import { Person } from 'src/app/core/models/person.model';
 })
 export class PersonService {
   public personsList:Person[]=[]
-  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/persons"
+  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/users"
   constructor(private http: HttpClient) {
     this.getPersons()
    }
@@ -28,7 +28,6 @@ export class PersonService {
 
   public get(url:string){
     return this.http.get(url); //Get host
-
   }
 }
 

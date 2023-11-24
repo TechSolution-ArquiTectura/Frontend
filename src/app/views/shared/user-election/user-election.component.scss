@@ -1,4 +1,4 @@
-.container {
+.user-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -99,7 +99,7 @@
 }
 
 @media (max-width: 652px) {
-  .container{
+  .user-container{
     height: 150vh;
   }
   .title{

@@ -9,7 +9,7 @@
   }
 }
 
-.wrapper {
+.card-wrapper {
   display: flex;
   height: 170px;
 }
@@ -61,7 +61,7 @@
         top: 30px;
         display: flex;
         flex-direction: column;
-        width: 120px;
+        width: 140px;
         color: var(--text-input-color);
         box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 
@@ -76,7 +76,7 @@
 
         button {
           background-color: var(--white-color);
-          padding: 10px 16px;
+          padding: 14px 20px;
           text-align: left;
           &:hover {
             background-color: var(--secondary-color);

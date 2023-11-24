@@ -22,9 +22,17 @@ export class CineclubService {
     return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 
+  public getCineclubByUserId(userId: any): Observable<Business> {
+    return this.http.get<Business>(`${this.apiURL}/user/${userId}`);
+  }
+
   public searchCineclubs(title: string, cineclubs: Business[]): Business[] {
 
     return cineclubs.filter(cineclub => cineclub.name.toLowerCase().includes(title.toLowerCase()));
+  }
+
+  public updateCineclub(id: number, data: any): Observable<any>{
+    return this.http.put(this.apiURL+`/${id}`,data);
   }
 
   public get(url:string){

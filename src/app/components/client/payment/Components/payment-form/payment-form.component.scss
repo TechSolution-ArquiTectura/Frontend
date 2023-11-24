@@ -1,5 +1,5 @@
-.container{
-    background-color: #F8FAFC;
+.pay-container{
+    background-color: white;
 }
 .title{
     font-size: 3vh;
@@ -9,42 +9,42 @@
     margin-bottom: 30px;
     color: #64748B;
 }
-  
+
 
 .form-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0px; 
+    margin-bottom: 0px;
   }
-  
+
   .flex-grow {
     flex-grow: 1;
     //background-color: #ffffff;
   }
 
 
-  
+
   .half-width {
-    flex-basis: calc(50% - 8px); 
+    flex-basis: calc(50% - 8px);
   }
 
-  
+
   /* Estilos para pantallas más pequeñas */
 @media screen and (max-width: 768px) {
     .form-row {
-      flex-direction: column; 
+      flex-direction: column;
       margin-bottom: 0px;
     }
-  
+
     .flex-grow {
       flex-grow: 0;
       flex-basis: 100%;
-      margin-right: 0; 
+      margin-right: 0;
     }
-  
+
     .half-width {
-      flex-basis: 100%; 
+      flex-basis: 100%;
     }
   }
 

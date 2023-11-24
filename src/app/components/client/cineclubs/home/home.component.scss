@@ -9,7 +9,7 @@
   }
 }
 
-.container {
+.home-container {
   position: relative;
   padding: 16px;
 
@@ -23,7 +23,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .container {
+  .home-container {
     padding: 0 10px;
   }
 }

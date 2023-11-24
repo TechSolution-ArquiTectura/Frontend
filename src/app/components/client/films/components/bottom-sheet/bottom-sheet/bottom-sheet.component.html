@@ -1,0 +1,24 @@
+<div class="bottom-sheet-container">
+    <div class="content">
+      <h3 class="content-title">{{ data.business.name }}</h3>
+      <hr class="horizontal-line">
+      <div class="content-address">
+        <span class="business-address-container-icon"><mat-icon>location_on</mat-icon></span>
+        <p class="content-address-label">{{ data.business.address }}</p>
+      </div>
+
+      <div class="content-address">
+        <span class="business-address-container-icon"><mat-icon>schedule</mat-icon></span>
+        <p class="content-playtime">{{ data.playtime.playtime }}</p>
+      </div>
+
+      
+    </div>
+    <div class="button-container">
+
+            <button mat-raised-button (click)="comprar(data.playtime.id)" class="button-container-buy">Comprar</button>
+      
+      <button mat-button (click)="closeBottomSheet()">Cerrar</button>
+    </div>
+  </div>
+  
