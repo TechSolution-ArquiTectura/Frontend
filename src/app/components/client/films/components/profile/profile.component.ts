@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
    ){
     this.route.params.subscribe(params => {
       this.idPost = params['filmId'] ?? 1;
-      this.availableFilmId = params['availableFilmId'] ?? 1;
+      this.availableFilmId = params['availableFilmId'] ?? 0;
     });
    }
 
