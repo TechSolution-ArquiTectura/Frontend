@@ -9,7 +9,7 @@
               <span class="business-address-container-icon"><mat-icon>location_on</mat-icon></span>
               <p class="business-address">{{ business.address }}</p>
             </div>
-            
+
           </div>
           <div class="playtime-buttons">
             <button mat-button *ngFor="let playtime of business.playtimes" (click)="showBottomSheet(playtime, business)">
@@ -20,4 +20,5 @@
       </div>
     </mat-tab>
   </mat-tab-group>
+  <app-not-found *ngIf="uniquePlayDates.length == 0" message="No hemos encontrado horarios disponibles para esta película"></app-not-found>
 </div>
