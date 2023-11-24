@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
+import {Observable, Subscription} from 'rxjs';
+import { isBusiness } from 'src/app/util';
 import { Subscription } from 'rxjs';
 import { isLogged, isBusiness } from 'src/app/util';
 import { MatDialog } from '@angular/material/dialog';
@@ -127,4 +129,21 @@ export class CineclubProfileComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(EditCineclubComponent);
   }
+
+
+  deleteReviewById(reviewId: number) {
+    this.reviewService.deleteReviewById(reviewId).subscribe({
+      next: (deletedReview: any) => {
+        console.log('Deleted Review:', deletedReview);
+        this.getAllReviews();
+        alert('Review deleted successfully');
+      },
+      error: (error: any) => {
+        console.error('Error deleting review:', error);
+        alert('Could not delete review');
+      },
+    });
+  }
+
+
 }
