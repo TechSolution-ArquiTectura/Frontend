@@ -8,7 +8,9 @@
     </div>
     <div class="profile-info">
       <h2 class="name">{{dataEntrante?.name}} {{dataEntrante?.lastname}}</h2>
-      <p class="description"> <strong>{{dataEntrante?.email}}</strong> </p>
+      <p class="description">Correo: <strong>{{dataEntrante?.email}}</strong> </p>
+      <p class="description">Numero de telefono: <strong>{{dataEntrante?.phoneNumber}}</strong> </p>
+      <p class="description">Fecha de nacimiento: <strong>{{dataEntrante?.birthdate}}</strong> </p>
       <p class="start-date">Miembro desde Abril 2023</p>
       <p class="location">Lima, Peru</p>
       <p class="events">Asistió a tres eventos</p>
@@ -18,35 +20,6 @@
     </div>
     <div class="profile-edit">
       <button class="edit-button" (click)="openEditModal()">Editar perfil</button>
-    </div>
-  </div>
-  <div class="profile-cards">
-    <div class="card">
-      <h3 class="card-title">Grupos <span class="card-lenght"><!-- {{groups.length}} --></span></h3>
-      <div class="groups">
-        <div *ngFor="let group of groups" class="group">
-          <img class="group-image" src="https://www.cinconoticias.com/wp-content/uploads/cine-moderno.jpg" alt="Photo group">
-          <p class="group-title"><!-- {{group.name}} --></p>
-        </div>
-        <div class="add-new" [routerLink]="['/dashboard/crear-grupo']">
-          <p class="txt-add">+</p>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <h3 class="card-title">Cinemas <span class="card-lenght"><!-- {{cinemas.length}} --></span></h3>
-      <div class="cinemas">
-        <div *ngFor="let cinema of cinemas" class="cinema">
-          <img class="cinema-img" src="https://www.grandsierraresort.com/hubfs/recreation/Grand-Sierra-Cinema-view-of-auditorium_q085_1920x1080.jpg" alt="">
-          <div class="cinema-detail">
-            <div class="cinema-title">CineClub</div>
-            <div class="cinema-subtitle">Casa Bagre</div>
-          </div>
-        </div>
-        <div class="add-new"[routerLink]="['/dashboard/cineclubs']">
-          <p class="txt-add">+</p>
-        </div>
-      </div>
     </div>
   </div>
 </div>
