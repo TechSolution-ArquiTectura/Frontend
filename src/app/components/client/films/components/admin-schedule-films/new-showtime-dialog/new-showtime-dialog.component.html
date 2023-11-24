@@ -1,0 +1,53 @@
+<div class="new-showtime-card">
+  <form [formGroup]="newFormBuilder">
+    <div class="header">
+      <h5 class="title">Información general</h5>
+      <button class="close-btn" (click)="closeNewShowtimeDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="body">
+      <input
+        class="input-no-style input-text"
+        type="number"
+        placeholder="Capacidad de la sala"
+        formControlName="capacity"
+      />
+      <input
+        class="input-no-style input-text"
+        type="number"
+        placeholder="Precio de la entrada (S/.)"
+        formControlName="unitPrice"
+      />
+      <div class="divider">
+        <div class="play-date">
+          <input
+            class="input-no-style input-text"
+            placeholder="Fecha de la función"
+            [matDatepicker]="playPicker"
+            formControlName="playDate"
+          />
+          <mat-datepicker-toggle
+            class="date-picker"
+            matIconSuffix
+            [for]="playPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #playPicker></mat-datepicker>
+        </div>
+        <input
+          class="input-no-style input-text"
+          type="text"
+          placeholder="Hora de la función (HH:mm)"
+          formControlName="playtime"
+          pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+        />
+      </div>
+      <div class="actions">
+        <button class="secondary-btn" (click)="closeNewShowtimeDialog()">
+          Cancelar
+        </button>
+        <button class="primary-btn" (click)="saveShowtime()">Finalizar</button>
+      </div>
+    </div>
+  </form>
+</div>

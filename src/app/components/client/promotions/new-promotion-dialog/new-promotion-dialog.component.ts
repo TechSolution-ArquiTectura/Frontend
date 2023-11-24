@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Promotion } from 'src/app/core/models/promotion';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { format } from 'date-fns';
+import { getBusinessId } from 'src/app/util';
 
 @Component({
   selector: 'app-new-promotion-dialog',
@@ -12,7 +13,7 @@ import { format } from 'date-fns';
   styleUrls: ['./new-promotion-dialog.component.scss'],
 })
 export class NewPromotionDialogComponent {
-  BUSINESS_ID: number = 3;
+  BUSINESS_ID: number = getBusinessId();
 
   constructor(
     public _dialogRef: MatDialogRef<NewPromotionDialogComponent>,

@@ -1,0 +1,33 @@
+.new-showtime-card {
+  padding: 24px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+}
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
+}
+.divider {
+  display: flex;
+  gap: 16px;
+  & > * {
+    position: relative;
+    flex: 1;
+  }
+}
+.date-picker {
+  top: 0;
+  right: 0;
+  color: var(--text-input-color);
+  position: absolute;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
