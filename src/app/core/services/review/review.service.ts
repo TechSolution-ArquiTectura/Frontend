@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Review } from '../../models/review.models';
+import {Promotion} from "../../models/promotion";
 
 @Injectable({
   providedIn: 'root'
@@ -34,11 +35,13 @@ export class ReviewService {
     return this.http.get<Review[]>(`${this.apiUrl}/reviews/${businessId}`);
   }
 
-  deleteReview(reviewId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/reviews/${reviewId}`).pipe(
+  deleteReviewById(reviewId: number): Observable<any> {
+    const url = `${this.apiUrl}/reviews/${reviewId}`;
+    return this.http.delete(url).pipe(
       tap(() => {
         this._refresh$.next();
       })
     );
   }
+
 }

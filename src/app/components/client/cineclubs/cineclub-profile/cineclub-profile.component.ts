@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
-import { Subscription } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { isBusiness } from 'src/app/util';
 
 @Component({
@@ -120,13 +120,20 @@ export class CineclubProfileComponent implements OnInit {
     this.router.navigate(['dashboard/edit-cineclub']);
   }
 
-  deleteReview(reviewId: number) {
-    this.reviewService.deleteReview(reviewId).subscribe({
-      next: () => {
+
+  deleteReviewById(reviewId: number) {
+    this.reviewService.deleteReviewById(reviewId).subscribe({
+      next: (deletedReview: any) => {
+        console.log('Deleted Review:', deletedReview);
+        this.getAllReviews();
+        alert('Review deleted successfully');
       },
       error: (error: any) => {
-        console.error(error);
-      }
+        console.error('Error deleting review:', error);
+        alert('Could not delete review');
+      },
     });
   }
+
+
 }
