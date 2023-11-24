@@ -11,8 +11,6 @@ import {
 import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import {Observable, Subscription} from 'rxjs';
-import { isBusiness } from 'src/app/util';
-import { Subscription } from 'rxjs';
 import { isLogged, isBusiness } from 'src/app/util';
 import { MatDialog } from '@angular/material/dialog';
 import { EditCineclubComponent } from '../edit-cineclub/edit-cineclub.component';
