@@ -36,8 +36,10 @@ export class ProfileComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private _dialog: MatDialog,
    ){
-    this.idPost = this.route.snapshot.paramMap.get('filmId');
-    this.availableFilmId = this.route.snapshot.paramMap.get('availableFilmId');
+    this.route.params.subscribe(params => {
+      this.idPost = params['filmId'] ?? 1;
+      this.availableFilmId = params['availableFilmId'] ?? 1;
+    });
    }
 
   ngOnInit(): void {
