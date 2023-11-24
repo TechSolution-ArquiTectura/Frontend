@@ -67,6 +67,7 @@ import { FilmProfileComponent } from './components/client/films/components/stepp
 import { BookingSuccessComponent } from './components/client/films/components/stepper/booking-success/booking-success.component';
 
 import { AdminScheduleFilmsComponent } from './components/client/films/components/admin-schedule-films/admin-schedule-films.component';
+import { NewShowtimeDialogComponent } from './components/client/films/components/admin-schedule-films/new-showtime-dialog/new-showtime-dialog.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { AdminScheduleFilmsComponent } from './components/client/films/component
     FilmProfileComponent,
     BookingSuccessComponent,
     AdminScheduleFilmsComponent,
+    NewShowtimeDialogComponent,
 
   ],
   imports: [

@@ -161,7 +161,7 @@
               {{ userReview.comment }}
             </div>
           </div>
-          <a style="color: #F44336;" class="cursor-pointer ml-auto" (click)="deleteReviewById(userReview.id)">
+          <a *ngIf="isBusiness" style="color: #F44336;" class="cursor-pointer ml-auto" (click)="deleteReviewById(userReview.id)">
             <mat-icon>delete</mat-icon>
           </a>
         </div>

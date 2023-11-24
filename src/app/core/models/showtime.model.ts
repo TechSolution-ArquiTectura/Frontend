@@ -1,6 +1,6 @@
 import { AvailableFilm } from './available-films';
 
-export interface Showtime{
+export interface Showtime {
     id?: number;
     availableFilm: AvailableFilm;
     playDate?: string;

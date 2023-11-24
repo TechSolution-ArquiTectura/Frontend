@@ -18,6 +18,7 @@ import { isBusiness } from 'src/app/util';
 })
 export class ProfileComponent implements OnInit {
   idPost: any;
+  availableFilmId: any;
   FilmProfile!: Film;
   panelOpenState = false;
   ActorList: any[] = [];
@@ -35,7 +36,10 @@ export class ProfileComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private _dialog: MatDialog,
    ){
-    this.idPost = this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe(params => {
+      this.idPost = params['filmId'] ?? 1;
+      this.availableFilmId = params['availableFilmId'] ?? 0;
+    });
    }
 
   ngOnInit(): void {

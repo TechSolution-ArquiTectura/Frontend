@@ -10,6 +10,7 @@ import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/ci
 import { PersonService } from 'src/app/core/services/auth/user/person.service';
 import { User } from 'src/app/core/models/users.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'client-auth-login',
@@ -30,7 +31,8 @@ export class LoginComponent {
     private router: Router,
     private _empService: CinephileProfileService,
     private personService: PersonService,
-    private cineclubService: CineclubService
+    private cineclubService: CineclubService,
+    private route: ActivatedRoute
   ) {
     this.empLoginForm = this._fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -68,8 +70,12 @@ export class LoginComponent {
                   );
                 }
               });
+  
+            // Obtén el returnUrl de los queryParams
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'; // Si no hay returnUrl, redirige al home
+  
             setTimeout(() => {
-              this.router.navigate(['/']);
+              this.router.navigateByUrl(returnUrl); // Redirige al usuario de vuelta a la URL guardada
             }, 2000);
           } else {
             this.showError = true; // Muestra un mensaje de error si no se recibe un token
@@ -77,8 +83,5 @@ export class LoginComponent {
         },
       });
     }
-  }
-  redirectToViewProfile() {
-    this.router.navigate(['/perfil']);
   }
 }

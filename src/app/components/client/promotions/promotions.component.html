@@ -14,7 +14,7 @@
         ></app-promotion-card>
       </button>
     </div>
-    <app-not-found *ngIf="promotions.length == 0" message="promociones"></app-not-found>
+    <app-not-found *ngIf="promotions.length == 0" message="No hay promociones disponibles en este momento"></app-not-found>
     <div class="actions" *ngIf="typeUser == 'business'">
       <button mat-fab class="new-promotion" (click)="openNewPromotion()">
         <mat-icon>add</mat-icon>

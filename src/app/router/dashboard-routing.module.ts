@@ -22,7 +22,8 @@ const routes: Routes = [
     children: [
       { path: '', component: FilmsComponent },
       { path: 'peliculas', component: FilmsComponent },
-      { path: 'peliculas/pelicula/:id', component: ProfileComponent },
+      { path: 'peliculas/pelicula/:filmId', component: ProfileComponent },
+      { path: 'peliculas/pelicula/:filmId/:availableFilmId?', component: ProfileComponent },
       { path: 'peliculas/pelicula/:id/booking', component: BookingStepperComponent},
       { path: 'explorar', component: MainComponent },
       { path: 'cineclubs', component: HomeComponent },
