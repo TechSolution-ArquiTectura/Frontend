@@ -12,6 +12,10 @@ import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import {Observable, Subscription} from 'rxjs';
 import { isBusiness } from 'src/app/util';
+import { Subscription } from 'rxjs';
+import { isLogged, isBusiness } from 'src/app/util';
+import { MatDialog } from '@angular/material/dialog';
+import { EditCineclubComponent } from '../edit-cineclub/edit-cineclub.component';
 
 @Component({
   selector: 'cineclub-cineclub-profile',
@@ -23,16 +27,19 @@ export class CineclubProfileComponent implements OnInit {
   cineclub!: Business;
   reviewForm!: FormGroup;
   subscription!: Subscription;
+  subscription2!: Subscription;
   isBusiness: boolean = isBusiness();
   p: number = 1;
   public userReviews: Review[] = [];
+  isLogged: boolean = isLogged();
 
   constructor(
     private _fb: FormBuilder,
     private _empServiceMovie: FilmsProfileService,
     private reviewService: ReviewService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {
     if (this.isBusiness) {
       this.idPost = JSON.parse(localStorage.getItem('businessId') ?? '{}');
@@ -68,6 +75,9 @@ export class CineclubProfileComponent implements OnInit {
     this.getCineclubById();
     this.subscription = this.reviewService.refresh$.subscribe(() => {
       this.getAllReviews();
+    });
+    this.subscription2 = this._empServiceMovie.refresh$.subscribe(() => {
+      this.getCineclubById();
     });
   }
 
@@ -116,8 +126,8 @@ export class CineclubProfileComponent implements OnInit {
       });
   }
 
-  goToEditCineclub() {
-    this.router.navigate(['dashboard/edit-cineclub']);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(EditCineclubComponent);
   }
 
 

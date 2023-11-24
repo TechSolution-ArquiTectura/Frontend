@@ -1,0 +1,70 @@
+/* bottom-sheet.component.scss */
+
+/* Estilos para el bottom-sheet */
+.bottom-sheet-container { /* Fondo negro con opacidad *//* Color de texto blanco */
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Contenedor de contenido */
+  .content {
+    flex-grow: 1; /* Permitir que ocupe el espacio restante */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Estilos para los botones */
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Estilos específicos para los botones */
+  button {
+    width: 100%; /* Ancho completo */
+  }
+  
+  button[color="primary"] {
+    width: auto; /* Ancho automático basado en el contenido */
+  }
+  
+  .content-title{
+    color: #64748b;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .horizontal-line {
+    border: 0; /* Elimina el borde predeterminado */
+    height: 1px; /* Altura de la línea */
+    background-color: #d5d9e2; /* Color de la línea */
+
+  }
+
+  .content-address{
+    display: flex;
+  }
+
+  .button-container-buy{
+    display: flex;
+  }
+
+  ::ng-deep .business-address-container-icon mat-icon {
+    color: #64748b; /* Cambia el color del ícono a tu preferencia */
+    font-size: 17px;
+  }
+
+  ::ng-deep .button-container-icon mat-icon {
+    color: white; /* Cambia el color del ícono a tu preferencia */
+    font-size: 17px;
+  }
+
+  .button-container-buy {
+    background-color: #ffad00 !important;
+    color: white !important;
+    margin: 0 10px; /* Espacio entre los botones */
+}

@@ -14,7 +14,7 @@
     <div class="profile__left">
       <div class="title">
         <h1>{{ cineclub.name }}</h1>
-        <mat-icon class="icon" *ngIf="isBusiness" (click)="goToEditCineclub()"
+        <mat-icon class="icon" *ngIf="isBusiness" (click)="openDialog()"
           >edit</mat-icon
         >
       </div>
@@ -66,8 +66,8 @@
             <strong> Reseñas ({{ this.cineclub.commentsCount }})</strong>
           </h1>
         </div>
-        <div class="rating" *ngIf="!isBusiness">
-          <mat-card-content>Escribe tu reseña</mat-card-content>
+        <div class="rating-review" *ngIf="!isBusiness && isLogged">
+          <p>Escribe tu reseña</p>
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -77,10 +77,9 @@
             [id]="'rating'"
           ></ngx-star-rating>
         </div>
-        <div class="review" *ngIf="!isBusiness">
-          <mat-form-field [style.width.%]="95" appearance="outline">
+        <div class="review" *ngIf="!isBusiness && isLogged">
+          <mat-form-field [style.width.%]="100" appearance="outline">
             <textarea
-              class="text"
               matInput
               type="text"
               placeholder="Escribir reseña"
@@ -169,8 +168,8 @@
       </div>
       <div
         class="flex align-items-center justify-content-center"
-        *ngIf="userReviews.length == 0">
-        <mat-card-content>Este cineclub aún no tiene reseñas</mat-card-content>
+        *ngIf="userReviews.length == 0"
+        <app-not-found message="reseñas" />
       </div>
     </div>
   </div>

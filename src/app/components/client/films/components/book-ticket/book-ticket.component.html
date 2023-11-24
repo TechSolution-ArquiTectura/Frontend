@@ -1,38 +1,40 @@
 <div>
     <form [formGroup]="empOfferForm" (ngSubmit)="onFormSubmit()">
         <div class="content">
-            <div class="booking-deatils">
-                <h2>DETALLE DE LA RESERVA</h2>
-            </div>
             <div class="card">
-                <div class="card-details pt-2">
-                    <div class="details">
-                        <strong>Cineclub Lima Park</strong> 
+                <div class="card-details p-5">
+                    <div class="banner">
+                        <img [src]="showtime?.availableFilm?.business?.bannerSrc" alt="logo">
                     </div>
-                    <div class="details">
-                        <strong>08-10-2023 | 17:40</strong> 
+                    <div class="showtime-details">
+                        <div class="details">
+                            <span class="details-label"><strong>Cineclub {{showtime?.availableFilm?.business?.name}}</strong></span> 
+                        </div>
+                        <div class="details">
+                            <span class="details-label"><strong>{{showtime?.playDate}} | {{showtime?.playtime}}</strong></span>
+                        </div>
+                        <div class="details">
+                            <mat-icon aria-hidden="false" aria-label="location" fontIcon="location_on" class="icon"></mat-icon>
+                            <span class="details-label">{{showtime?.availableFilm?.business?.address}}</span>
+                        </div> 
                     </div>
-                    <div class="details">
-                        <mat-icon aria-hidden="false" aria-label="location" fontIcon="location_on"></mat-icon>
-                        <span>Dirección</span>
-                    </div> 
                 </div>
             </div>
             <div class="quantity-details">
-                <div>
-                    <div class="details">
-                        <strong>General:</strong>
-                        <span>S/</span>
+                <div class="p-5">
+                    <div class="details pb-5">
+                        <span class= "details-label"><strong>GENERAL:</strong></span>
+                        <span class="details-unitPrice">S/ {{showtime?.unitPrice}}</span>
                     </div>
                     <div class="flex align-items-center justify-content-start details">
                         <div class="flex align-items-center justify-content-center ">
-                            <strong>Cantidad: </strong>
+                            <span class= "details-label"><strong>CANTIDAD:</strong></span>
                         </div>
         
                         <div class="counter flex align-items-center justify-content-center">
-                            <button mat-raised-button (click)="decrement()">-</button>
-                            <span>{{ count }}</span>
-                            <button mat-raised-button (click)="increment()">+</button>
+                            <select formControlName="selectedQuantity" class="quantity-booking">
+                                <option *ngFor="let option of quantityOptions" [value]="option">{{ option }}</option>
+                            </select>
                         </div>
                     </div>
                 </div>  
@@ -41,16 +43,11 @@
                         <p>TOTAL</p>
                     </div>
                     <div>
-                        <h1 class="total-price">S/ {{ totalPrice }}</h1>
+                        <h1 class="total-price"><strong>S/ {{ totalPrice }}</strong></h1>
                     </div>                  
                 </div>
             </div>
     
-        </div>
-
-        <div class="payment-details">
-            <h2>INFORMACIÓN DE PAGO</h2>
-            <app-payment-form></app-payment-form>
         </div>
     </form>
 </div>

@@ -61,7 +61,12 @@ import { BookingStepperComponent } from './components/client/films/components/st
 import { EditProfileModalComponent } from './components/client/profile-user/edit-profile-modal/edit-profile-modal.component';
 import { CommonModule } from '@angular/common';
 import { EditCineclubComponent } from './components/client/cineclubs/edit-cineclub/edit-cineclub.component';
+import { NewMovieComponent } from './components/client/cineclubs/movies-available/new-movie/new-movie/new-movie.component';
+import { BottomSheetComponent } from './components/client/films/components/bottom-sheet/bottom-sheet/bottom-sheet.component';
+import { FilmProfileComponent } from './components/client/films/components/stepper/film-profile/film-profile.component';
+import { BookingSuccessComponent } from './components/client/films/components/stepper/booking-success/booking-success.component';
 
+import { AdminScheduleFilmsComponent } from './components/client/films/components/admin-schedule-films/admin-schedule-films.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +118,11 @@ import { EditCineclubComponent } from './components/client/cineclubs/edit-cinecl
     ProfileUserComponent,
     EditProfileModalComponent,
     EditCineclubComponent,
+    NewMovieComponent,
+    BottomSheetComponent,
+    FilmProfileComponent,
+    BookingSuccessComponent,
+    AdminScheduleFilmsComponent,
 
   ],
   imports: [
