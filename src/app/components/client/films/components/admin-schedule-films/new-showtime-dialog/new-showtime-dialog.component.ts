@@ -18,7 +18,8 @@ export class NewShowtimeDialogComponent {
     private _showtimeService: ShowtimeService,
     private _snackBar: MatSnackBar,
     private buildr: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: { showtime: Showtime }
+    @Inject(MAT_DIALOG_DATA)
+    public data: { availableFilmId: number; showtime: Showtime }
   ) {
     if (data.showtime) {
       this.newFormBuilder.patchValue(data.showtime);
@@ -39,7 +40,6 @@ export class NewShowtimeDialogComponent {
   saveShowtime() {
     const playDate = new Date(this.newFormBuilder.value.playDate as string);
 
-    console.log(this.newFormBuilder.value);
     if (this.data.showtime) {
       this._showtimeService.putShowtime(
         {
@@ -59,7 +59,7 @@ export class NewShowtimeDialogComponent {
     this._showtimeService.postShowtime({
       ...this.newFormBuilder.value,
       playDate: format(playDate, 'dd-MM-yyyy'),
-      availableFilm: { id: 2 },
+      availableFilm: { id: this.data.availableFilmId },
     } as Showtime);
     this.closeNewShowtimeDialog();
     this._snackBar.open('Función añadida con éxito', 'Cerrar', {

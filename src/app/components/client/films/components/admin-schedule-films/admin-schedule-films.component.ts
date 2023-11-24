@@ -9,7 +9,7 @@ import { NewShowtimeDialogComponent } from './new-showtime-dialog/new-showtime-d
   styleUrls: ['./admin-schedule-films.component.scss'],
 })
 export class AdminScheduleFilmsComponent implements OnInit {
-  @Input() filmId: any;
+  @Input() availableFilmId: any;
   businessId: number = getBusinessId();
 
   constructor(
@@ -22,6 +22,7 @@ export class AdminScheduleFilmsComponent implements OnInit {
     const dialogRef = this._matDialog.open(NewShowtimeDialogComponent, {
       width: '650px',
       data: {
+        availableFilmId: this.availableFilmId,
       },
     })
   }
