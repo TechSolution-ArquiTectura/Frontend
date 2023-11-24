@@ -18,7 +18,7 @@ export class BottomSheetComponent {
 
     comprar(showtimeId: number): void {
       console.log(showtimeId);
-      this.router.navigate(['/dashboard/peliculas/pelicula', showtimeId, 'booking'], {
+      this.router.navigate(['/dashboard/peliculas/steps', showtimeId, 'booking'], {
         queryParams: { showtimeId }
       }).then(() => {
         this.closeBottomSheet();
@@ -28,5 +28,5 @@ export class BottomSheetComponent {
   closeBottomSheet(): void {
     this.bottomSheetRef.dismiss();
   }
-  
+
 }
