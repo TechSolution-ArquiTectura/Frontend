@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PopularPostService {
 
-  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/popular-post";
+  private apiURL = `${environment.apiUrl}/popular-post`;
 
   constructor(private _http: HttpClient) {}
 

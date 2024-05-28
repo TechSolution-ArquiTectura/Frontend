@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FilmCategory } from '../../models/film.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ import { Observable } from 'rxjs';
 export class FilmsCategoryService {
 
   public FilmCategoryList: FilmCategory[] = [];
-
-  private apiURL = "https://tucine-api.onrender.com/api/TuCine/v1/filmCategory";
+  
+  private apiURL = `${environment.apiUrl}/filmCategory`;
 
   constructor(private http: HttpClient) {
     this.getFilmCategory().subscribe((filmCategories) => {

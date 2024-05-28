@@ -4,12 +4,13 @@ import { Observable, Subject, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Review } from '../../models/review.models';
 import {Promotion} from "../../models/promotion";
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewService {
-  private apiUrl = 'https://tucine-api.onrender.com/api/TuCine/v1';
+  private apiUrl = environment.apiUrl;
 
   private _refresh$ = new Subject<void>();
 

@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Promotion } from '../../models/promotion';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PromotionsService {
-  private apiUrl = 'https://tucine-api.onrender.com/api/TuCine/v1/promotions';
+
+  private apiUrl = `${environment.apiUrl}/promotions`;
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 

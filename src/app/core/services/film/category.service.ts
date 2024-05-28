@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../../models/film.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/categories";
+  private apiURL = `${environment.apiUrl}/categories`;
 
   public categoriesList:Category[]=[];
 

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 // import { Movie } from 'src/app/core/models/film.model';
 import { Film } from '../../models/film.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class FilmService {
 
   public FilmList:Film[]=[]
 
-  private apiURL= "https://tucine-api.onrender.com/api/TuCine/v1/films";
+  private apiURL = `${environment.apiUrl}/films`;
 
   constructor(private http:HttpClient) {
     this.getFilms().subscribe((films)=>{
