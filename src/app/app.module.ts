@@ -68,6 +68,7 @@ import { BookingSuccessComponent } from './components/client/films/components/st
 
 import { AdminScheduleFilmsComponent } from './components/client/films/components/admin-schedule-films/admin-schedule-films.component';
 import { NewShowtimeDialogComponent } from './components/client/films/components/admin-schedule-films/new-showtime-dialog/new-showtime-dialog.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,7 @@ import { NewShowtimeDialogComponent } from './components/client/films/components
     NgxStarRatingModule,
     CommonModule,
     MatDialogModule,
+    MatRadioModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
       libraries: ['places'],

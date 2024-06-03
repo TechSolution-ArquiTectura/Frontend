@@ -137,7 +137,6 @@
                     </div>
                   </div>
                 </div>
-
             
                 <div class="total-price-details">
                   <div>
@@ -149,102 +148,118 @@
                 </div>
               </div>
 
+              <div>
+                <div class="method-title">
+                  <h1>Selecciona un método de pago:</h1>
+                </div>
+                <div class="button-container">
+                  <button class="button-ethereum" mat-raised-button (click)="selectPayment('ethereum')">Pagar con Ethereum</button>
+                  <button class="button-creditCard" mat-raised-button (click)="selectPayment('creditCard')">Pagar con Tarjeta de Crédito</button>
+                </div>
+                <div *ngIf="selectedPayment === 'ethereum'">
+                  ethereum
+                </div>
+                <div *ngIf="selectedPayment === 'creditCard'">
+                  <mat-card class="pay-container">
+                    <mat-card-content>
+                      <form [formGroup]="empPaymentForm" (ngSubmit)="onFormSubmit()" class="form" >
+                        <div class="form-row">
+                          <mat-form-field appearance="outline" class="flex-grow">
+                            <input matInput
+                            type="text"
+                            placeholder="Número de tarjeta"
+                            name="numeroTarjeta"
+                            formControlName="card_number"
+                            (input)="formatCreditCardNumber($event)">
+                            <mat-error *ngIf="empPaymentForm.get('card_number')?.touched ">
+                              <ng-container *ngIf="empPaymentForm.get('card_number')?.hasError('invalidLength')">
+                                Número de tarjeta <strong>inválido</strong>
+                              </ng-container>
+                            </mat-error>  
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-row">
+                          <mat-form-field appearance="outline" class="half-width">
+                            <input matInput type="text" placeholder="mm/aa" name="fecha" formControlName="MMAA" (input)="formatExpiryDate($event)">
+                            <mat-error *ngIf="empPaymentForm.get('MMAA')?.touched">
+                              <ng-container *ngIf="empPaymentForm.get('MMAA')?.hasError('required')">
+                                  Campo <strong>obligatorio</strong>
+                              </ng-container>
+                            </mat-error>  
+                          </mat-form-field>
+                          <mat-form-field appearance="outline" class="half-width">
+                            <input matInput type="text" placeholder="CVV" name="cvv" formControlName="CVV">
+                            <mat-error *ngIf="empPaymentForm.get('CVV')?.touched">
+                              <ng-container *ngIf="empPaymentForm.get('CVV')?.hasError('required')">
+                                  Campo <strong>obligatorio</strong>
+                              </ng-container>
+                              <ng-container *ngIf="empPaymentForm.get('CVV')?.hasError('pattern')">
+                                Se requiere <strong>3 caracteres</strong>
+                            </ng-container>
+                            </mat-error>  
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-row">
+                          <mat-form-field appearance="outline" class="half-width">
+                            <input matInput type="text" placeholder="Nombres" name="nombres" formControlName="first_name">
+                            <mat-error *ngIf="empPaymentForm.get('first_name')?.touched">
+                              <ng-container *ngIf="empPaymentForm.get('first_name')?.hasError('required')">
+                                  Campo <strong>obligatorio</strong>
+                              </ng-container>
+                            </mat-error>  
+                          </mat-form-field>
+                          <mat-form-field appearance="outline" class="half-width">
+                            <input matInput type="text" placeholder="Apellidos" name="apellidos" formControlName="last_name">
+                            <mat-error *ngIf="empPaymentForm.get('last_name')?.touched">
+                              <ng-container *ngIf="empPaymentForm.get('last_name')?.hasError('required')">
+                                  Campo <strong>obligatorio</strong>
+                              </ng-container>
+                            </mat-error>  
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-row">
+                          <mat-form-field appearance="outline" class="half-width">
+                            <input matInput type="text" placeholder="Correo" name="correo" formControlName="email">
+                            <mat-error *ngIf="empPaymentForm.get('email')?.touched">
+                              <ng-container *ngIf="empPaymentForm.get('email')?.hasError('required')">
+                                  Campo <strong>obligatorio</strong>
+                              </ng-container>
+                              <ng-container *ngIf="empPaymentForm.get('email')?.hasError('email')">
+                                El formato de correo electrónico es <strong>inválido</strong>
+                            </ng-container>
+                            </mat-error>  
+                          </mat-form-field>
+                          <mat-form-field appearance="outline" class="half-width">
+                            <input matInput type="text" placeholder="Código postal" name="codigoPostal" formControlName="postal_code">
+                            <mat-error *ngIf="empPaymentForm.get('postal_code')?.touched">
+                              <ng-container *ngIf="empPaymentForm.get('postal_code')?.hasError('required')">
+                                  Campo <strong>obligatorio</strong>
+                              </ng-container>
+                              <ng-container *ngIf="empPaymentForm.get('postal_code')?.hasError('pattern')">
+                                  Se requiere <strong>5 caracteres</strong>
+                              </ng-container>
+                          </mat-error>  
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-row">
+                          <mat-checkbox name="recordarTarjeta">Recordar tarjeta</mat-checkbox>
+                        </div>
+                
+                        <div class="div-pay" style="margin-top: 20px;">
+                          <button class ="bt-pay pr-6 pt-2 pl-6 pb-2" type="submit">Reservar</button>
+                        </div>
+                      </form>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
 
-              <mat-card class="pay-container">
-                <mat-card-content>
-                  <form [formGroup]="empPaymentForm" (ngSubmit)="onFormSubmit()" class="form" >
-                    <div class="form-row">
-                      <mat-form-field appearance="outline" class="flex-grow">
-                        <input matInput
-                        type="text"
-                        placeholder="Número de tarjeta"
-                        name="numeroTarjeta"
-                        formControlName="card_number"
-                        (input)="formatCreditCardNumber($event)">
-                        <mat-error *ngIf="empPaymentForm.get('card_number')?.touched ">
-                          <ng-container *ngIf="empPaymentForm.get('card_number')?.hasError('invalidLength')">
-                            Número de tarjeta <strong>inválido</strong>
-                          </ng-container>
-                        </mat-error>  
-                      </mat-form-field>
-                    </div>
-            
-                    <div class="form-row">
-                      <mat-form-field appearance="outline" class="half-width">
-                        <input matInput type="text" placeholder="mm/aa" name="fecha" formControlName="MMAA" (input)="formatExpiryDate($event)">
-                        <mat-error *ngIf="empPaymentForm.get('MMAA')?.touched">
-                          <ng-container *ngIf="empPaymentForm.get('MMAA')?.hasError('required')">
-                              Campo <strong>obligatorio</strong>
-                          </ng-container>
-                        </mat-error>  
-                      </mat-form-field>
-                      <mat-form-field appearance="outline" class="half-width">
-                        <input matInput type="text" placeholder="CVV" name="cvv" formControlName="CVV">
-                        <mat-error *ngIf="empPaymentForm.get('CVV')?.touched">
-                          <ng-container *ngIf="empPaymentForm.get('CVV')?.hasError('required')">
-                              Campo <strong>obligatorio</strong>
-                          </ng-container>
-                          <ng-container *ngIf="empPaymentForm.get('CVV')?.hasError('pattern')">
-                            Se requiere <strong>3 caracteres</strong>
-                        </ng-container>
-                        </mat-error>  
-                      </mat-form-field>
-                    </div>
-            
-                    <div class="form-row">
-                      <mat-form-field appearance="outline" class="half-width">
-                        <input matInput type="text" placeholder="Nombres" name="nombres" formControlName="first_name">
-                        <mat-error *ngIf="empPaymentForm.get('first_name')?.touched">
-                          <ng-container *ngIf="empPaymentForm.get('first_name')?.hasError('required')">
-                              Campo <strong>obligatorio</strong>
-                          </ng-container>
-                        </mat-error>  
-                      </mat-form-field>
-                      <mat-form-field appearance="outline" class="half-width">
-                        <input matInput type="text" placeholder="Apellidos" name="apellidos" formControlName="last_name">
-                        <mat-error *ngIf="empPaymentForm.get('last_name')?.touched">
-                          <ng-container *ngIf="empPaymentForm.get('last_name')?.hasError('required')">
-                              Campo <strong>obligatorio</strong>
-                          </ng-container>
-                        </mat-error>  
-                      </mat-form-field>
-                    </div>
-            
-                    <div class="form-row">
-                      <mat-form-field appearance="outline" class="half-width">
-                        <input matInput type="text" placeholder="Correo" name="correo" formControlName="email">
-                        <mat-error *ngIf="empPaymentForm.get('email')?.touched">
-                          <ng-container *ngIf="empPaymentForm.get('email')?.hasError('required')">
-                              Campo <strong>obligatorio</strong>
-                          </ng-container>
-                          <ng-container *ngIf="empPaymentForm.get('email')?.hasError('email')">
-                            El formato de correo electrónico es <strong>inválido</strong>
-                        </ng-container>
-                        </mat-error>  
-                      </mat-form-field>
-                      <mat-form-field appearance="outline" class="half-width">
-                        <input matInput type="text" placeholder="Código postal" name="codigoPostal" formControlName="postal_code">
-                        <mat-error *ngIf="empPaymentForm.get('postal_code')?.touched">
-                          <ng-container *ngIf="empPaymentForm.get('postal_code')?.hasError('required')">
-                              Campo <strong>obligatorio</strong>
-                          </ng-container>
-                          <ng-container *ngIf="empPaymentForm.get('postal_code')?.hasError('pattern')">
-                              Se requiere <strong>5 caracteres</strong>
-                          </ng-container>
-                      </mat-error>  
-                      </mat-form-field>
-                    </div>
-            
-                    <div class="form-row">
-                      <mat-checkbox name="recordarTarjeta">Recordar tarjeta</mat-checkbox>
-                    </div>
-            
-                    <div class="div-pay" style="margin-top: 20px;">
-                      <button class ="bt-pay pr-6 pt-2 pl-6 pb-2" type="submit">Reservar</button>
-                    </div>
-                  </form>
-                </mat-card-content>
-              </mat-card>
+
+
             
             </div>
           </div>

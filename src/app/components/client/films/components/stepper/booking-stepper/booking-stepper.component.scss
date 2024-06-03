@@ -185,6 +185,12 @@
     justify-content: space-between;
 }
 
+.method-title{
+    color: #64748b;
+    font-weight: 400;
+    font-family: Inter, "Helvetica Neue", sans-serif;
+}
+
 .showtime-details{
     margin: 10px;
 }
@@ -192,10 +198,33 @@
 .banner{
     width: 150px;
     margin: 10px;
-  }
+}
 
 .total-price-details{
     margin-right: 20px;
+}
+
+.method-container {
+    text-align: center; /* Centra el contenido horizontalmente */
+    margin-top: 20px; /* Espacio superior para separar del borde superior */
+}
+
+.method-title {
+    margin-bottom: 20px; /* Espacio inferior para separar del siguiente elemento */
+}
+
+.button-container {
+    display: flex; /* Utiliza flexbox para alinear los botones */
+    justify-content: center; /* Centra horizontalmente los elementos flexibles */
+    gap: 10px; /* Espacio entre los botones */
+    margin-bottom: 2rem;
+}
+
+.button-ethereum{
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    margin-right: 1rem;
 }
 
 @media screen and (max-width: 1500px) {

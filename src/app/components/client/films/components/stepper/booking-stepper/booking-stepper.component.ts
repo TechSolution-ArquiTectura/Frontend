@@ -133,6 +133,12 @@ export class BookingStepperComponent implements OnInit {
     this.router.navigate(['authPage'], { queryParams: { returnUrl: currentUrl } });
   }
 
+  selectedPayment!: 'ethereum' | 'creditCard';
+
+  selectPayment(paymentMethod: 'ethereum' | 'creditCard') {
+    this.selectedPayment = paymentMethod;
+  }
+
 /*   PaymentComponent */
 
   onFormSubmit() {

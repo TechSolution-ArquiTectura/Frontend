@@ -47,12 +47,22 @@ export class ProfileComponent implements OnInit {
     this.getActorListbyFilmId(this.idPost);
   }
 
-  getMoviebyId(id: number){
-    this._servMoviesProfile.getMoviebyId(id).subscribe((res) => {
+  async getMoviebyId(id: number){
+
+    try{
+      this.FilmProfile = await this._servMoviesProfile.getMoviebyId(id).toPromise();
+      this.getVideoDetails(this.FilmProfile.trailer);
+    }catch
+    {
+      console.log("Error");
+    }
+
+/*     this._servMoviesProfile.getMoviebyId(id).subscribe((res) => {
       this.FilmProfile = res;
+      console.log(this.FilmProfile.title);
       this.getVideoDetails(this.FilmProfile.trailer)
     }, (err) => { console.log(err); }
-    );
+    ); */
   }
 
   getVideoDetails(videoUrl: string) {
