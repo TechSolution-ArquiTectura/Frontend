@@ -34,7 +34,7 @@ export interface Business {
   endTime?: string;
   rating?: any;
   commentsCount?: number;
-  businessTypes?: BusinessType;
+  businessTypes?: BusinessType [] ;
   user?: User;
 }
 

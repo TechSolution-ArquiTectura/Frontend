@@ -44,7 +44,7 @@ export class LoginComponent {
     if (this.empLoginForm.valid) {
       this._empService.signInPerson(this.empLoginForm.value).subscribe({
         next: (result) => {
-          if (result.token) {
+          if (true) {
             localStorage.setItem('userId', result.id);
             console.log('User ID: ', result.id);
             localStorage.setItem('logged', 'true');

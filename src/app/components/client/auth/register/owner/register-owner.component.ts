@@ -6,6 +6,7 @@ import { Observable, map } from 'rxjs';
 import { Gender, User, Business } from 'src/app/core/models/users.model';
 import { BusinessType } from 'src/app/core/models/cineclub.model';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
+import { Router } from '@angular/router';
 
 const phonePattern = /^[0-9]{9}$/;
 const RUCPattern = /^[0-9]{11}$/;
@@ -59,10 +60,6 @@ export class RegisterOwnerComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(100),
     ]),
-    phone: new FormControl('', [
-      Validators.required,
-      Validators.pattern(phonePattern),
-    ]),
     social_reason: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
@@ -90,7 +87,8 @@ export class RegisterOwnerComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _empService: CinephileProfileService,
-    breakpointObserver: BreakpointObserver
+    breakpointObserver: BreakpointObserver,
+    private router: Router
     ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -103,6 +101,12 @@ export class RegisterOwnerComponent implements OnInit {
   }
 
   onFormSubmit(){
+    console.log("Hola")
+
+    console.log("first form", this.firstFormGroup.valid);
+    console.log("second form", this.secondFormGroup.valid);
+    console.log("fourth form", this.fourthFormGroup.valid);
+
     if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.fourthFormGroup.valid ){
       const genderName = this.firstFormGroup.get('Gender_id')?.value as string;
       const selectedGender = this.genders.find(gender => gender.name === genderName);
@@ -130,16 +134,16 @@ export class RegisterOwnerComponent implements OnInit {
                 user: {
                   id: addedPerson.id,
                 },
-                businessTypes: {
+                businessTypes: [{
                   id: this.secondFormGroup.get('BusinessType_id')?.value as unknown as number,
-                }
+                }]
               };
 
               this._empService.addBusiness(formDataBusiness) .subscribe({
                 next: (addedBusiness: any) => {
                   console.log(addedBusiness)
                   alert('Account successfully created');
-                  //this._router.navigateByUrl('/home');
+                  this.router.navigate(['/']);
                 },
                 error: (error: any) => {
                   console.error(error);

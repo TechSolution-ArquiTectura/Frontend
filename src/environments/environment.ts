@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://tucine-api.onrender.com/api/TuCine/v1'
+    apiUrl: 'http://localhost:8080/api/TuCine/v1'
   };
   
