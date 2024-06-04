@@ -6,7 +6,7 @@ import { ShowtimeService } from 'src/app/core/services/showtime/showtime.service
 import { PersonService } from 'src/app/core/services/auth/user/person.service';
 import { User } from 'src/app/core/models/users.model';
 import { Ticket } from 'src/app/core/models/ticket.model';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule} from '@angular/forms';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { PaymentComponent } from '../../../../payment/payment/payment.component';
 import { TicketService } from 'src/app/core/services/ticket/ticket.service';
@@ -22,6 +22,8 @@ import {MatCheckbox} from "@angular/material/checkbox";
 import {MatInput} from "@angular/material/input";
 import {NgIf} from "@angular/common";
 import {MetamaskHomeComponent} from "../metamask-home/metamask-home.component";
+import { CryptomusComponent } from '../cryptomus/cryptomus.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const postalcode  = /^[0-9]{5}$/;
 const cvv  = /^[0-9]{3}$/;
@@ -41,11 +43,14 @@ const cvv  = /^[0-9]{3}$/;
     MatCardContent,
     MatButton,
     ReactiveFormsModule,
+    FormsModule,
     MatCheckbox,
     MatInput,
     MatError,
     NgIf,
-    MetamaskHomeComponent
+    MetamaskHomeComponent,
+    CryptomusComponent,
+    HttpClientModule,
   ],
   styleUrls: ['./booking-stepper.component.scss']
 })
@@ -161,9 +166,9 @@ export class BookingStepperComponent implements OnInit {
     this.router.navigate(['authPage'], { queryParams: { returnUrl: currentUrl } });
   }
 
-  selectedPayment!: 'ethereum' | 'creditCard';
+  selectedPayment!: 'ethereum' | 'creditCard' | 'cryptomus';
 
-  selectPayment(paymentMethod: 'ethereum' | 'creditCard') {
+  selectPayment(paymentMethod: 'ethereum' | 'creditCard' | 'cryptomus') {
     this.selectedPayment = paymentMethod;
   }
 
