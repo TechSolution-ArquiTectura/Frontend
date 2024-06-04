@@ -20,37 +20,116 @@ import {NewGroupComponent} from "./components/client/groups/new-group/new-group.
 import {MyGroupComponent} from "./components/client/groups/my-group/my-group.component";
 import {ViewComponent} from "./components/client/profile-user/view/view.component";
 import {PromotionsComponent} from "./components/client/promotions/promotions.component";
-
 export const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'landingPage', component: LandingPageComponent },
-  { path: 'user-election', component: UserElectionComponent },
-  { path: 'authPage', component: AuthPageComponent },
-  { path: 'authPage/register/:owner', component: AuthPageComponent },
-  { path: 'authPage/register/:cinephile', component: AuthPageComponent },
-  { path: 'promociones/detail/:id', component: PromotionsDetailComponent },
-  { path: 'payment', component: PaymentComponent },
+  {
+    path: '', // Default route
+    redirectTo: '/landingPage', // Redirect to the landing page
+    pathMatch: 'full'
+  },
+  {
+    path: 'landingPage',
+    loadComponent: () => import('./views/shared/landing-page/landing-page.component').then(m=>m.LandingPageComponent)
+  },
+  {
+    path: 'user-election',
+    loadComponent: () => import('./views/shared/user-election/user-election.component').then(m=>m.UserElectionComponent)
+  },
+  {
+    path: 'authPage',
+    loadComponent: () => import('./views/shared/auth-page/auth-page.component').then(m=>m.AuthPageComponent),
+  },
+  {
+    path: 'authPage/register/:owner',
+    loadComponent: () => import('./views/shared/auth-page/auth-page.component').then(m=>m.AuthPageComponent)
+  },
+  {
+    path: 'authPage/register/:cinephile',
+    loadComponent: () => import('./views/shared/auth-page/auth-page.component').then(m=>m.AuthPageComponent)
+  },
+  {
+    path: 'promociones/detail/:id',
+    loadComponent: () => import('./components/client/promotions-detail/promotions-detail.component').then(m=>m.PromotionsDetailComponent)
+  },
+  {
+    path: 'payment',
+    loadComponent: ()=> import('./components/client/payment/payment/payment.component').then(m=>m.PaymentComponent)
+  },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    loadComponent:()=>import('./layouts/dashboard/dashboard.component').then(m=>m.DashboardComponent),
     children: [
-      { path: '', component: FilmsComponent },
-      { path: 'peliculas', component: FilmsComponent },
-      { path: 'peliculas/pelicula/:filmId', component: ProfileComponent },
-      { path: 'peliculas/pelicula/:filmId/:availableFilmId?', component: ProfileComponent },
-      { path: 'peliculas/steps/:id/booking', component: BookingStepperComponent},
-      { path: 'explorar', component: MainComponent },
-      { path: 'cineclubs', component: HomeComponent },
-      { path: 'cineclubs/cineclub/:id', component: CineclubProfileComponent },
-      { path: 'perfil-cineclub', component: CineclubProfileComponent },
-      { path: 'edit-cineclub', component: EditCineclubComponent },
-      { path: 'crear-grupo', component: NewGroupComponent },
-      { path: 'mis-grupos', component: MyGroupComponent },
-      { path: 'perfil', component: ViewComponent },
-      { path: 'promociones', component: PromotionsComponent },
-      { path: 'promociones/detail/:id', component: PromotionsDetailComponent },
-      { path: 'payment', component: PaymentComponent },
-    ],
+      {
+        path:'',
+        loadComponent: ()=>import('./components/client/films/films.component').then(m=>m.FilmsComponent),
+      },
+      {
+        path: 'peliculas',
+        loadComponent: ()=> import('./components/client/films/films.component').then(m=>m.FilmsComponent)
+      },
+      {
+        path:'peliculas/pelicula/:filmId',
+        loadComponent: ()=> import('./components/client/films/components/profile/profile.component').then(m=>m.ProfileComponent)
+      },
+      {
+        path:'peliculas/pelicula/:filmId/:availableFilmId?',
+        loadComponent: ()=> import('./components/client/films/components/profile/profile.component').then(m=>m.ProfileComponent)
+      },
+      {
+        path:'peliculas/steps/:id/booking',
+        loadComponent: ()=> import('./components/client/films/components/stepper/booking-stepper/booking-stepper.component').then(m=>m.BookingStepperComponent)
+      },
+      {
+        path:'explorar',
+        loadComponent: ()=> import('./components/client/explore/main/main.component').then(m=>m.MainComponent)
+      },
+      {
+        path: 'cineclubs',
+        loadComponent: ()=> import('./components/client/cineclubs/home/home.component').then(m=>m.HomeComponent)
+      },
+      {
+        path: 'cineclubs/cineclub/:id',
+        loadComponent: ()=> import('./components/client/cineclubs/cineclub-profile/cineclub-profile.component').then(m=>m.CineclubProfileComponent)
+      },
+      {
+        path: 'perfil-cineclub',
+        loadComponent: ()=> import('./components/client/cineclubs/cineclub-profile/cineclub-profile.component').then(m=>m.CineclubProfileComponent)
+      },
+      {
+        path: 'edit-cineclub',
+        loadComponent: ()=> import('./components/client/cineclubs/edit-cineclub/edit-cineclub.component').then(m=>m.EditCineclubComponent)
+      },
+      {
+        path: 'crear-grupo',
+        loadComponent: ()=> import('./components/client/groups/new-group/new-group.component').then(m=>m.NewGroupComponent)
+      },
+      {
+        path: 'mis-grupos',
+        loadComponent: ()=> import('./components/client/groups/my-group/my-group.component').then(m=>m.MyGroupComponent)
+      },
+      {
+        path: 'perfil',
+        loadComponent: ()=> import('./components/client/profile-user/view/view.component').then(m=>m.ViewComponent)
+      },
+      {
+        path: 'promociones',
+        loadComponent: ()=> import('./components/client/promotions/promotions.component').then(m=>m.PromotionsComponent)
+      },
+      {
+        path: 'promociones/detail/:id',
+        loadComponent: ()=> import('./components/client/promotions-detail/promotions-detail.component').then(m=>m.PromotionsDetailComponent)
+      },
+      {
+        path: 'payment',
+        loadComponent: ()=> import('./components/client/payment/payment/payment.component').then(m=>m.PaymentComponent)
+      }
+      // ... your existing dashboard children routes
+    ]
   },
-  // Any other routes
 ];
+
+/*export const routes:Routes=[
+  {
+    path:'',
+    loadComponent: ()=>import('./layouts/dashboard/dashboard.component').then(m=>m.DashboardComponent)
+  }
+]*/

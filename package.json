@@ -28,6 +28,7 @@
     "primeflex": "^3.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "web3": "^4.9.0",
     "zone.js": "^0.14.6"
   },
   "devDependencies": {
