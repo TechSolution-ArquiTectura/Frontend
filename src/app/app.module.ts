@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
-import { NgxStarRatingModule } from 'ngx-star-rating';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -28,7 +27,6 @@ import { NewGroupComponent } from './components/client/groups/new-group/new-grou
 
 import { AppRoutingModule } from './router/app-routing.module';
 import { DashboardRoutingModule } from './router/dashboard-routing.module';
-import { AgmCoreModule } from '@agm/core';
 import { SearchBarCineclubsComponent } from './components/client/cineclubs/search-bar-cineclubs/search-bar-cineclubs.component';
 import { HomeComponent } from './components/client/cineclubs/home/home.component';
 import { ListCineclubsComponent } from './components/client/cineclubs/list-cineclubs/list-cineclubs.component';
@@ -137,16 +135,11 @@ import {MatRadioModule} from '@angular/material/radio';
     NgxPaginationModule,
     MatPaginatorModule,
     MatDialogModule,
-    NgxStarRatingModule,
     CommonModule,
     MatDialogModule,
     MatRadioModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCo73cODrVrhwYpmhegeL8ptJUmO_I-M04',
-      libraries: ['places'],
-    }),
   ],
-  entryComponents: [EditProfileModalComponent],
+  //entryComponents: [EditProfileModalComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
