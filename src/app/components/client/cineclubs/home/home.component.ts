@@ -3,10 +3,17 @@ import { Business } from 'src/app/core/models/cineclub.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { BusinessType } from 'src/app/core/models/cineclub.model';
 import { BusinessTypesService } from 'src/app/core/services/cineclubs/business-types.service';
+import {SearchBarCineclubsComponent} from "../search-bar-cineclubs/search-bar-cineclubs.component";
+import {ListCineclubsComponent} from "../list-cineclubs/list-cineclubs.component";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  standalone: true,
+  imports: [
+    SearchBarCineclubsComponent,
+    ListCineclubsComponent
+  ],
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {

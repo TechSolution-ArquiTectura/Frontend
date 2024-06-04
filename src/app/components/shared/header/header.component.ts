@@ -1,13 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import { isLogged, getTypeUser, getUserId } from 'src/app/util';
 import { PersonService } from 'src/app/core/services/auth/user/person.service';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
+import {NgIf, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    NgIf,
+    NgOptimizedImage
+  ],
+  standalone: true
 })
 export class HeaderComponent implements OnInit {
   imgProfile: string = '';

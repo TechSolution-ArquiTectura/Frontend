@@ -1,15 +1,27 @@
 import { Component } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {BreakpointObserver} from '@angular/cdk/layout';
-import {StepperOrientation} from '@angular/material/stepper';
+import {
+  MatStep,
+  MatStepLabel,
+  MatStepper,
+  MatStepperNext,
+  MatStepperPrevious,
+  StepperOrientation
+} from '@angular/material/stepper';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 import {COMMA, ENTER, P} from '@angular/cdk/keycodes';
-import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import {MatChipEditedEvent, MatChipGrid, MatChipInput, MatChipInputEvent, MatChipRow} from '@angular/material/chips';
 import { HttpClient } from '@angular/common/http';
 import { GroupService } from 'src/app/core/services/groups/group.service';
 import { Group } from 'src/app/core/models/group.model';
+import {AsyncPipe, NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatIcon} from "@angular/material/icon";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
 
 export interface Topic {
   name: string;
@@ -18,6 +30,27 @@ export interface Topic {
 @Component({
   selector: 'app-new-group',
   templateUrl: './new-group.component.html',
+  standalone: true,
+  imports: [
+    NgSwitch,
+    AsyncPipe,
+    MatStepper,
+    MatStep,
+    ReactiveFormsModule,
+    MatFormField,
+    MatIcon,
+    MatChipGrid,
+    MatChipRow,
+    MatChipInput,
+    MatInput,
+    MatButton,
+    MatStepperNext,
+    MatStepperPrevious,
+    MatStepLabel,
+    NgSwitchCase,
+    MatLabel,
+    NgForOf
+  ],
   styleUrls: ['./new-group.component.scss']
 })
 export class NewGroupComponent {

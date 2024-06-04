@@ -5,6 +5,9 @@ import { Film } from 'src/app/core/models/film.model';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 import { FilmsCategoryService } from 'src/app/core/services/film/films-category.service';
 import { CategoryService } from 'src/app/core/services/film/category.service';
+import {MoviePosterComponent} from "./components/movie-poster/movie-poster.component";
+import {SearchBarComponent} from "./components/search-bar/search-bar.component";
+import {WeeklyFilmComponent} from "./components/weekly-film/weekly-film.component";
 
 interface Genre {
   value: string;
@@ -14,6 +17,12 @@ interface Genre {
 @Component({
   selector: 'app-films',
   templateUrl: './films.component.html',
+  standalone: true,
+  imports: [
+    MoviePosterComponent,
+    SearchBarComponent,
+    WeeklyFilmComponent
+  ],
   styleUrls: ['./films.component.scss']
 })
 export class FilmsComponent implements OnInit {

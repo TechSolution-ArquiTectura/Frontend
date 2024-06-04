@@ -7,6 +7,7 @@ import { NewShowtimeDialogComponent } from './new-showtime-dialog/new-showtime-d
   selector: 'app-admin-schedule-films',
   templateUrl: './admin-schedule-films.component.html',
   styleUrls: ['./admin-schedule-films.component.scss'],
+  standalone: true
 })
 export class AdminScheduleFilmsComponent implements OnInit {
   @Input() availableFilmId: any;

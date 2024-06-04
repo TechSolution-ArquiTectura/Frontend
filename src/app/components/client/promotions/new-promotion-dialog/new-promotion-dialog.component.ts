@@ -1,16 +1,28 @@
 import { PromotionsService } from 'src/app/core/services/promotions/promotions.service';
 import { Component, Inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Promotion } from 'src/app/core/models/promotion';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { format } from 'date-fns';
 import { getBusinessId } from 'src/app/util';
+import {MatIcon} from "@angular/material/icon";
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatSuffix} from "@angular/material/form-field";
 
 @Component({
   selector: 'app-new-promotion-dialog',
   templateUrl: './new-promotion-dialog.component.html',
   styleUrls: ['./new-promotion-dialog.component.scss'],
+  imports: [
+    ReactiveFormsModule,
+    MatIcon,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatSuffix
+  ],
+  standalone: true
 })
 export class NewPromotionDialogComponent {
   BUSINESS_ID: number = getBusinessId();
