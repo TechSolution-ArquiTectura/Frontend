@@ -21,6 +21,7 @@ import {MatButton} from "@angular/material/button";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatInput} from "@angular/material/input";
 import {NgIf} from "@angular/common";
+import {MetamaskHomeComponent} from "../metamask-home/metamask-home.component";
 
 const postalcode  = /^[0-9]{5}$/;
 const cvv  = /^[0-9]{3}$/;
@@ -43,7 +44,8 @@ const cvv  = /^[0-9]{3}$/;
     MatCheckbox,
     MatInput,
     MatError,
-    NgIf
+    NgIf,
+    MetamaskHomeComponent
   ],
   styleUrls: ['./booking-stepper.component.scss']
 })
