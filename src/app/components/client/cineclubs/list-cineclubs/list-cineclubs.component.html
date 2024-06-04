@@ -15,7 +15,7 @@
       <div class="card-img">
         <img
           mat-card-image
-          src="{{ cineclub.logoSrc }}"
+          ngSrc="{{ cineclub.logoSrc }}"
           alt="{{ cineclub.name }}"
         />
       </div>
@@ -39,7 +39,7 @@
     (pageChange)="p = $event"
     previousLabel=" "
     nextLabel=" "
-    autoHide:true
+    [autoHide]=true
     class="my-pagination"
   ></pagination-controls>
 </div>

@@ -8,11 +8,29 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { isBusiness } from 'src/app/util';
+import {MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle} from "@angular/material/expansion";
+import {ShowtimesTableComponent} from "../showtime-table/showtimes-table/showtimes-table.component";
+import {NgForOf, NgIf, UpperCasePipe} from "@angular/common";
+import {AdminScheduleFilmsComponent} from "../admin-schedule-films/admin-schedule-films.component";
+import {FlexModule} from "@angular/flex-layout";
 
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
+  standalone: true,
+  imports: [
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelTitle,
+    ShowtimesTableComponent,
+    UpperCasePipe,
+    AdminScheduleFilmsComponent,
+    MatExpansionPanelHeader,
+    FlexModule,
+    NgForOf,
+    NgIf
+  ],
   styleUrls: ['./profile.component.scss']
 
 })

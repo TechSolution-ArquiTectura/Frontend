@@ -1,9 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { PopularPostService } from 'src/app/core/services/explore/popular-post/popular-post.service';
+import {MatCard, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
+import {FlexModule} from "@angular/flex-layout";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'explore-popular-post',
   templateUrl: './popular-post.component.html',
+  standalone: true,
+  imports: [
+    MatCard,
+    MatCardSubtitle,
+    MatCardHeader,
+    FlexModule,
+    MatCardTitle,
+    NgForOf
+  ],
   styleUrls: ['./popular-post.component.scss']
 })
 export class PopularPostComponent implements OnInit {

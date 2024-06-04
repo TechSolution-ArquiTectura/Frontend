@@ -1,0 +1,8 @@
+<div>
+  <h1>MetaMask Integration</h1>
+  <button (click)="loadAccountData()">Connect to MetaMask</button>
+  <div *ngIf="account">
+    <p>Account: {{ account }}</p>
+    <p>Balance: {{ balance }} ETH</p>
+  </div>
+</div>

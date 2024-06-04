@@ -2,10 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
 import { ActivatedRoute } from '@angular/router';
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'cineclubs-cineclub-details',
   templateUrl: './cineclub-details.component.html',
+  standalone: true,
+  imports: [
+    MatIcon
+  ],
   styleUrls: ['./cineclub-details.component.scss']
 })
 export class CineclubDetailsComponent implements OnInit {

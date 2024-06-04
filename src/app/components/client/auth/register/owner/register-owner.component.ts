@@ -1,12 +1,20 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, ReactiveFormsModule, ValidatorFn, Validators} from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { Gender, User, Business } from 'src/app/core/models/users.model';
 import { BusinessType } from 'src/app/core/models/cineclub.model';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { Router } from '@angular/router';
+import {AsyncPipe, NgForOf, NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
+import {MatStep, MatStepper, MatStepperNext, MatStepperPrevious} from "@angular/material/stepper";
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatInput} from "@angular/material/input";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 const phonePattern = /^[0-9]{9}$/;
 const RUCPattern = /^[0-9]{11}$/;
@@ -14,6 +22,31 @@ const RUCPattern = /^[0-9]{11}$/;
 @Component({
   selector: 'auth-register-owner',
   templateUrl: './register-owner.component.html',
+  standalone: true,
+  imports: [
+    NgSwitch,
+    MatStepper,
+    AsyncPipe,
+    MatStep,
+    ReactiveFormsModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatLabel,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatInput,
+    MatButton,
+    MatStepperNext,
+    MatStepperPrevious,
+    MatIconButton,
+    MatError,
+    NgSwitchCase,
+    NgIf,
+    NgForOf,
+    MatIcon
+  ],
   styleUrls: ['./register-owner.component.scss']
 })
 export class RegisterOwnerComponent implements OnInit {

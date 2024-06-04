@@ -2,7 +2,7 @@
   <div fxLayout="row wrap" fxLayoutGap="10px grid">
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.md="33%" fxFlex.sm="50%" *ngFor="let card of cards">
       <mat-card class="event-card">
-        <img mat-card-image [src]="card.img" alt="card-event-image">
+        <img mat-card-image ngSrc="card.img" alt="card-event-image">
         <mat-card-header>
             <mat-card-title> {{card.date}} </mat-card-title>
             <mat-card-subtitle> <mat-icon>location_on</mat-icon> {{card.location}} </mat-card-subtitle>
@@ -22,4 +22,3 @@
 </div>
 
 
-  

@@ -6,10 +6,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-modal.component';
 import {Review} from "../../../core/models/review.models";
 import {Gender, User} from "../../../core/models/users.model";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-profile-user',
   templateUrl: './profile-user.component.html',
+  standalone: true,
+  imports: [
+    NgIf
+  ],
   styleUrls: ['./profile-user.component.scss']
 })
 export class ProfileUserComponent implements OnInit{

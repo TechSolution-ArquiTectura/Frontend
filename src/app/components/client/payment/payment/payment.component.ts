@@ -6,6 +6,11 @@ import { Promotion } from 'src/app/core/models/promotion';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
+  standalone: true,
+  imports: [
+    InformationComponent,
+    PaymentFormComponent
+  ],
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent {

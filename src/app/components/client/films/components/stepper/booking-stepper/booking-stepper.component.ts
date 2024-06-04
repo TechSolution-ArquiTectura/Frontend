@@ -1,17 +1,27 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatStepper } from '@angular/material/stepper';
+import {MatStep, MatStepper} from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Showtime } from 'src/app/core/models/showtime.model';
 import { ShowtimeService } from 'src/app/core/services/showtime/showtime.service';
 import { PersonService } from 'src/app/core/services/auth/user/person.service';
 import { User } from 'src/app/core/models/users.model';
 import { Ticket } from 'src/app/core/models/ticket.model';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { PaymentComponent } from '../../../../payment/payment/payment.component';
 import { TicketService } from 'src/app/core/services/ticket/ticket.service';
 import { BookingSuccessComponent } from '../booking-success/booking-success.component';
 import { MatDialog } from '@angular/material/dialog';
+import {FilmProfileComponent} from "../film-profile/film-profile.component";
+import {MatIcon} from "@angular/material/icon";
+import {BookTicketComponent} from "../../book-ticket/book-ticket.component";
+import {MatCard, MatCardContent} from "@angular/material/card";
+import {MatError, MatFormField} from "@angular/material/form-field";
+import {MatButton} from "@angular/material/button";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatInput} from "@angular/material/input";
+import {NgIf} from "@angular/common";
+import {MetamaskHomeComponent} from "../metamask-home/metamask-home.component";
 
 const postalcode  = /^[0-9]{5}$/;
 const cvv  = /^[0-9]{3}$/;
@@ -19,6 +29,24 @@ const cvv  = /^[0-9]{3}$/;
 @Component({
   selector: 'film-booking-stepper',
   templateUrl: './booking-stepper.component.html',
+  standalone: true,
+  imports: [
+    MatStepper,
+    MatStep,
+    FilmProfileComponent,
+    MatIcon,
+    BookTicketComponent,
+    MatCard,
+    MatFormField,
+    MatCardContent,
+    MatButton,
+    ReactiveFormsModule,
+    MatCheckbox,
+    MatInput,
+    MatError,
+    NgIf,
+    MetamaskHomeComponent
+  ],
   styleUrls: ['./booking-stepper.component.scss']
 })
 export class BookingStepperComponent implements OnInit {
@@ -99,8 +127,8 @@ export class BookingStepperComponent implements OnInit {
     });
   }
 
-  
-  getShowtimebyId(id: number){ 
+
+  getShowtimebyId(id: number){
     this._showtimeService.getShowtimebyId(id).subscribe((res: any) => {
       this.showtime = res;
       //console.log(this.showtime);
@@ -127,7 +155,7 @@ export class BookingStepperComponent implements OnInit {
     const currentUrl = this.router.url; // Obtén la URL actual
     this.router.navigate(['authPage/register/:cinephile']);
   }
-  
+
   goToSignIn() {
     const currentUrl = this.router.url; // Obtén la URL actual
     this.router.navigate(['authPage'], { queryParams: { returnUrl: currentUrl } });
@@ -179,7 +207,7 @@ export class BookingStepperComponent implements OnInit {
       alert('Please fill the form correctly');
     }
   }
-  
+
   openSuccessDialog(): void {
     const dialogRef = this.dialog.open(BookingSuccessComponent, {
       width: '400px', // Puedes ajustar el tamaño según tus necesidades

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Actor } from 'src/app/core/models/actor.models';
 import { AvailableFilm } from 'src/app/core/models/available-films';
 import { Film } from 'src/app/core/models/film.model';
@@ -7,10 +7,37 @@ import { ActorService } from 'src/app/core/services/actor/actor.service';
 import { AvailableFilmsService } from 'src/app/core/services/available-films/available-films.service';
 import { FilmService } from 'src/app/core/services/film/film.service';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
+import {MatStep, MatStepper, MatStepperNext} from "@angular/material/stepper";
+import {MatError, MatFormField, MatHint, MatLabel} from "@angular/material/form-field";
+import {MatCardActions} from "@angular/material/card";
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatInput} from "@angular/material/input";
+import {MatDialogClose} from "@angular/material/dialog";
+import {MatButton} from "@angular/material/button";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-new-movie',
   templateUrl: './new-movie.component.html',
+  standalone: true,
+  imports: [
+    MatStepper,
+    MatStep,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatCardActions,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatInput,
+    MatHint,
+    MatError,
+    MatDialogClose,
+    MatButton,
+    NgIf,
+    MatStepperNext
+  ],
   styleUrls: ['./new-movie.component.scss']
 })
 export class NewMovieComponent {
@@ -96,7 +123,7 @@ export class NewMovieComponent {
 
       this.filmService.addMovieProfile(this.film).subscribe({
         next: (addedFilm: any) => {
-          
+
           this.filmService.getFilms().subscribe({
             next: (res) => {
               res.forEach((_film) => {
@@ -105,7 +132,7 @@ export class NewMovieComponent {
                   this.availableFilm.business.id = this.idCineclub;
                   this.availableFilm.film.id = _film.id;
                   this.availableFilm.isAvailable = "1"; // 1: True
-          
+
                   this.availableFilmService.postAvailableFilms(this.availableFilm).subscribe({
                     next: (addedAvailableFilm: any) => {
                     },

@@ -1,9 +1,16 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FilmsComponent } from '../../films.component';
+import {MatIcon} from "@angular/material/icon";
+import {MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
+  standalone: true,
+  imports: [
+    MatIcon,
+    MatIconButton
+  ],
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {

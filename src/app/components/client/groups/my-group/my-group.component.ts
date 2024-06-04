@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
 import { Group } from 'src/app/core/models/group.model';
 import { GroupService } from 'src/app/core/services/groups/group.service';
+import {NgForOf} from "@angular/common";
+import {MatCard} from "@angular/material/card";
 
 @Component({
   selector: 'app-my-group',
   templateUrl: './my-group.component.html',
+  standalone: true,
+  imports: [
+    NgForOf,
+    MatCard
+  ],
   styleUrls: ['./my-group.component.scss']
 })
 export class MyGroupComponent {

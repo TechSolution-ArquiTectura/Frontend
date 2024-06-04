@@ -1,16 +1,28 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Showtime } from 'src/app/core/models/showtime.model';
 import { ShowtimeService } from 'src/app/core/services/showtime/showtime.service';
 import { format } from 'date-fns';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatIcon} from "@angular/material/icon";
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatSuffix} from "@angular/material/form-field";
 
 @Component({
   selector: 'app-new-showtime-dialog',
   templateUrl: './new-showtime-dialog.component.html',
   styleUrls: ['./new-showtime-dialog.component.scss'],
+  imports: [
+    ReactiveFormsModule,
+    MatIcon,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatSuffix
+  ],
+  standalone: true
 })
 export class NewShowtimeDialogComponent {
   constructor(
