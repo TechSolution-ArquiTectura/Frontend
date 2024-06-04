@@ -47,18 +47,18 @@ export class ProfileComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-   constructor(
+  constructor(
     private _servMoviesProfile: FilmsProfileService,
     private _ytVideo: YtVideoService,
     private route : ActivatedRoute,
     private sanitizer: DomSanitizer,
     private _dialog: MatDialog,
-   ){
+  ){
     this.route.params.subscribe(params => {
       this.idPost = params['filmId'] ?? 1;
       this.availableFilmId = params['availableFilmId'] ?? 0;
     });
-   }
+  }
 
   ngOnInit(): void {
     this.getMoviebyId(this.idPost);
@@ -66,54 +66,41 @@ export class ProfileComponent implements OnInit {
   }
 
   async getMoviebyId(id: number){
-
-    try{
+    try {
       this.FilmProfile = await this._servMoviesProfile.getMoviebyId(id).toPromise();
       this.getVideoDetails(this.FilmProfile.trailer);
-    }catch
-    {
-      console.log("Error");
+    } catch (e) {
+      let result = (e as Error).message;
+      console.log(result);
     }
-
-/*     this._servMoviesProfile.getMoviebyId(id).subscribe((res) => {
-      this.FilmProfile = res;
-      console.log(this.FilmProfile.title);
-      this.getVideoDetails(this.FilmProfile.trailer)
-    }, (err) => { console.log(err); }
-    ); */
   }
 
   getVideoDetails(videoUrl: string) {
-    this._ytVideo.getVideoDetails(videoUrl)
-      .subscribe((data: any) => {
-        this.videoDetails = data.items[0].snippet;
-      });
+    this._ytVideo.getVideoDetails(videoUrl)?.subscribe((data: any) => {
+      console.log(data.items[0].snippet.thumbnails);
+      this.videoDetails= data.items[0].snippet;
+    });
   }
 
   getSafeTrailerUrl() {
     this.url = this.FilmProfile.trailer;
     if (this.url.startsWith('https://www.youtube.com/watch?v=')) {
       this.url = this.url.replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/');
-    } else if (this.url.startsWith('https://youtu.be')) {
-      var temp = this.url.split('?si=');
+    } else if (this.url.startsWith('https://youtu.be/')) {
+      const temp = this.url.split('?si=');
       this.url = temp[0];
       this.url = this.url.replace('https://youtu.be/', 'https://www.youtube.com/embed/');
     }
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
-
-  // Detalles de la pelicula
   getActorListbyFilmId(Film_id: number) {
     return this._servMoviesProfile.getFilmActorbyFilmId(Film_id).subscribe((res) => {
-
-      res.forEach((element: any) => {
+        res.forEach((element: any) => {
           element.Actor = element.firstName + " " + element.lastName;
           this.ActorList.push(element);
-      });
-    }, (err) => { console.log(err); }
+        });
+      }, (err) => { console.log(err); }
     );
   }
-
 }
-

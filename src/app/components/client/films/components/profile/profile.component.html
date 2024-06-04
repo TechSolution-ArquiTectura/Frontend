@@ -1,13 +1,13 @@
 <div class="wrapper">
   <div class="flex video-header justify-content-center relative">
     <a class="play-btn" href="{{FilmProfile.trailer}}" target="_blank"><img src="/assets/icons/play-circle.svg" alt="" /></a>
-<!--     <img
+     <img
     [src]="
-        videoDetails.thumbnails.maxres ? videoDetails.thumbnails.maxres.url : videoDetails.thumbnails.high.url
+        videoDetails.thumbnails.high ? videoDetails.thumbnails.high.url : videoDetails.thumbnails.high.url
         "
       alt="Video Thumbnail"
       class="yt-video"
-      /> -->
+      />
       <!-- <iframe title="yt-iframe" [src]="getSafeTrailerUrl()" allowfullscreen class="yt-iframe"></iframe> -->
   </div>
   <div class="card">
