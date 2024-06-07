@@ -27,7 +27,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/cryptomus_71f67f11.html"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
