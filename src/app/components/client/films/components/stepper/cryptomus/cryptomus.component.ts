@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { CryptomusService } from 'src/app/services/cryptomus.service';
+import { CryptomusService } from 'src/app/services/eth-payment.service';
 
 @Component({
   selector: 'app-cryptomus',
@@ -28,3 +28,4 @@ export class CryptomusComponent {
     );
   }
 }
+*/
