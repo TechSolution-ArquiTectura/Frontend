@@ -4,7 +4,8 @@
     <div class="booking-stepper-header-body">
       <h1 class="booking-stepper-header-body-title">COMPRA DE ENTRADAS</h1>
       <p class="booking-stepper-header-body-detail">Confirma el proceso para adquirir tus entradas a
-        <strong>{{showtime?.availableFilm?.business?.name}}</strong></p>
+        <strong>{{showtime?.availableFilm?.business?.name}}</strong>
+      </p>
     </div>
 
     <mat-horizontal-stepper labelPosition="bottom">
@@ -162,11 +163,14 @@
                     Ethereum</button>
                   <button class="button-creditCard" mat-raised-button (click)="selectPayment('creditCard')">Pagar con
                     Tarjeta de Crédito</button>
-                  <button class="button-cryptomus" mat-raised-button (click)="selectPayment('cryptomus')">Pagar con
-                    Cryptomus</button>
+                  <!--
+                    <button class="button-cryptomus" mat-raised-button (click)="selectPayment('cryptomus')">Pagar con
+                    Cryptomus
+                  </button>
+                  -->
                 </div>
                 <div *ngIf="selectedPayment === 'ethereum'">
-                  <app-metamask-home></app-metamask-home>
+                  <button mat-raised-button (click)="onEthereumPayment()">Pagar con Ethereum</button>
                 </div>
                 <div *ngIf="selectedPayment === 'creditCard'">
                   <mat-card class="pay-container">
@@ -265,9 +269,11 @@
                     </mat-card-content>
                   </mat-card>
                 </div>
+                <!---
                 <div *ngIf="selectedPayment === 'cryptomus'">
                   <app-cryptomus></app-cryptomus>
                 </div>
+              -->
               </div>
 
 

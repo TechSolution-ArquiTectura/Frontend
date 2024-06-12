@@ -1,32 +1,33 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import {MatStep, MatStepper} from '@angular/material/stepper';
+import { MatStep, MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Showtime } from 'src/app/core/models/showtime.model';
 import { ShowtimeService } from 'src/app/core/services/showtime/showtime.service';
 import { PersonService } from 'src/app/core/services/auth/user/person.service';
 import { User } from 'src/app/core/models/users.model';
 import { Ticket } from 'src/app/core/models/ticket.model';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { PaymentComponent } from '../../../../payment/payment/payment.component';
 import { TicketService } from 'src/app/core/services/ticket/ticket.service';
 import { BookingSuccessComponent } from '../booking-success/booking-success.component';
 import { MatDialog } from '@angular/material/dialog';
-import {FilmProfileComponent} from "../film-profile/film-profile.component";
-import {MatIcon} from "@angular/material/icon";
-import {BookTicketComponent} from "../../book-ticket/book-ticket.component";
-import {MatCard, MatCardContent} from "@angular/material/card";
-import {MatError, MatFormField} from "@angular/material/form-field";
-import {MatButton} from "@angular/material/button";
-import {MatCheckbox} from "@angular/material/checkbox";
-import {MatInput} from "@angular/material/input";
-import {NgIf} from "@angular/common";
-import {MetamaskHomeComponent} from "../metamask-home/metamask-home.component";
-import { CryptomusComponent } from '../cryptomus/cryptomus.component';
+import { FilmProfileComponent } from "../film-profile/film-profile.component";
+import { MatIcon } from "@angular/material/icon";
+import { BookTicketComponent } from "../../book-ticket/book-ticket.component";
+import { MatCard, MatCardContent } from "@angular/material/card";
+import { MatError, MatFormField } from "@angular/material/form-field";
+import { MatButton } from "@angular/material/button";
+import { MatCheckbox } from "@angular/material/checkbox";
+import { MatInput } from "@angular/material/input";
+import { NgIf } from "@angular/common";
+import { MetamaskHomeComponent } from "../metamask-home/metamask-home.component";
+/*import { CryptomusComponent } from '../cryptomus/cryptomus.component';*/
 import { HttpClientModule } from '@angular/common/http';
+import { EthPaymentService } from 'src/app/services/eth-payment.service';
 
-const postalcode  = /^[0-9]{5}$/;
-const cvv  = /^[0-9]{3}$/;
+const postalcode = /^[0-9]{5}$/;
+const cvv = /^[0-9]{3}$/;
 
 @Component({
   selector: 'film-booking-stepper',
@@ -49,7 +50,7 @@ const cvv  = /^[0-9]{3}$/;
     MatError,
     NgIf,
     MetamaskHomeComponent,
-    CryptomusComponent,
+    /*CryptomusComponent,*/
     HttpClientModule,
   ],
   styleUrls: ['./booking-stepper.component.scss']
@@ -61,7 +62,7 @@ export class BookingStepperComponent implements OnInit {
   user: User | undefined;
   selectedQuantity: number = 1;
   totalPrice: number = 0;
-  ticket: Ticket ={
+  ticket: Ticket = {
     user: { id: 1 }, // Asegúrate de obtener el ID del cliente correctamente
     showtime: { id: 1 }
   }
@@ -88,7 +89,8 @@ export class BookingStepperComponent implements OnInit {
     private router: Router,
     private _paymentService: CinephileProfileService,
     private _ticketService: TicketService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _ethPaymentService: EthPaymentService, // Inyectar el servicio
   ) {
     this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
 
@@ -126,21 +128,21 @@ export class BookingStepperComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-    this.getShowtimebyId(params['showtimeId']);
-    this.showtimeId =  Number(params['showtimeId']);
-    this.getPersonById(this.userId? this.userId : 0);
+      this.getShowtimebyId(params['showtimeId']);
+      this.showtimeId = Number(params['showtimeId']);
+      this.getPersonById(this.userId ? this.userId : 0);
     });
   }
 
 
-  getShowtimebyId(id: number){
+  getShowtimebyId(id: number) {
     this._showtimeService.getShowtimebyId(id).subscribe((res: any) => {
       this.showtime = res;
       //console.log(this.showtime);
     });
   }
 
-  getPersonById(id: number){
+  getPersonById(id: number) {
     this._personService.getPersonById(id).subscribe((res: any) => {
       this.user = res;
       console.log(this.user);
@@ -172,20 +174,47 @@ export class BookingStepperComponent implements OnInit {
     this.selectedPayment = paymentMethod;
   }
 
-/*   PaymentComponent */
+  /*ethereum page*/
+
+  async onEthereumPayment() {
+    try {
+      const walletAddress = await this._ethPaymentService.connectWallet();
+      if (walletAddress) {
+        await this._ethPaymentService.makePayment(walletAddress, this.totalPrice.toString());
+        this.ticket.user.id = this.userId!;
+        this.ticket.showtime.id = this.showtimeId!;
+        this.ticket.numberSeats = Number(this.selectedQuantity);
+        this.ticket.paymentToken = walletAddress;
+        this.ticket.totalPrice = this.totalPrice;
+        this._ticketService.addTicket(this.ticket).subscribe(
+          (res) => {
+            this.openSuccessDialog();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      } else {
+        alert('Failed to connect wallet');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Payment failed');
+    }
+  }
+
+
+  /*   PaymentComponent */
 
   onFormSubmit() {
-
-    if (this.empPaymentForm.valid) {
+    if (this.selectedPayment === 'ethereum') {
+      this.onEthereumPayment();
+    } else if (this.empPaymentForm.valid) {
       const formValue = { ...this.empPaymentForm.value };
       this.payment.user.id = this.userId!;
       this.payment.paymentToken = formValue.card_number;
-      console.log(this.payment);
       this._paymentService.postPaymentMethod(this.payment).subscribe(
-        (res) => {
-/*           console.log(res);
-          alert('Payment method added successfully'); */
-        },
+        (res) => { },
         (err) => {
           console.log(err);
         }
@@ -194,24 +223,21 @@ export class BookingStepperComponent implements OnInit {
       this.ticket.user.id = this.userId!;
       this.ticket.showtime.id = this.showtimeId!;
       this.ticket.numberSeats = Number(this.selectedQuantity);
-      this.ticket.paymentToken = formValue.card_number;;
+      this.ticket.paymentToken = formValue.card_number;
       this.ticket.totalPrice = this.totalPrice;
-      console.log(this.ticket);
       this._ticketService.addTicket(this.ticket).subscribe(
         (res) => {
           this.openSuccessDialog();
-/*           console.log(res);
-          alert('Ticket added successfully'); */
         },
         (err) => {
           console.log(err);
         }
       );
-
     } else {
       alert('Please fill the form correctly');
     }
   }
+
 
   openSuccessDialog(): void {
     const dialogRef = this.dialog.open(BookingSuccessComponent, {
