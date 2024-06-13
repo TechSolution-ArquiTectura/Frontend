@@ -176,11 +176,19 @@ export class BookingStepperComponent implements OnInit {
 
   /*ethereum page*/
 
+  convertSolesToEther(soles: number): number {
+    const exchangeRate = 13148.33; // Suponemos que 1 ETH = 13148.33 soles
+    const ethers = soles / exchangeRate;
+    return parseFloat(ethers.toFixed(8)); // Redondeamos a 8 decimales para mayor
+  }
+
   async onEthereumPayment() {
     try {
       const walletAddress = await this._ethPaymentService.connectWallet();
       if (walletAddress) {
-        await this._ethPaymentService.makePayment(walletAddress, this.totalPrice.toString());
+        const etherAmount= this.convertSolesToEther(this.totalPrice);
+        console.log("Ether Amount:", etherAmount);
+        await this._ethPaymentService.makePayment(walletAddress, etherAmount);
         this.ticket.user.id = this.userId!;
         this.ticket.showtime.id = this.showtimeId!;
         this.ticket.numberSeats = Number(this.selectedQuantity);
@@ -204,7 +212,8 @@ export class BookingStepperComponent implements OnInit {
   }
 
 
-  /*   PaymentComponent */
+
+    /*   PaymentComponent */
 
   onFormSubmit() {
     if (this.selectedPayment === 'ethereum') {

@@ -24,6 +24,7 @@
     "crypto": "^1.0.1",
     "date-fns": "^2.30.0",
     "dotenv": "^16.4.5",
+    "ethers": "^6.13.0",
     "express": "^4.19.2",
     "force": "^0.0.3",
     "json-server": "^0.17.3",

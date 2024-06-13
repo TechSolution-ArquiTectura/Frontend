@@ -19,12 +19,15 @@ export class EthPaymentService {
     }
   }
 
-  async makePayment(address: string, amount: string): Promise<void> {
+  async makePayment(address: string, ehterAmount: number): Promise<void> {
     try {
+
+      const weiValue=this.toHexWei(ehterAmount);
+
       const transactionParameters = {
         to: address,
         from: await this.connectWallet(),
-        value: amount,
+        value: weiValue,
       };
       await ethereum.request({
         method: 'eth_sendTransaction',
@@ -35,4 +38,13 @@ export class EthPaymentService {
       throw new Error('Payment failed');
     }
   }
+
+  toHexWei(amount: number): string {
+    const wei = BigInt(Math.round(amount * 1e18)); // Conversión de ether a wei
+    return '0x' + wei.toString(16); // Formato hexadecimal
+  }
+
+
+
+
 }
