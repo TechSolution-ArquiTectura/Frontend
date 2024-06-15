@@ -15,10 +15,10 @@ export class CoinMarketCriptoService {
 
     //Config for deployment
     //Comment in case you are working on deployment
-    const headers = {
+/*    const headers = {
       'Accepts': 'application/json',
       'X-CMC_PRO_API_KEY': '8854cad8-4593-4609-a6d5-eccc36514c7d'
-    };
+    };*/
 
     const params = {
       amount: amount.toString(),
@@ -27,9 +27,9 @@ export class CoinMarketCriptoService {
     };
 
     //Config for deployment
-    return this.http.get(this.apiUrl, { params, headers });
+/*    return this.http.get(this.apiUrl, { params, headers });*/
 
     //Config for development
-    //return this.http.get('/api/v2/tools/price-conversion', { params });
+    return this.http.get('/api/v2/tools/price-conversion', { params });
   }
 }
