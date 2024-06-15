@@ -25,6 +25,7 @@ import { MetamaskHomeComponent } from "../metamask-home/metamask-home.component"
 /*import { CryptomusComponent } from '../cryptomus/cryptomus.component';*/
 import { HttpClientModule } from '@angular/common/http';
 import { EthPaymentService } from 'src/app/services/eth-payment.service';
+import {CoinMarketCriptoService} from "../../../../../../services/coin-market-cripto.service";
 
 const postalcode = /^[0-9]{5}$/;
 const cvv = /^[0-9]{3}$/;
@@ -91,6 +92,7 @@ export class BookingStepperComponent implements OnInit {
     private _ticketService: TicketService,
     private dialog: MatDialog,
     private _ethPaymentService: EthPaymentService, // Inyectar el servicio
+    private _coinMarketCapService: CoinMarketCriptoService
   ) {
     this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
 
@@ -176,17 +178,33 @@ export class BookingStepperComponent implements OnInit {
 
   /*ethereum page*/
 
-  convertSolesToEther(soles: number): number {
-    const exchangeRate = 13148.33; // Suponemos que 1 ETH = 13148.33 soles
-    const ethers = soles / exchangeRate;
-    return parseFloat(ethers.toFixed(8)); // Redondeamos a 8 decimales para mayor
+  async getEthConversionRate(): Promise<number> {
+    return new Promise((resolve, reject) => {
+      this._coinMarketCapService.convertPrice(1, 'ETH', 'PEN').subscribe(
+        (response) => {
+          const conversionRate = response.data[0].quote['PEN'].price;
+          resolve(conversionRate);
+        },
+        (error) => {
+          console.error('Error getting conversion rate:', error);
+          reject(error);
+        }
+      );
+    });
   }
+
+  async convertSolesToEther(soles: number): Promise<number> {
+    const exchangeRate = await this.getEthConversionRate();
+    const ethers = soles / exchangeRate;
+    return parseFloat(ethers.toFixed(8)); // Redondeamos a 8 decimales para mayor precisión
+  }
+
 
   async onEthereumPayment() {
     try {
       const walletAddress = await this._ethPaymentService.connectWallet();
       if (walletAddress) {
-        const etherAmount= this.convertSolesToEther(this.totalPrice);
+        const etherAmount= await this.convertSolesToEther(this.totalPrice);
         console.log("Ether Amount:", etherAmount);
         await this._ethPaymentService.makePayment(walletAddress, etherAmount);
         this.ticket.user.id = this.userId!;
