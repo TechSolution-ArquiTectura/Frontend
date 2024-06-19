@@ -23,9 +23,10 @@ import { MatInput } from "@angular/material/input";
 import { NgIf } from "@angular/common";
 import { MetamaskHomeComponent } from "../metamask-home/metamask-home.component";
 /*import { CryptomusComponent } from '../cryptomus/cryptomus.component';*/
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EthPaymentService } from 'src/app/services/eth-payment.service';
-import {CoinMarketCriptoService} from "../../../../../../services/coin-market-cripto.service";
+import { CoinMarketCriptoService } from "../../../../../../services/coin-market-cripto.service";
+
 
 const postalcode = /^[0-9]{5}$/;
 const cvv = /^[0-9]{3}$/;
@@ -92,7 +93,8 @@ export class BookingStepperComponent implements OnInit {
     private _ticketService: TicketService,
     private dialog: MatDialog,
     private _ethPaymentService: EthPaymentService, // Inyectar el servicio
-    private _coinMarketCapService: CoinMarketCriptoService
+    private _coinMarketCapService: CoinMarketCriptoService,
+    private http: HttpClient // Inyectar HttpClient
   ) {
     this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
 
@@ -180,18 +182,28 @@ export class BookingStepperComponent implements OnInit {
 
   async getEthConversionRate(): Promise<number> {
     return new Promise((resolve, reject) => {
-      this._coinMarketCapService.convertPrice(1, 'ETH', 'PEN').subscribe(
-        (response) => {
+      this.http.get<any>('/api/v2/tools/price-conversion', {
+        params: {
+          amount: 1,
+          symbol: 'ETH',
+          convert: 'PEN'
+        },
+        headers: {
+          'X-CMC_PRO_API_KEY': 'YOUR_API_KEY'
+        }
+      }).subscribe(
+        (response: any) => {
           const conversionRate = response.data[0].quote['PEN'].price;
           resolve(conversionRate);
         },
-        (error) => {
+        (error: HttpErrorResponse) => {
           console.error('Error getting conversion rate:', error);
           reject(error);
         }
       );
     });
   }
+
 
   async convertSolesToEther(soles: number): Promise<number> {
     const exchangeRate = await this.getEthConversionRate();
@@ -202,11 +214,12 @@ export class BookingStepperComponent implements OnInit {
 
   async onEthereumPayment() {
     try {
+      await this._ethPaymentService.switchToBaseSepoliaNetwork(); // Asegúrate de estar en la red Base Sepolia antes de hacer el pago
       const walletAddress = await this._ethPaymentService.connectWallet();
       if (walletAddress) {
-        const etherAmount= await this.convertSolesToEther(this.totalPrice);
+        const etherAmount = await this.convertSolesToEther(this.totalPrice);
         console.log("Ether Amount:", etherAmount);
-        await this._ethPaymentService.makePayment(walletAddress, etherAmount);
+        await this._ethPaymentService.makePayment(walletAddress, etherAmount.toString()); // Convert etherAmount to string
         this.ticket.user.id = this.userId!;
         this.ticket.showtime.id = this.showtimeId!;
         this.ticket.numberSeats = Number(this.selectedQuantity);
@@ -229,9 +242,7 @@ export class BookingStepperComponent implements OnInit {
     }
   }
 
-
-
-    /*   PaymentComponent */
+  /*   PaymentComponent */
 
   onFormSubmit() {
     if (this.selectedPayment === 'ethereum') {
