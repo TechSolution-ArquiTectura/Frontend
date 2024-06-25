@@ -3,17 +3,19 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Showtime } from '../../models/showtime.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowtimeService {
-  private apiURL= "https://tucine-api.onrender.com/api/TuCine/v1/showtimes";
+
+  private apiURL =  `${environment.apiUrl}/showtimes`;
 
   constructor(private _http: HttpClient, private _snackBar: MatSnackBar) { }
 
   getAllShowtimesByBusinessId(id: number): Observable<any>{
-    return this._http.get(`https://tucine-api.onrender.com/api/TuCine/v1/businesses/${id}/showtimes`);
+    return this._http.get<any>(`${this.apiURL}/businesses/${id}/showtimes`);
   }
 
   getShowtimebyId(id: number): Observable<any>{

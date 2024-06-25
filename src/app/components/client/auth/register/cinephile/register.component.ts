@@ -1,14 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
 import { Gender,User } from 'src/app/core/models/users.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {NgForOf, NgIf} from "@angular/common";
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {MatDialogActions} from "@angular/material/dialog";
 
 const phonePattern = /^[0-9]{9}$/;
 
 @Component({
   selector: 'auth-register-cinephile',
   templateUrl: './register.component.html',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatSelect,
+    MatOption,
+    MatError,
+    NgForOf,
+    NgIf,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatIconButton,
+    MatIcon,
+    MatLabel,
+    MatDialogActions,
+    MatButton
+  ],
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
@@ -70,17 +105,17 @@ export class RegisterComponent implements OnInit {
     if (this.empUserForm.valid) {
       const formValue = { ...this.empUserForm.value };
       delete formValue.confirmPassword;
-  
+
       this.person.name = formValue.first_name;
       this.person.lastname = formValue.last_name;
       this.person.birthdate = formValue.birthdate;
       this.person.phoneNumber = formValue.phone;
       this.person.email = formValue.email;
       this.person.password = formValue.password;
-  
+
       const selectedGender = this.genders.find(gender => gender.name === formValue.Gender_id);
       this.person.gender = selectedGender ? [selectedGender.name] : [];
-  
+
       this._empService.signUpPerson(this.person).subscribe({
         next: () => {
           //alert('Account successfully created');

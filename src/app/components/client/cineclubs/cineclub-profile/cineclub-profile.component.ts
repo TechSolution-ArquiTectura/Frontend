@@ -5,20 +5,43 @@ import { Business } from 'src/app/core/models/users.model';
 import {
   FormBuilder,
   FormControl,
-  FormGroup,
+  FormGroup, ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { ReviewService } from 'src/app/core/services/review/review.service';
 import { Review, ReviewCineclub } from 'src/app/core/models/review.models';
 import {Observable, Subscription} from 'rxjs';
 import { isLogged, isBusiness } from 'src/app/util';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogClose} from '@angular/material/dialog';
 import { EditCineclubComponent } from '../edit-cineclub/edit-cineclub.component';
+import {MatIcon} from "@angular/material/icon";
+import {MatError, MatFormField} from "@angular/material/form-field";
+import {MatCardActions} from "@angular/material/card";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
+import {NgForOf, NgIf} from "@angular/common";
+import {NotFoundComponent} from "../../../shared/not-found/not-found.component";
+import {MoviesAvailableComponent} from "../movies-available/movies-available.component";
 
 @Component({
   selector: 'cineclub-cineclub-profile',
   templateUrl: './cineclub-profile.component.html',
   styleUrls: ['./cineclub-profile.component.scss'],
+  imports: [
+    MatIcon,
+    ReactiveFormsModule,
+    MatError,
+    MatCardActions,
+    MatFormField,
+    MatInput,
+    MatButton,
+    MatDialogClose,
+    NgIf,
+    NgForOf,
+    NotFoundComponent,
+    MoviesAvailableComponent
+  ],
+  standalone: true
 })
 export class CineclubProfileComponent implements OnInit {
   idPost: any;
@@ -88,6 +111,7 @@ export class CineclubProfileComponent implements OnInit {
     this._empServiceMovie.getCineclubById(this.idPost).subscribe({
       next: (res) => {
         this.cineclub = res;
+      console.log(this.cineclub)
       },
       error: (err) => {
         console.log(err);

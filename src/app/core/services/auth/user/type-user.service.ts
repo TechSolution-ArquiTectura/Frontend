@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TypeUser } from 'src/app/core/models/person.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TypeUserService {
 
-  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1//typeUsers";
+  private apiUrl = `${environment.apiUrl}/typeUsers`;
 
   public personsList:TypeUser[]=[];
   constructor(private http: HttpClient) {
@@ -17,7 +18,7 @@ export class TypeUserService {
     } );
   }
   public getTypeUsers(): Observable<TypeUser[]> {
-    return this.http.get<TypeUser[]>(this.apiURL);
+    return this.http.get<TypeUser[]>(this.apiUrl);
   }
 
   public getTypeUserById(id:number){

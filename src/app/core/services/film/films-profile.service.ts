@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { Film } from '../../models/film.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmsProfileService {
 
-  private apiUrl = 'https://tucine-api.onrender.com/api/TuCine/v1';
+  private apiUrl = environment.apiUrl;
 
   private _refresh$ = new Subject<void>();
 

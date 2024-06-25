@@ -3,12 +3,17 @@ import { CinephileProfileService } from '../../../../core/services/auth/cinephil
 import { ActivatedRoute } from '@angular/router';
 import { GroupService } from 'src/app/core/services/groups/group.service';
 import { Group } from 'src/app/core/models/group.model';
+import {ProfileUserComponent} from "../profile-user.component";
 
 const authToken = localStorage.getItem('authToken');
 
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
+  standalone: true,
+  imports: [
+    ProfileUserComponent
+  ],
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit  {
@@ -18,7 +23,7 @@ export class ViewComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    
+
     const authToken = localStorage.getItem('authToken')?.toString();
 
     //Verficar el tipo de dato de authToken

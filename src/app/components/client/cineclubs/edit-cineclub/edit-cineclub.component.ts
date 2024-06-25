@@ -1,14 +1,32 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Business } from 'src/app/core/models/users.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { FilmsProfileService } from 'src/app/core/services/film/films-profile.service';
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatCardActions} from "@angular/material/card";
+import {MatInput} from "@angular/material/input";
+import {MatDialogClose} from "@angular/material/dialog";
+import {MatButton} from "@angular/material/button";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-edit-cineclub',
   templateUrl: './edit-cineclub.component.html',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatCardActions,
+    MatInput,
+    MatDialogClose,
+    MatError,
+    MatLabel,
+    MatButton,
+    NgIf
+  ],
   styleUrls: ['./edit-cineclub.component.scss']
 })
 export class EditCineclubComponent {

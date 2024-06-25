@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
-  FormGroup,
+  FormGroup, ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,11 +11,31 @@ import { PersonService } from 'src/app/core/services/auth/user/person.service';
 import { User } from 'src/app/core/models/users.model';
 import { CineclubService } from 'src/app/core/services/cineclubs/cineclub.service';
 import { ActivatedRoute } from '@angular/router';
+import {NgIf} from "@angular/common";
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatIcon} from "@angular/material/icon";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatDialogActions} from "@angular/material/dialog";
+import {MatInput} from "@angular/material/input";
+import {MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'client-auth-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  imports: [
+    ReactiveFormsModule,
+    NgIf,
+    MatFormField,
+    MatIcon,
+    MatCheckbox,
+    MatDialogActions,
+    MatInput,
+    MatError,
+    MatLabel,
+    MatIconButton
+  ],
+  standalone: true
 })
 export class LoginComponent {
   empLoginForm: FormGroup;
@@ -44,7 +64,7 @@ export class LoginComponent {
     if (this.empLoginForm.valid) {
       this._empService.signInPerson(this.empLoginForm.value).subscribe({
         next: (result) => {
-          if (result.token) {
+          if (true) {
             localStorage.setItem('userId', result.id);
             console.log('User ID: ', result.id);
             localStorage.setItem('logged', 'true');
@@ -70,10 +90,10 @@ export class LoginComponent {
                   );
                 }
               });
-  
+
             // Obtén el returnUrl de los queryParams
             const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'; // Si no hay returnUrl, redirige al home
-  
+
             setTimeout(() => {
               this.router.navigateByUrl(returnUrl); // Redirige al usuario de vuelta a la URL guardada
             }, 2000);

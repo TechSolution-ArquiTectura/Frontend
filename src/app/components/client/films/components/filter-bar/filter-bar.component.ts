@@ -2,6 +2,11 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FilmService } from 'src/app/core/services/film/film.service';
 import { CategoryService } from 'src/app/core/services/film/category.service';
 import { Category } from 'src/app/core/models/film.model';
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {FormsModule} from "@angular/forms";
+import {MatButton} from "@angular/material/button";
+import {NgForOf} from "@angular/common";
 
 interface Genre {
   value: string;
@@ -16,6 +21,16 @@ interface Order {
 @Component({
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
+  standalone: true,
+  imports: [
+    MatFormField,
+    MatSelect,
+    FormsModule,
+    MatOption,
+    MatButton,
+    MatLabel,
+    NgForOf
+  ],
   styleUrls: ['./filter-bar.component.scss']
 })
 export class FilterBarComponent implements OnInit{

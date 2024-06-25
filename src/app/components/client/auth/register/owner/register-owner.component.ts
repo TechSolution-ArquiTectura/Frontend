@@ -1,11 +1,20 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, ReactiveFormsModule, ValidatorFn, Validators} from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { Gender, User, Business } from 'src/app/core/models/users.model';
 import { BusinessType } from 'src/app/core/models/cineclub.model';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
+import { Router } from '@angular/router';
+import {AsyncPipe, NgForOf, NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
+import {MatStep, MatStepper, MatStepperNext, MatStepperPrevious} from "@angular/material/stepper";
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatInput} from "@angular/material/input";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 const phonePattern = /^[0-9]{9}$/;
 const RUCPattern = /^[0-9]{11}$/;
@@ -13,6 +22,31 @@ const RUCPattern = /^[0-9]{11}$/;
 @Component({
   selector: 'auth-register-owner',
   templateUrl: './register-owner.component.html',
+  standalone: true,
+  imports: [
+    NgSwitch,
+    MatStepper,
+    AsyncPipe,
+    MatStep,
+    ReactiveFormsModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatLabel,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatInput,
+    MatButton,
+    MatStepperNext,
+    MatStepperPrevious,
+    MatIconButton,
+    MatError,
+    NgSwitchCase,
+    NgIf,
+    NgForOf,
+    MatIcon
+  ],
   styleUrls: ['./register-owner.component.scss']
 })
 export class RegisterOwnerComponent implements OnInit {
@@ -59,10 +93,6 @@ export class RegisterOwnerComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(100),
     ]),
-    phone: new FormControl('', [
-      Validators.required,
-      Validators.pattern(phonePattern),
-    ]),
     social_reason: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
@@ -90,7 +120,8 @@ export class RegisterOwnerComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _empService: CinephileProfileService,
-    breakpointObserver: BreakpointObserver
+    breakpointObserver: BreakpointObserver,
+    private router: Router
     ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -103,6 +134,12 @@ export class RegisterOwnerComponent implements OnInit {
   }
 
   onFormSubmit(){
+    console.log("Hola")
+
+    console.log("first form", this.firstFormGroup.valid);
+    console.log("second form", this.secondFormGroup.valid);
+    console.log("fourth form", this.fourthFormGroup.valid);
+
     if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.fourthFormGroup.valid ){
       const genderName = this.firstFormGroup.get('Gender_id')?.value as string;
       const selectedGender = this.genders.find(gender => gender.name === genderName);
@@ -130,16 +167,16 @@ export class RegisterOwnerComponent implements OnInit {
                 user: {
                   id: addedPerson.id,
                 },
-                businessTypes: {
+                businessTypes: [{
                   id: this.secondFormGroup.get('BusinessType_id')?.value as unknown as number,
-                }
+                }]
               };
 
               this._empService.addBusiness(formDataBusiness) .subscribe({
                 next: (addedBusiness: any) => {
                   console.log(addedBusiness)
                   alert('Account successfully created');
-                  //this._router.navigateByUrl('/home');
+                  this.router.navigate(['/']);
                 },
                 error: (error: any) => {
                   console.error(error);

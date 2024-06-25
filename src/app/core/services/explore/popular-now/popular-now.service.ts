@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PopularNowService {
 
-  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/popular-now";
-
+  private apiURL = `${environment.apiUrl}/popular-now`;
+  
   constructor(private _http: HttpClient) {}
 
   addPopularEventNow(data: any): Observable<any>{

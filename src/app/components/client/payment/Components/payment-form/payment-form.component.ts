@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ReviewComponent } from '../../../review/review.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CinephileProfileService } from 'src/app/core/services/auth/cinephile/cinephile-profile.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatCard, MatCardContent} from "@angular/material/card";
+import {MatError, MatFormField} from "@angular/material/form-field";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatInput} from "@angular/material/input";
+import {NgIf} from "@angular/common";
 
 const postalcode  = /^[0-9]{5}$/;
 const cvv  = /^[0-9]{3}$/;
@@ -10,6 +15,17 @@ const cvv  = /^[0-9]{3}$/;
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
+  standalone: true,
+  imports: [
+    MatCard,
+    MatCardContent,
+    ReactiveFormsModule,
+    MatFormField,
+    MatCheckbox,
+    MatError,
+    MatInput,
+    NgIf
+  ],
   styleUrls: ['./payment-form.component.scss']
 })
 export class PaymentFormComponent implements OnInit {

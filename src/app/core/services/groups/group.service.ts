@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 import { Group } from 'src/app/core/models/group.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class GroupService {
 
   public groupList:Group[]=[]
 
-  private apiURL="https://tucine-api.onrender.com/api/TuCine/v1/group"
+  private apiURL = `${environment.apiUrl}/group`;
 
   constructor(private http:HttpClient) {
     this.getGroups()

@@ -1,12 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+  ReactiveFormsModule
+} from '@angular/forms';
+import {MatDialog, MatDialogClose} from '@angular/material/dialog';
 import { Review } from 'src/app/core/models/review.models';
 import { ReviewService } from 'src/app/core/services/review/review.service';
+import {MatIcon} from "@angular/material/icon";
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatCardActions} from "@angular/material/card";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
+  standalone: true,
+  imports: [
+    MatIcon,
+    ReactiveFormsModule,
+    MatLabel,
+    MatFormField,
+    MatCardActions,
+    MatDialogClose,
+    MatError,
+    MatInput,
+    MatButton,
+    NgIf
+  ],
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit{

@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   selector: 'app-delete-promotion-dialog',
   templateUrl: './delete-promotion-dialog.component.html',
   styleUrls: ['./delete-promotion-dialog.component.scss'],
+  standalone: true
 })
 export class DeletePromotionDialogComponent {
   constructor(

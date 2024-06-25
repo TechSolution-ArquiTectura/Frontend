@@ -8,11 +8,11 @@
         <div *ngFor="let film of availableFilms">
           <div class="flex flex-row movie_available--card">
             <img
-              src="{{ film.film.poster }}"
+              ngSrc="{{ film.film.poster }}"
               alt="poster"
               style="width: 190px; height: 280px; object-fit: cover; cursor: pointer;"
               [routerLink]="['/dashboard/peliculas/pelicula', film.film.id, film.id]"
-            />
+              fill/>
             <div class="flex flex-column pl-5">
               <div>
                 <h2>
@@ -55,14 +55,14 @@
         </div>
         <button *ngIf="films.length > 2" class="primary-btn btn_movies" (click)="toogleMovies()">{{ seeAll ? 'Ver menos' : 'Ver mas' }}</button>
       </div>
-      
+
       <div class="flex flex-row p-3 new-movie-card" *ngIf="isBusiness">
         <img
-          src="/assets/new_film_poster.png"
+          ngSrc="/assets/new_film_poster.png"
           alt="poster"
           style="width: 190px; height: 280px; object-fit: cover; cursor: pointer;"
           (click)="openDialog()"
-        />
+          height="1665" width="1127"/>
       </div>
     </div>
   </div>

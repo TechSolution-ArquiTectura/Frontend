@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GoogleMapComponent } from './google-map.component';
+import { MetamaskHomeComponent } from './metamask-home.component';
 
-describe('GoogleMapComponent', () => {
-  let component: GoogleMapComponent;
-  let fixture: ComponentFixture<GoogleMapComponent>;
+describe('MetamaskHomeComponent', () => {
+  let component: MetamaskHomeComponent;
+  let fixture: ComponentFixture<MetamaskHomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GoogleMapComponent ]
+      imports: [MetamaskHomeComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(GoogleMapComponent);
+    
+    fixture = TestBed.createComponent(MetamaskHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
