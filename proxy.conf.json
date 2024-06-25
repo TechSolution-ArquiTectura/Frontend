@@ -5,9 +5,6 @@
     "changeOrigin": true,
     "pathRewrite": {
       "^/api": ""
-    },
-    "headers": {
-      "X-CMC_PRO_API_KEY": "8854cad8-4593-4609-a6d5-eccc36514c7d"
     }
   }
 }
