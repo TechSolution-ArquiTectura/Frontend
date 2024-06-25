@@ -25,7 +25,6 @@ import { MetamaskHomeComponent } from "../metamask-home/metamask-home.component"
 /*import { CryptomusComponent } from '../cryptomus/cryptomus.component';*/
 import { HttpClientModule, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EthPaymentService } from 'src/app/services/eth-payment.service';
-import { CoinMarketCriptoService } from "../../../../../../services/coin-market-cripto.service";
 
 
 const postalcode = /^[0-9]{5}$/;
@@ -93,7 +92,6 @@ export class BookingStepperComponent implements OnInit {
     private _ticketService: TicketService,
     private dialog: MatDialog,
     private _ethPaymentService: EthPaymentService, // Inyectar el servicio
-    private _coinMarketCapService: CoinMarketCriptoService,
     private http: HttpClient // Inyectar HttpClient
   ) {
     this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
